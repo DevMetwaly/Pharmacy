@@ -4,7 +4,16 @@ window.onload = function(){
 	Send("./php/Invoices_table.php","GET",function(data){
 		$.each(data,function(index,row){
 			$("#Invoice").append(
-			
+			"<tr>"+
+				"<td>"+row.Invoice_ID+"</td>"+
+				"<td>"+row.MED_NAME+"</td>"+
+				"<td>"+row.FName+row.LName+"</td>"+
+				"<td>"+row.CU_NAME+"</td>"+
+				"<td>"+row.Total+"</td>"+
+				"<td>"+row.Date+"</td>"+
+				"<td>"+row.Pharmacy_ID+"</td>"+
+				
+			"</tr>"
 			);
 		});
 		
@@ -47,20 +56,6 @@ window.onload = function(){
 							</tr>
 						</thead>
 						<tbody id="Invoice">
-							<tr>
-								<td>0001</td>
-								<td>
-									Panadol <br>
-									Bruffin 500mg <br>
-									Refresh Liquid
-								</td>
-								<td>Ahmed Bally</td>
-								<td>Abdelrahman Tarek</td>
-								<td>Dec 11, 2017</td>
-								<td>230</td>
-								<td>A</td>
-								
-							</tr>
 						
 						</tbody>
 					</table>
