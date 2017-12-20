@@ -1,6 +1,6 @@
 <?php
 class db {
-public function __construct($user, $password, $database, $host='localhost') {
+public function __construct($user, $password, $database, $host='localhost:3307') {
 $this->user = $user;
 $this->password = $password;
 $this->database = $database;

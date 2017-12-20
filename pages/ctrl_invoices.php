@@ -1,3 +1,32 @@
+
+<script>
+sold_products=[];
+window.onload=function(){
+
+	$( ".autocomplete" ).autocomplete({
+		                minLength:3,
+
+	  source: function( request, response ) {
+			Send("php/Invoice_ctrl.php?action=search","POST", function (data) {
+				response($.map(data, function (value, key) {
+					return {
+						label: value.Name,
+						value: value.Product_ID
+						};
+				}),);
+			},"q=" + request.term);
+		},
+		select: function( event, ui ){
+			Send("php/Invoice_ctrl.php?action=get","POST",function (data){
+				sold_products.push(data);
+			},"q="+ui.item.value);
+			return false;
+		}	
+	});
+	
+	
+}
+</script>
 <div id="page-wrapper">
 		<div class="container-fluid">
 			<div class="row">
@@ -24,7 +53,7 @@
 
 									<label>Search Medicines</label>
 									<div class="form-group input-group">
-										<input type="text" class="form-control" placeholder="Search by name, id or code..">
+										<input type="text" class="autocomplete form-control" placeholder="Search by name, id or code..">
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="button"><i class="fa fa-search"></i>
 											</button>

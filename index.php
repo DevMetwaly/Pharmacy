@@ -28,6 +28,9 @@ die();
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		
+	<link href="vendor/jquery/jquery-ui.css" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -286,6 +289,7 @@ die();
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/pharmax.js"></script>
+	<script src="vendor/jquery/jquery-ui.js"></script>
 	 
 
 </body>
