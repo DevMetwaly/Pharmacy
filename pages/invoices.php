@@ -9,8 +9,8 @@ window.onload = function(){
 				"<td>"+row.MED_NAME+"</td>"+
 				"<td>"+row.FName+' '+row.LName+"</td>"+
 				"<td>"+row.CU_NAME+"</td>"+
-				"<td>"+row.Total+"</td>"+
-				"<td>"+row.Date+"</td>"+
+				"<td>"+row.Datee+"</td>"+
+				"<td>"+row.Totoal+"</td>"+
 				"<td>"+row.Pharmacy_ID+"</td>"+
 				
 			"</tr>"

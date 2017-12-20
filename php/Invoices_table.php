@@ -5,7 +5,7 @@
 	include_once("MySQLi.php");
 	header('Content-Type: application/json');
 	$res=$db->fetch("
-			SELECT sp.Invoice_ID, cu.Name as CU_NAME, emp.FName, emp.LName, med.Name as MED_NAME,i.Totoal,i.Date,ph.Pharmacy_ID FROM soldproudcts sp
+			SELECT sp.Invoice_ID, cu.Name as CU_NAME, emp.FName, emp.LName, med.Name as MED_NAME,i.Totoal,i.Date as Datee,ph.Pharmacy_ID FROM soldproudcts sp
 			JOIN invoices i ON i.Invoice_ID=sp.Invoice_ID 
 			JOIN proudcts p ON p.Product_ID=sp.Product_ID
 			JOIN empolyees emp ON emp.Empolyee_ID=i.Empolyee_ID 
