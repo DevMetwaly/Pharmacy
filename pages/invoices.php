@@ -7,7 +7,7 @@ window.onload = function(){
 			"<tr>"+
 				"<td>"+row.Invoice_ID+"</td>"+
 				"<td>"+row.MED_NAME+"</td>"+
-				"<td>"+row.FName+row.LName+"</td>"+
+				"<td>"+row.FName+' '+row.LName+"</td>"+
 				"<td>"+row.CU_NAME+"</td>"+
 				"<td>"+row.Total+"</td>"+
 				"<td>"+row.Date+"</td>"+
