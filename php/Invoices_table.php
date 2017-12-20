@@ -14,7 +14,18 @@
 			JOIN pharmacies ph ON ph.Pharmacy_ID=p.Pharmacy_ID
 			ORDER by i.Invoice_ID
 		",true);
+	$arr=array();
+	$last=0;
+	for($i=0; $i<count($res);$i++){
+		if($res[$i]["Invoice_ID"]!=$last){
+			$arr[]=$res[$i];
+			$last=$res[$i]["Invoice_ID"];
+		}else{
+			$arr[count($arr)-1]["MED_NAME"].=("<br>".$res[$i]["MED_NAME"]);
+		}
+		
+	}
 	
-	echo (json_encode($res,JSON_PRETTY_PRINT));
+	echo (json_encode($arr,JSON_PRETTY_PRINT));
 
 ?>
