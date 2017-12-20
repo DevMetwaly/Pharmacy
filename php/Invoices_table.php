@@ -4,7 +4,7 @@
 	session_start();
 	include_once("MySQLi.php");
 	header('Content-Type: application/json');
-	$res=$db->fetch("
+	$res=$db->fetch("Select * FROM Invoices
 			
 		",true);
 	

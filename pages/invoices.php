@@ -4,12 +4,9 @@ window.onload = function(){
 	Send("./php/Invoices_table.php","GET",function(data){
 		$.each(data,function(index,row){
 			$("#Invoice").append(
-			"<tr>"+
-			"<td>"+row.Customer_ID+"</td><td>"+row.Name+"</td><td>"+row.Address+"</td><td>"+row.Phone+"</td><td>"+ 
-			"</tr>"
+			
 			);
 		});
-		
 		
 		
 		$('#dataTables-example').DataTable({
