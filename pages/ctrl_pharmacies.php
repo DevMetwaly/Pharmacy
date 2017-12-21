@@ -3,7 +3,7 @@ window.onload = function(){
 	
 	$( "#form" ).on( "submit", function( event ) {
 		event.preventDefault();
-  console.log( $( this ).serialize() );
+  		console.log( $( this ).serialize() );
 		Send("./php/Pharmacies_ctrl.php","POST",function(data){
 			
 		},);	
@@ -44,9 +44,16 @@ window.onload = function(){
 								</div>
 								<div class="form-group">
 									<label>Phone Numbers</label>
-									<input class="form-control" name="Pharmacy_Phone[]"placeholder="Ex: 1003004000, 555-111-999">
-									<input class="form-control"name=" Pharmacy_Phone[]" placeholder="Ex: 1003004000, 555-111-999">
-									<p>Separate multiple phone numbers by comma.</p>
+
+									<div id="phoneBoxList">
+										<input class="form-control phoneBox" name="addPhone[]" placeholder="Ex: 1003004000, 555-111-999">
+									</div>
+									
+									<div class="formAddButtonDiv">
+										<span class="formAddButton btn btn-primary btn-xs" onclick="formAddBox('pharmacy','phone')">
+											<i class="fa fa-plus"></i> Add Phone
+										</span>
+									</div>
 								</div>
 								<button type="submit" class="btn btn-default btn-success">Submit Button</button>
 								<button type="reset" class="btn btn-default">Reset Button</button>

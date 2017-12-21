@@ -96,3 +96,10 @@ $( "#login" ).on( "submit", function( event ) {
 	logindiv.css({"display":"block"});
   },$( this ).serialize());
 });
+
+function formAddBox(page,type){
+	if(page=="pharmacy" && type=="phone"){
+		$("#phoneBoxList").append('<span><input class="form-control phoneBox" name="addPhone[]" placeholder="Ex: 1003004000, 555-111-999"><i class="fa fa-remove" onclick="$(this).closest(\'span\').remove()"></i></span>');
+		
+	}
+}
