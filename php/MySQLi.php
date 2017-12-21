@@ -21,11 +21,12 @@ public function fetch($query,$loop=false){
 	$result= $db->query($query) or die($db->error);
 	if(!$loop){
 		return $result->fetch_array(MYSQLI_ASSOC);
-	}else{
-	while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-		$results[] = $row ;
 	}
-	return $results;
+	else{
+		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+			$results[] = $row ;
+		}
+		return $results;
 	}
 }
 public function num($query){

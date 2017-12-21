@@ -4,12 +4,11 @@ window.onload = function(){
 		$.each(data,function(index,row){
 			phones="";
 			$.each(row.phones,function(index,phone){
-		
 				phones+= phone.Phone+"<br>";
-				
 			});
-			$("#pharmacies").append("<tr><td>"+row.Pharmacy_Number+"</td><td>"+row.Location+
-			"</td><td>"+phones+"</td></tr>");
+			$("#Pharmacies").append("<tr>"+
+			"<td>"+row.Pharmacy_Number+"</td><td>"+row.Location+"</td><td>"+phones+"</td>"+
+			"</tr>");
 		});
 		$('#dataTables-example').DataTable({
             responsive: true
@@ -42,7 +41,7 @@ window.onload = function(){
 								<th>Phones</th>
 							</tr>
 						</thead>
-						<tbody id="pharmacies">
+						<tbody id="Pharmacies">
 							
 							
 						</tbody>
