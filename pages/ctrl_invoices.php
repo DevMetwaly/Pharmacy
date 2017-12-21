@@ -1,6 +1,42 @@
 
 <script>
 sold_products=[];
+invoice=[];
+var j=1;
+function total(){
+	sum=0;
+	for(i in invoice){
+		sum+=parseFloat(invoice[i].Price)*parseFloat(invoice[i].Quantity);
+	}
+	$("#total").text(sum);
+}
+function delRowInvoice(row,id){
+	a=confirm("Do you want to delete this row?");
+	if(a){
+		for(i in invoice){
+			if(parseInt(invoice[i].Product_ID)==id)
+				invoice.splice(i,1);
+				sold_products.splice(i,1);
+		}
+		$(row).closest('tr').remove();
+		total();
+		j--;
+	}
+}
+function invoiceButton(thisButton, inc, Limit){
+			a=$(thisButton).closest("td").find('input:nth-child(1)').val();
+            if(inc && a<Limit){
+                a++;
+				//Check here that we don't pass database limit.
+                $(thisButton).closest("td").find('input:nth-child(1)').val(a);
+            }
+            else if(!inc && a>1){
+                a--;
+				//Checking that we sell at least one.
+				{$(thisButton).closest("td").find('input:nth-child(1)').val(a);}
+            }
+			total();
+}
 window.onload=function(){
 
 	$( ".autocomplete" ).autocomplete({
@@ -18,7 +54,34 @@ window.onload=function(){
 		},
 		select: function( event, ui ){
 			Send("php/Invoice_ctrl.php?action=get","POST",function (data){
+			var result = $.grep(sold_products, function(e){ return e.Product_ID == data.Product_ID; });
+			if(result == ""){
 				sold_products.push(data);
+				
+				$("#Invoice").append(
+				"<tr>"
+					+"<td>"+ (j++) +"</td>"
+					+"<td>"+data.Name+"</td>"
+					+"<td>"+data.Barcode+"</td>"
+					+"<td>"+data.Expire_Date+"</td>"
+					+"<td><input type=\"text\" class=\"form-control\" id=\""+data.Product_ID+"\" value=\"1\">"
+						+"<input type=\"button\" onclick='invoiceButton(this,1,"+data.Quantity+")' class='table-button' value='+'>"
+						+"<input type=\"button\" onclick='invoiceButton(this,0,"+data.Quantity+")' class='table-button' value='-'></td>"
+					+"<td>"+data.Price+"</td>"
+					+"<td class=\"text-center\"><i class=\"fa fa-minus-circle\" onclick='delRowInvoice(this,"+data.Product_ID+")'></i></td>"
+				+"</tr>");
+				data.Quantity=1;
+				invoice.push(data);
+			}else{
+				for(key in invoice){
+					if(invoice[key].Product_ID == data.Product_ID && data.Quantity >= invoice[key].Quantity+1){
+						invoice[key].Quantity+=1;
+						$("#"+data.Product_ID).val(invoice[key].Quantity);
+					}
+				}
+			
+			}
+			total();
 			},"q="+ui.item.value);
 			return false;
 		}	
@@ -49,17 +112,17 @@ window.onload=function(){
 							<div class="row">
 
 								<div class="col-lg-12">
-									<form role="form">
+									
 
 									<label>Search Medicines</label>
 									<div class="form-group input-group">
-										<input type="text" class="autocomplete form-control" placeholder="Search by name, id or code..">
+										<input type="text" class="autocomplete form-control" placeholder="Search by name, id or code.." onsubmit="return false;">
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="button"><i class="fa fa-search"></i>
 											</button>
 										</span>
 									</div>
-
+									<form role="form">
 									<label>Invoice:</label>
 									<div class="panel panel-primary">
 										<div class="panel-heading">
@@ -80,39 +143,11 @@ window.onload=function(){
 													<th></th>
 												</tr>
 											</thead>
-											<tbody>
-
-												<tr>
-													<td>1</td>
-													<td>Panadol Extra</td>
-													<td>201512</td>
-													<td>14-01-2019</td>
-													<td>
-														<input type="text" class="form-control" value="3">
-														<input type="button" class="table-button plus" value="+">
-														<input type="button" class="table-button minus" value="-">
-													</td>
-													<td>40.00</td>
-													<td class="text-center"><i class="fa fa-minus-circle"></i></td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Panadol Plus</td>
-													<td>201513</td>
-													<td>14-01-2019</td>
-													<td>
-														<input type="text" class="form-control" value="3">
-														<input type="button" class="table-button plus" value="+">
-														<input type="button" class="table-button minus" value="-">
-													</td>
-													<td>35.00</td>
-													<td class="text-center"><i class="fa fa-minus-circle"></i></td>
-												</tr>
-
+											<tbody id="Invoice">
 											</tbody>
 											</table>
-											<h4>Total: 75.00 L.E</h4>
-											<h4>Discount: 0%</h4>
+											<h4>Total: <span id="total">0</span> L.E</h4>
+											<!--<h4>Discount: 0%</h4>-->
 											</div>
 										</div>
 									</div>

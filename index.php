@@ -31,6 +31,8 @@ die();
 		
 	<link href="vendor/jquery/jquery-ui.css" rel="stylesheet">
 
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -255,7 +257,7 @@ die();
         <?	$page = $_GET['page'].'.php';
 			$sdir = './pages/';
 			$pages = scandir($sdir);
-			echo $page;
+			//echo $page;
 			if (in_array($page,$pages) && $page!="index.php") {
 			    include $sdir.$page;
 			}elseif($page=="index.php"){
@@ -281,8 +283,7 @@ die();
     <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
-	
-    <!-- Morris Charts JavaScript -->
+	<!-- Morris Charts JavaScript -->
     <script src="vendor/raphael/raphael.min.js"></script>
     <script src="vendor/morrisjs/morris.min.js"></script>
     <script src="data/morris-data.js"></script>

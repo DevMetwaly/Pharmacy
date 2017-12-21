@@ -46,21 +46,7 @@ $(function() {
     }
 });
 
-$(".table-button").click(function(){
-            val=this.value;
-            if(val=="+"){
-                a=$(this).closest("td").find('input:nth-child(1)').val();
-                a++;
-				//Check here that we don't pass database limit.
-                $(this).closest("td").find('input:nth-child(1)').val(a);
-            }
-            else if(val=="-"){
-                a=$(this).closest("td").find('input:nth-child(1)').val();
-                a--;
-				//Checking that we sell at least one.
-				if(a>0){$(this).closest("td").find('input:nth-child(1)').val(a);}
-            }
-});
+
 
 function delRow(row,id){
 	a=confirm("Do you want to delete this row?");
@@ -69,7 +55,8 @@ function delRow(row,id){
 		
 	},"id="+id+"");}
 	
-};
+}
+
 
 
 function Send(url, method, data, post = null) {
