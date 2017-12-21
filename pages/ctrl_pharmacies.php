@@ -1,3 +1,15 @@
+<script>
+window.onload = function(){
+	
+	$( "#form" ).on( "submit", function( event ) {
+		event.preventDefault();
+  console.log( $( this ).serialize() );
+		Send("./php/Pharmacies_ctrl.php","POST",function(data){
+			
+		},);	
+	}
+}
+</script>
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -20,19 +32,20 @@
 						<div class="row">
 
 							<div class="col-lg-12">
-								<form role="form">
+								<form role="form" id="form">
 								<label>Pharmacy ID</label>
 								<div class="form-group input-group">
 									<span class="input-group-addon">@</span>
-									<input type="text" class="form-control" placeholder="Use a unique single letter, or leave empty for auto generation.">
+									<input type="text" name="Pharmacy_Number" class="form-control" placeholder="Use a unique single letter, or leave empty for auto generation.">
 								</div>
 								<div class="form-group">
 									<label>Address</label>
-									<input class="form-control" placeholder="Enter text">
+									<input class="form-control" name="Pharmacy_Address" placeholder="Enter text">
 								</div>
 								<div class="form-group">
 									<label>Phone Numbers</label>
-									<input class="form-control" placeholder="Ex: 1003004000, 555-111-999">
+									<input class="form-control" name="Pharmacy_Phone[]"placeholder="Ex: 1003004000, 555-111-999">
+									<input class="form-control"name=" Pharmacy_Phone[]" placeholder="Ex: 1003004000, 555-111-999">
 									<p>Separate multiple phone numbers by comma.</p>
 								</div>
 								<button type="submit" class="btn btn-default btn-success">Submit Button</button>
