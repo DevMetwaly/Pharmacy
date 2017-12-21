@@ -50,10 +50,12 @@ $(function() {
 
 function delRow(row,id){
 	a=confirm("Do you want to delete this row?");
-	if(a){$(row).closest('tr').remove();
-	Send("./php/Delete_Product.php","POST",function(data){
-		
-	},"id="+id+"");}
+	if(a){
+		$(row).closest('tr').remove();
+		Send("./php/Delete_Product.php","POST",function(data){
+			
+		},"id="+id+"");
+	}
 	
 }
 
