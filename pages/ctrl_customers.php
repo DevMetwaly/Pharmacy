@@ -1,3 +1,15 @@
+<script>
+function AddCustomer(){
+	var name = $('#Name').val();
+	var address = $('#Address').val();
+	var phone = $('#Phone').val();
+	if(name != null && 
+	Send("./php/Customers_ctrl.php","POST",function(data){
+
+	},"Name="+name+"&Address="+address+"&Phone="+phone);
+}
+
+</script>
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -23,22 +35,22 @@
 								<form role="form">
 								<div class="form-group">
 									<label>Name</label>
-									<input class="form-control" placeholder="Enter name..">
+									<input id="Name" class="form-control" placeholder="Enter name..">
 								</div>
 								<div class="form-group">
 									<label>Address</label>
-									<input class="form-control" placeholder="Enter address..">
+									<input id="Address" class="form-control" placeholder="Enter address..">
 								</div>
-								<div class="form-group">
+								<!--<div class="form-group">
 									<label>Email Address</label>
 									<input class="form-control" placeholder="Enter email address..">
-								</div>
+								</div>-->
 								<div class="form-group">
-									<label>Phone Numbers</label>
-									<input class="form-control" placeholder="Ex: 1003004000, 555-111-999">
+									<label>Phone Number</label>
+									<input id="Phone" class="form-control" placeholder="Ex: 1003004000">
 									<p>Separate multiple phone numbers by comma.</p>
 								</div>
-								<button type="submit" class="btn btn-default btn-success">Submit Button</button>
+								<button type="submit" class="btn btn-default btn-success" onClick="AddCustomer()">Submit Button</button>
 								<button type="reset" class="btn btn-default">Reset Button</button>
 							</form>
 							</div>
