@@ -607,3 +607,26 @@ td i.fa{
 td i.fa:hover{
   color: red;
 }
+
+.phoneBox{
+  margin-top: 4px;
+  padding-right: 30px;
+}
+#phoneBoxList .fa-remove{
+  right: 24px;
+  margin-top: -25px;
+  position: absolute;
+  font-size: 18px;
+  color: brown;
+}
+#phoneBoxList .fa-remove:hover{
+  cursor: pointer;
+  color: red;
+}
+.formAddButtonDiv{
+  height: 12px;
+}
+.formAddButton{
+  margin-top: 4px;
+  float: right;
+}

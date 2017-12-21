@@ -254,7 +254,7 @@ die();
 
         <!-- Page Content -->
 		
-        <?	$page = $_GET['page'].'.php';
+        <?php	$page = $_GET['page'].'.php';
 			$sdir = './pages/';
 			$pages = scandir($sdir);
 			//echo $page;

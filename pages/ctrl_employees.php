@@ -1,3 +1,13 @@
+<script>
+function AddEmployee(){
+	alert($('input[name=optionsRadios]:checked').val());
+	/*Send("./php/Customers_ctrl.php","POST",function(data){
+
+	},"Name="+name+"&Address="+address+"&Phone="+phone);*/
+}
+
+</script>
+
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -21,58 +31,73 @@
 
 							<div class="col-lg-12">
 								<form role="form">
-								<label>Username</label>
-								<div class="form-group input-group">
-									<span class="input-group-addon">@</span>
-									<input type="text" class="form-control" placeholder="Username">
-								</div>
-								<div class="form-group">
-									<label>Password</label>
-									<input class="form-control" type="password">
-									<p class="help-block">This will be modified by the employee later.</p>
-								</div>
-								<div class="form-group">
-									<label>First Name</label>
-									<input class="form-control" placeholder="Enter text">
-								</div>
-								<div class="form-group">
-									<label>Last Name</label>
-									<input class="form-control" placeholder="Enter text">
-								</div>
-								<div class="form-group">
-									<label>Salary</label>
-									<input class="form-control" placeholder="Enter text">
-								</div>
-								<div class="form-group">
-									<label>Account Type</label>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Admin
-										</label>
+									<label>Username</label>
+									<div class="form-group input-group">
+										<span class="input-group-addon">@</span>
+										<input type="text" class="form-control" placeholder="Username">
 									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Sales
-										</label>
+									<div class="form-group">
+										<label>Password</label>
+										<input class="form-control" type="password">
+										<p class="help-block">This will be modified by the employee later.</p>
 									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Pharmacist
-										</label>
+									<div class="form-group">
+										<label>First Name</label>
+										<input class="form-control" placeholder="Enter text">
 									</div>
-								</div>
-								<div class="form-group">
-									<label>Pharmacy</label>
-									<select class="form-control">
-										<option></option>
-										<option>A</option>
-										<option>B</option>
-										<option>C</option>
-									</select>
-								</div>
-								<button type="submit" class="btn btn-default btn-success">Submit Button</button>
-								<button type="reset" class="btn btn-default">Reset Button</button>
-							</form>
+									<div class="form-group">
+										<label>Last Name</label>
+										<input class="form-control" placeholder="Enter text">
+									</div>
+									<div class="form-group">
+										<label>Address</label>
+										<input class="form-control" placeholder="Enter text">
+									</div>
+									<div class="form-group">
+										<label>Salary</label>
+										<input class="form-control" placeholder="Enter text">
+									</div>
+									
+									<div class="form-group">
+										<label>Account Type</label>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsRadios" value="option1" checked>Admin
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsRadios" value="option2">Sales
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsRadios" value="option3">Pharmacist
+											</label>
+										</div>
+									</div>
+								
+									<div class="form-group">
+										<label>Pharmacy</label>
+										<select class="form-control">
+											<option></option>
+											<option>A</option>
+											<option>B</option>
+											<option>C</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Shift</label>
+										<select class="form-control">
+											<option></option>
+											<option>A</option>
+											<option>B</option>
+											<option>C</option>
+										</select>
+									</div>
+									<button type="submit" class="btn btn-default btn-success" onClick="AddEmployee()">Submit Button</button>
+									<button type="reset" class="btn btn-default">Reset Button</button>
+								</form>
 							</div>
 
 						</div>
@@ -125,17 +150,17 @@
 											<label>Account Type</label>
 											<div class="radio">
 												<label>
-													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Admin
+													<input type="radio" name="optionsRadios2" value="option1" checked>Admin
 												</label>
 											</div>
 											<div class="radio">
 												<label>
-													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Sales
+													<input type="radio" name="optionsRadios2" value="option2">Sales
 												</label>
 											</div>
 											<div class="radio">
 												<label>
-													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Pharmacist
+													<input type="radio" name="optionsRadios2" value="option3">Pharmacist
 												</label>
 											</div>
 										</div>
