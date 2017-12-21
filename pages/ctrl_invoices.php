@@ -86,7 +86,31 @@ window.onload=function(){
 			return false;
 		}	
 	});
-	
+	$( ".autocompletenumber" ).autocomplete({
+		                minLength:3,
+
+	  source: function( request, response ) {
+			Send("php/Invoice_ctrl.php?action=getnumber","POST", function (data) {
+				response($.map(data, function (value, key) {
+					return {
+						label: value.Phone,
+						value: value.Customer_ID
+						};
+				}),);
+			},"q=" + request.term);
+		},
+		select: function( event, ui ){
+			Send("php/Invoice_ctrl.php?action=number","POST",function (data){
+				if(data !="null"){
+					$("#Customer_Phone").val(data.Phone);
+					$("#Customer_Name").val(data.Name);
+					$("#Customer_Address").val(data.Address);
+					$("#Customer_Phone").val(data.Phone);
+				}
+			},"q="+ui.item.value);
+			return false;
+		}
+	});
 	
 }
 </script>
@@ -162,18 +186,17 @@ window.onload=function(){
 										<label>Customer Phone</label>
 										<div class="form-group input-group">
 											<span class="input-group-addon">#</span>
-											<input type="text" class="form-control" placeholder="Customer Phone..">
+											<input type="text" id="Customer_Phone" class="autocompletenumber form-control" placeholder="Customer Phone..">
 										</div>
 										<label>Customer Name</label>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Customer name..">
+											<input type="text" id="Customer_Name"class="form-control" placeholder="Customer name..">
 										</div>
 										<label>Customer Address</label>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Address..">
+											<input type="text" id="Customer_Address" class="form-control" placeholder="Address..">
 										</div>
-										<button type="submit" class="btn btn-default btn-info">Confirm & Print</button>
-										<button type="submit" class="btn btn-default btn-success">Confirm</button>
+										<button type="submit" class="btn btn-default btn-success">Confirm & Print</button>
 										<button type="reset" class="btn btn-default">Reset</button>
 									</div>
 
