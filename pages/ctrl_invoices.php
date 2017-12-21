@@ -24,17 +24,26 @@ function delRowInvoice(row,id){
 	}
 }
 function invoiceButton(thisButton, inc, Limit){
-			a=$(thisButton).closest("td").find('input:nth-child(1)').val();
+			b=$(thisButton).closest("td").find('input:nth-child(1)');
+			a=b.val()
+			
             if(inc && a<Limit){
                 a++;
 				//Check here that we don't pass database limit.
-                $(thisButton).closest("td").find('input:nth-child(1)').val(a);
+                $(thisButton).closest("td").find('input:nth-child(1)').val(a);				
             }
             else if(!inc && a>1){
                 a--;
 				//Checking that we sell at least one.
 				{$(thisButton).closest("td").find('input:nth-child(1)').val(a);}
+				
             }
+			for(key in invoice){
+					if(invoice[key].Product_ID == b.attr('id')){
+						invoice[key].Quantity =a;
+						
+					}
+				}
 			total();
 }
 window.onload=function(){
