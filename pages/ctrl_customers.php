@@ -3,7 +3,6 @@ function AddCustomer(){
 	var name = $('#Name').val();
 	var address = $('#Address').val();
 	var phone = $('#Phone').val();
-	if(name != null && 
 	Send("./php/Customers_ctrl.php","POST",function(data){
 
 	},"Name="+name+"&Address="+address+"&Phone="+phone);
