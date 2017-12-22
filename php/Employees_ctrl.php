@@ -21,7 +21,7 @@
 			'".$db->escape($_POST['Address'])."',
 			'".$db->escape($_POST['Type'])."',
 			'".$db->escape($_POST['User_Name'])."', 
-			'".$db->escape($_POST['Password'])."',
+			'".md5($db->escape($_POST['Password']))."',
 			'".$db->escape($_POST['Salary'])."', 
 			'$mysqltime', 
 			'".$db->escape($_POST['Shift'])."'
