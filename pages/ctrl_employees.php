@@ -1,9 +1,34 @@
 <script>
+function reset1(){
+	$('input[name=optionsACC]:checked').val();
+	$('input[name=optionsShift]:checked').val();
+	$('#optionsPH').val('');
+	$('#Username').val('');
+	$('#Password').val('');
+	$('#FName').val('');
+	$('#LName').val('');
+	$('#Address').val('');
+	$('#Salary').val('');
+	$('#Phone').val('');
+	
+	
+}
 function AddEmployee(){
-	alert($('input[name=optionsRadios]:checked').val());
-	/*Send("./php/Customers_ctrl.php","POST",function(data){
+	var opACC 	= $('input[name=optionsACC]:checked').val();
+	var opSH 	= $('input[name=optionsShift]:checked').val();
+	var opPH	= $('#optionsPH').val();
+	var Username= $('#Username').val();
+	var Password= $('#Password').val();
+	var FName 	= $('#FName').val();
+	var LName 	= $('#LName').val();
+	var Address = $('#Address').val();
+	var Salary 	= $('#Salary').val();
+	var Phone 	= $('#Phone').val();
+	
+	
+	Send("./php/Employees_ctrl.php","POST",function(data){
 
-	},"Name="+name+"&Address="+address+"&Phone="+phone);*/
+	},"Pharmacy_ID="+opPH+"&FName="+FName+"&LName="+LName+"&Phone="+Phone+"&Address="+Address+"&Username="+Username+"&Password="+Password+"&Salary="+Salary+"&Type="+opACC+"&Shift="+opSH);
 }
 
 </script>
@@ -30,74 +55,92 @@ function AddEmployee(){
 						<div class="row">
 
 							<div class="col-lg-12">
-								<form role="form">
+								
 									<label>Username</label>
 									<div class="form-group input-group">
 										<span class="input-group-addon">@</span>
-										<input type="text" class="form-control" placeholder="Username">
+										<input id="Username" type="text" class="form-control" placeholder="Username">
 									</div>
 									<div class="form-group">
 										<label>Password</label>
-										<input class="form-control" type="password">
+										<input id="Password" class="form-control" type="password">
 										<p class="help-block">This will be modified by the employee later.</p>
 									</div>
 									<div class="form-group">
 										<label>First Name</label>
-										<input class="form-control" placeholder="Enter text">
+										<input id="FName" class="form-control" placeholder="Enter text">
 									</div>
 									<div class="form-group">
 										<label>Last Name</label>
-										<input class="form-control" placeholder="Enter text">
+										<input id="LName" class="form-control" placeholder="Enter text">
 									</div>
 									<div class="form-group">
 										<label>Address</label>
-										<input class="form-control" placeholder="Enter text">
+										<input id="Address" class="form-control" placeholder="Enter text">
 									</div>
 									<div class="form-group">
 										<label>Salary</label>
-										<input class="form-control" placeholder="Enter text">
+										<input id="Salary" class="form-control" placeholder="Enter text">
 									</div>
-									
+									<div class="form-group">
+										<label>Phone</label>
+										<input id="Phone" class="form-control" placeholder="Enter text">
+									</div>
 									<div class="form-group">
 										<label>Account Type</label>
 										<div class="radio">
 											<label>
-												<input type="radio" name="optionsRadios" value="option1" checked>Admin
+												<input type="radio" name="optionsACC" value="Admin" checked>Admin
 											</label>
 										</div>
 										<div class="radio">
 											<label>
-												<input type="radio" name="optionsRadios" value="option2">Sales
+												<input type="radio" name="optionsACC" value="Sales">Sales
 											</label>
 										</div>
 										<div class="radio">
 											<label>
-												<input type="radio" name="optionsRadios" value="option3">Pharmacist
+												<input type="radio" name="optionsACC" value="Pharmacist">Pharmacist
 											</label>
 										</div>
 									</div>
 								
+									
 									<div class="form-group">
 										<label>Pharmacy</label>
-										<select class="form-control">
+										<select id="optionsPH" class="form-control">
 											<option></option>
-											<option>A</option>
-											<option>B</option>
-											<option>C</option>
+										<?
+											
+											include_once("php/MySQLi.php");
+											$res=$db->fetch("SELECT Pharmacy_ID FROM pharmacies",true);
+											for($i=0;$i<count($res);$i++)
+												ECHO "<option value=".$res[$i]['Pharmacy_ID'].">".$res[$i]['Pharmacy_ID']."</option>";
+
+										?>
 										</select>
 									</div>
 									<div class="form-group">
 										<label>Shift</label>
-										<select class="form-control">
-											<option></option>
-											<option>A</option>
-											<option>B</option>
-											<option>C</option>
-										</select>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsShift" value="A" checked>A
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsShift" value="B">B
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsShift" value="C">C
+											</label>
+										</div>
 									</div>
 									<button type="submit" class="btn btn-default btn-success" onClick="AddEmployee()">Submit Button</button>
-									<button type="reset" class="btn btn-default">Reset Button</button>
-								</form>
+									<button type="reset" class="btn btn-default" onClick="reset1()">Reset Button</button>
+								
 							</div>
 
 						</div>
@@ -130,15 +173,15 @@ function AddEmployee(){
 									<fieldset disabled>
 										<div class="form-group">
 											<label for="disabledSelect">First Name</label>
-											<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
+											<input class="form-control" class="disabledInput" type="text" placeholder="Disabled input" disabled>
 										</div>
 										<div class="form-group">
 											<label for="disabledSelect">Last Name</label>
-											<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
+											<input class="form-control" class="disabledInput" type="text" placeholder="Disabled input" disabled>
 										</div>
 										<div class="form-group">
 											<label for="disabledSelect">Salary</label>
-											<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
+											<input class="form-control" class="disabledInput" type="text" placeholder="Disabled input" disabled>
 										</div>
 										<div class="form-group">
 											<label for="disabledSelect">Pharmacy</label>
