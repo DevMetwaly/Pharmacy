@@ -298,7 +298,7 @@ die();
 	<script src="vendor/jquery/jquery-ui.js"></script>
 	<script src="vendor/jquery/js.cookie.js"></script>
 	<script>
-		if((Cookies.get('theme')=="undefined"){
+		if(Cookies.get('theme')=="undefined"){
 			Cookies.set('theme','dist/css/style1.css');
 			theme = Cookies.get('theme');
 		}

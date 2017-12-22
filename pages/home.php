@@ -1,7 +1,4 @@
  <script src="data/morris-data.js"></script>
- <script >
-
- </script>
  
 <div id="page-wrapper">
 	<div class="row">
@@ -20,7 +17,7 @@
 							<i class="fa fa-users fa-5x"></i>
 						</div>
 						<div class="col-xs-9 text-right">
-							<div class="huge">10</div>
+							<div class="huge" id="NewCustomer">0</div>
 							<div>New Customers!</div>
 						</div>
 					</div>
@@ -42,7 +39,7 @@
 							<i class="fa fa-tasks fa-5x"></i>
 						</div>
 						<div class="col-xs-9 text-right">
-							<div class="huge">12</div>
+							<div class="huge" id="NewInvoice">0</div>
 							<div>New Invoices!</div>
 						</div>
 					</div>
@@ -64,7 +61,7 @@
 							<i class="fa fa-shopping-cart fa-5x"></i>
 						</div>
 						<div class="col-xs-9 text-right">
-							<div class="huge">14</div>
+							<div class="huge" id="ReStock">0</div>
 							<div>Need Restock!</div>
 						</div>
 					</div>
@@ -86,7 +83,7 @@
 							<i class="fa fa-warning fa-5x"></i>
 						</div>
 						<div class="col-xs-9 text-right">
-							<div class="huge">13</div>
+							<div class="huge" id="ExpireSoon">0</div>
 							<div>Soon Expires!</div>
 						</div>
 					</div>
