@@ -1,8 +1,13 @@
 <?php 
-if($_GET["page"]=="login"){
+ob_start();
+session_start();
+if($_GET["page"]=="login" && $_SESSION['user'] ==""){
 include "pages/login.php";
 die();
-}?>
+}elseif($_GET['page']=="login") {
+	header('Location: ./home');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -286,8 +291,7 @@ die();
 	<!-- Morris Charts JavaScript -->
     <script src="vendor/raphael/raphael.min.js"></script>
     <script src="vendor/morrisjs/morris.min.js"></script>
-    <script src="data/morris-data.js"></script>
-
+   
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/pharmax.js"></script>
 	<script src="vendor/jquery/jquery-ui.js"></script>
