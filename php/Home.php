@@ -3,6 +3,9 @@ ob_start();
 session_start();
 include_once("MySQLi.php");
 header('Content-Type: application/json');
+$sold=$db->Fetch("SELECT COUNT(DISTINCT invoices.Customer_ID)  FROM invoices JOIN customers ON  customers.Customer_ID=invoices.Customer_ID where Day(Date) >=Day(CURDATE())-7 ",false);
+print_r ($sold);
+
 $short = array(
   'Jan', 
   'Feb', 
