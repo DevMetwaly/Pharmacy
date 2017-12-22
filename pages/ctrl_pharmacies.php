@@ -3,11 +3,16 @@ window.onload = function(){
 	
 	$( "#form" ).on( "submit", function( event ) {
 		event.preventDefault();
+<<<<<<< HEAD
+  console.log( $( this ).serializeArray() );
+
+=======
   		console.log( $( this ).serialize() );
+>>>>>>> 73dbd0e42a693574eadfc4e6ff511f3c4fcb2f1b
 		Send("./php/Pharmacies_ctrl.php","POST",function(data){
 			
-		},);	
-	}
+		},$( this ).serialize());	
+	});
 }
 </script>
 <div id="page-wrapper">
@@ -44,6 +49,11 @@ window.onload = function(){
 								</div>
 								<div class="form-group">
 									<label>Phone Numbers</label>
+<<<<<<< HEAD
+									<input class="form-control" name="Pharmacy_Phone[]"placeholder="Ex: 1003004000, 555-111-999">
+									<br /><input class="form-control"name=" Pharmacy_Phone[]" placeholder="Ex: 1003004000, 555-111-999">
+									<p>Separate multiple phone numbers by comma.</p>
+=======
 
 									<div id="phoneBoxList">
 										<input class="form-control phoneBox" name="addPhone[]" placeholder="Ex: 1003004000, 555-111-999">
@@ -54,6 +64,7 @@ window.onload = function(){
 											<i class="fa fa-plus"></i> Add Phone
 										</span>
 									</div>
+>>>>>>> 73dbd0e42a693574eadfc4e6ff511f3c4fcb2f1b
 								</div>
 								<button type="submit" class="btn btn-default btn-success">Submit Button</button>
 								<button type="reset" class="btn btn-default">Reset Button</button>
