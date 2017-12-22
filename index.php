@@ -30,7 +30,8 @@ die();
 
     <!-- Custom CSS -->
     <link href="dist/css/pharmax.css" rel="stylesheet">
-
+	<link href="dist/css/style1.css" rel="stylesheet" id="appTheme">
+	
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		
@@ -295,7 +296,13 @@ die();
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/pharmax.js"></script>
 	<script src="vendor/jquery/jquery-ui.js"></script>
-	 
+	<script src="vendor/jquery/js.cookie.js"></script>
+	<script>
+		if((Cookies.get('theme')=="undefined"){
+			Cookies.set('theme','dist/css/style1.css');
+			theme = Cookies.get('theme');
+		}
+	</script>
 
 </body>
 

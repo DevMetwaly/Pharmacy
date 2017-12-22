@@ -1,5 +1,7 @@
 $(function() {
     $('#side-menu').metisMenu();
+	theme = Cookies.get('theme');
+	$("#appTheme").attr("href",theme);
 });
 
 //Loads the correct sidebar on window load,
@@ -104,4 +106,11 @@ function formAddBox(page,type){
 		$("#phoneBoxList").append('<span><input class="form-control phoneBox" name="addPhone[]" placeholder="Ex: 1003004000, 555-111-999"><i class="fa fa-remove" onclick="$(this).closest(\'span\').remove()"></i></span>');
 		
 	}
+}
+
+function changeTheme(newTheme){
+	
+	theme = "dist/css/"+newTheme;
+	$("#appTheme").attr("href",theme);
+	Cookies.set('theme',theme);
 }
