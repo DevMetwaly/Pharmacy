@@ -3,8 +3,8 @@ window.onload = function(){
 	
 	$( "#form" ).on( "submit", function( event ) {
 		event.preventDefault();
-
   console.log( $( this ).serializeArray() );
+
 		Send("./php/Pharmacies_ctrl.php","POST",function(data){
 			
 		},$( this ).serialize());	
