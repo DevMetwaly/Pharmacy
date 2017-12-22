@@ -1,66 +1,52 @@
-$(function() {
+window.onload =function(){$(function() {
 
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
             label: "Pharmacy A Sales",
-            value: 12
+            value: 50
         }, {
             label: "Pharmacy B Sales",
-            value: 30
+            value: 6000
+        }, {
+            label: "Pharmacy C Sales",
+            value: 20
+        }, {
+            label: "Pharmacy D Sales",
+            value: 20
+        }, {
+            label: "Pharmacy E Sales",
+            value: 20
+        }, {
+            label: "Pharmacy C Sales",
+            value: 20
+        }, {
+            label: "Pharmacy C Sales",
+            value: 20
         }, {
             label: "Pharmacy C Sales",
             value: 20
         }],
         resize: true
     });
-
+Send("./php/Home.php","GET",function(data){
+    k=[];
+	l=[]
+	$.each(data.Pharmacies,function(key,value){ k.push(value.Pharmacy_Number); l.push("Pharmacy "+value.Pharmacy_Number);})
+	console.log(k);
     Morris.Bar({
         element: 'morris-bar-chart',
-        data: [{
-            y: 'May',
-            a: 100,
-            b: 90,
-			c: 10
-        }, {
-            y: 'June',
-            a: 75,
-            b: 65,
-			c: 99
-        }, {
-            y: 'Jul',
-            a: 50,
-            b: 40,
-			c: 15
-        }, {
-            y: 'Aug',
-            a: 75,
-            b: 65,
-			c: 60
-        }, {
-            y: 'Sep',
-            a: 50,
-            b: 40,
-			c: 10
-        }, {
-            y: 'Oct',
-            a: 75,
-            b: 65,
-			c: 20
-        }, {
-            y: 'Nov',
-            a: 100,
-            b: 90,
-			c: 10
-        }],
-        xkey: 'y',
-        ykeys: ['a', 'b', 'c'],
-        labels: ['Series A', 'Series B', 'Series C'],
+			data: data.statstics,
+        xkey: "Month",
+        ykeys:k ,
+        labels: l,
         hideHover: 'auto',
-        resize: true
+		  xLabelAngle: 40,
+        resize: false
     });
     
-	
+		 
+ });
 	
     /*Morris.Area({
         element: 'morris-area-chart',
@@ -124,3 +110,4 @@ $(function() {
     });*/
 	
 });
+}
