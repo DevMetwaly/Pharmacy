@@ -29,7 +29,14 @@ if($_POST){
 }
 break;
 case "invoice":
-	
+$customer=$db->fetch("SELECT Customer_ID from customers WHERE Phone='".$db->escape($_POST["Phone"])."'",false);
+$customer_id=($_POST["Phone"]!="")? ($customer==null) ? -1:$customer["Customer_ID"]:0;
+if($customer_id == -1){
+$customer_id=$db->query("INSERT INTO customers (Customer_ID, Name, Address, Phone)
+		VALUES (NULL, '".$db->escape($_POST['Name'])."', '".$db->escape($_POST['Address'])."','".$db->escape($_POST['Phone'])."')");
+	echo json_encode($db->lastrow());
+}
+
 break;
 }
 

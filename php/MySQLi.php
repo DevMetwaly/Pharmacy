@@ -16,6 +16,10 @@ public function query($query){
 	$db = $this->connect();
 	return $db->query($query);
 }
+public function lastrow(){
+	return $this->db->insert_id;
+}
+
 public function fetch($query,$loop=false){
 	$db = $this->connect();
 	$result= $db->query($query) or die($db->error);
