@@ -26,8 +26,11 @@ public function fetch($query,$loop=false){
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 			$results[] = $row ;
 		}
-		return $results;
+		if(isset($results))
+			return $results;
+		
 	}
+	return array();
 }
 public function num($query){
 $db = $this->connect();
