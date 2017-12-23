@@ -20,7 +20,8 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/pharmax.css" rel="stylesheet">
-
+<link href="<?=($_COOKIE["theme"]=="")?"dist/css/style1.css" :$_COOKIE["theme"]?> " rel="stylesheet" id="appTheme">
+    
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -80,7 +81,7 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
-
+<script src="vendor/jquery/js.cookie.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/pharmax.js"></script>
 

@@ -14,7 +14,7 @@ protected function connect() {
 }
 public function query($query){
 	$db = $this->connect();
-	return $db->query($query) or die($db->error);
+	return $db->query($query);
 }
 public function fetch($query,$loop=false){
 	$db = $this->connect();
