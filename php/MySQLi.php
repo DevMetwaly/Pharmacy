@@ -30,19 +30,20 @@ public function fetch($query,$loop=false){
 			return $results;
 		
 	}
-	return array();
+	
+	return false;
 }
 public function num($query){
-$db = $this->connect();
-$result =$db->query($query) or trigger_error($db->error);
-return $result->num_rows;
-$db->close;
-}
-public function escape($string){
-$db = $this->connect();
-return (htmlspecialchars($db->escape_string($string)));
-$db->close;
-}
+	$db = $this->connect();
+	$result =$db->query($query) or trigger_error($db->error);
+	return $result->num_rows;
+	$db->close;
+	}
+	public function escape($string){
+	$db = $this->connect();
+	return (htmlspecialchars($db->escape_string($string)));
+	$db->close;
+	}
 }
 $db = new db('root','','ph');
 
