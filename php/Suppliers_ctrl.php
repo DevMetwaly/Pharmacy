@@ -19,7 +19,7 @@ $db->query
 				'".$db->escape($_POST['Name'])."',
 				'".$db->escape($_POST['Phone'])."',
 				'".$db->escape($_POST['Loc'])."',
-				'".$db->escape($_POST['mailh'])."'
+				'".$db->escape($_POST['Email'])."'
 			)
 	");
 

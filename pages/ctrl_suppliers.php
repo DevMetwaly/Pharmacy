@@ -1,3 +1,28 @@
+<script>
+function Reset(){
+	$('#Name').val('');
+	$('#Phone').val('');
+	$('#Location').val('');
+	$('#Email').val('');
+	
+}
+
+function AddSuplier(){
+	var Name		= $('#Name').val();
+	var Phone		= $('#Phone').val();
+	var Location	= $('#Location').val();
+	var Email		= $('#Email').val();
+
+	Send("./php/Suppliers_ctrl.php","POST",function(data){
+
+	},"Name="+Name+"&Phone="+Phone+"&Loc="+Location+"&Email="+Email);	
+	Reset();
+}
+
+
+
+</script>
+
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -20,27 +45,27 @@
 						<div class="row">
 
 							<div class="col-lg-12">
-								<form role="form">
+								
 								<div class="form-group">
 									<label>Name</label>
-									<input class="form-control" placeholder="Enter name..">
+									<input id="Name" class="form-control" placeholder="Enter name..">
 								</div>
 								<div class="form-group">
 									<label>Address</label>
-									<input class="form-control" placeholder="Enter address..">
+									<input id="Location" class="form-control" placeholder="Enter address..">
 								</div>
 								<div class="form-group">
 									<label>Email Address</label>
-									<input class="form-control" placeholder="Enter email address..">
+									<input id="Email" class="form-control" placeholder="Enter email address..">
 								</div>
 								<div class="form-group">
 									<label>Phone Numbers</label>
-									<input class="form-control" placeholder="Ex: 1003004000, 555-111-999">
+									<input id="Phone" class="form-control" placeholder="Ex: 1003004000, 555-111-999">
 									<p>Separate multiple phone numbers by comma.</p>
 								</div>
-								<button type="submit" class="btn btn-default btn-success">Submit Button</button>
-								<button type="reset" class="btn btn-default">Reset Button</button>
-							</form>
+								<button type="submit" class="btn btn-default btn-success" onClick="AddSuplier()">Submit Button</button>
+								<button type="reset" class="btn btn-default" onClick="Reset()">Reset Button</button>
+							
 							</div>
 
 						</div>
