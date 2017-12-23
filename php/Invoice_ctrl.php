@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 switch($_GET['action']){
 case "search":
 if($_POST){
-	$inv=$db->fetch("SELECT Product_ID,Name FROM medicines,proudcts WHERE Name LIKE '%".$db->escape($_POST["q"])."%' AND proudcts.Medicine_ID=medicines.Medicin_ID AND Quantity >0 AND Expire_Date > '".date('Y-m-d')."' LIMIT 10",true);
+$inv=$db->fetch("SELECT Product_ID,Name FROM medicines,proudcts WHERE Name LIKE '%".$db->escape($_POST["q"])."%' AND Pharmacy_ID='".$_SESSION["user"]["Pharmacy_ID"]."' AND proudcts.Medicine_ID=medicines.Medicin_ID AND Quantity >0 AND Expire_Date > '".date('Y-m-d')."' LIMIT 10",true);
 	echo (json_encode(($inv==null) ?[]:$inv,JSON_PRETTY_PRINT));
 }
 break;
@@ -43,16 +43,23 @@ $items=json_decode($_POST["invoices"]);
 	foreach ($items as $item){
 	 $total+=$item->Price*$item->Quantity;
 	}
-print_r($items);
+
 $invoice=$db->query("INSERT INTO invoices (Invoice_ID,Empolyee_ID,Customer_ID,Totoal,Date)
 VALUES (NULL,'".$_SESSION["user"]["Empolyee_ID"]."','".$customer_id."','".$total."',NOW())");
-}
 $invoice_id=$db->lastrow();
 foreach ($items as $item){
 $db->query("INSERT INTO soldproudcts (Product_ID,Invoice_ID,Quantity)
 VALUES('".$item->Product_ID."','".$invoice_id."','".$item->Quantity."')");
 $db->query("UPDATE proudcts SET Quantity=Quantity - ".$item->Quantity." WHERE Product_ID='".$item->Product_ID."'");
 }
+	$re["type"]="success";
+	$re["msg"]="Invoice Printed Successfully";
+}else{
+	$re["type"]="error";
+	$re["msg"]="Invoice Printed Unsuccessfully";
+}
+echo (json_encode($re,JSON_PRETTY_PRINT));
+
 break;
 }
 
