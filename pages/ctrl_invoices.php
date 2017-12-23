@@ -114,7 +114,6 @@ window.onload=function(){
 					$("#Customer_Phone").val(data.Phone);
 					$("#Customer_Name").val(data.Name);
 					$("#Customer_Address").val(data.Address);
-					$("#Customer_Phone").val(data.Phone);
 				}
 			},"q="+ui.item.value);
 			return false;
