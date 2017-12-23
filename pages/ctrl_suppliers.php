@@ -1,26 +1,75 @@
 <script>
-function Reset(){
-	$('#Name').val('');
-	$('#Phone').val('');
-	$('#Location').val('');
-	$('#Email').val('');
+window.onload=function(){
+
+	$( "#AddSupForm" ).on( "submit", function( event ) {
+		//prevent default event of submit button
+		event.preventDefault();	
+		
+		//get all fields values
+		var Name		= $('#Name').val();
+		var Phone		= $('#Phone').val();
+		var Location	= $('#Location').val();
+		var Email		= $('#Email').val();
+		
+		//call php file to store data in DB with action=add
+		Send("./php/Suppliers_ctrl.php?action=add","POST",function(data){
+			alert(data.msg);
+			$("#resAddSup").click();
+			$("#resModiSup").click();
+		},"Name="+Name+"&Phone="+Phone+"&Loc="+Location+"&Email="+Email);	
+	});
 	
+	
+	
+	$( "#EditSupForm" ).on( "submit", function( event ) {
+		//prevent default event of submit button
+		event.preventDefault();	
+		
+		//get all fields values
+		var Name		= $('#SName').val();
+		var Phone		= $('#SPhone').val();
+		var Location	= $('#SLocation').val();
+		var Email		= $('#SEmail').val();
+		var selSupp		= $('#selSupp').val();
+		//call php file to store data in DB with action=add
+		Send("./php/Suppliers_ctrl.php?action=edit","POST",function(data){
+			alert(data.msg);
+		},"Name="+Name+"&Phone="+Phone+"&Loc="+Location+"&Email="+Email+"&Supplier_ID="+selSupp);	
+	
+	});
+	
+	
+	$( "#DelSupp" ).on( "click", function( event ) {
+		var Supplier_ID = $('#selSupp').val();
+		Send("./php/Suppliers_ctrl.php?action=delete","POST",function(data){
+		   alert(data.msg);
+		   $("#resModiSup").click();
+		},"Supplier_ID="+Supplier_ID);
+	});
+	
+	
+	
+	$('#selSupp').on('change', function() {
+		var Supplier_ID= this.value;
+		
+		Send("./php/Suppliers_ctrl.php?action=comp","POST",function(data){
+			
+			if(data !="null"){
+				$("#SLocation").val(data.Location);
+				$("#SName").val(data.Name);
+				$("#SEmail").val(data.Email);
+				$("#SPhone").val(data.Phone);
+				$("#field").removeAttr('disabled');
+			}
+		},"Supplier_ID="+Supplier_ID);
+	
+	})
+	
+	
+	
+	
+
 }
-
-function AddSuplier(){
-	var Name		= $('#Name').val();
-	var Phone		= $('#Phone').val();
-	var Location	= $('#Location').val();
-	var Email		= $('#Email').val();
-
-	Send("./php/Suppliers_ctrl.php","POST",function(data){
-
-	},"Name="+Name+"&Phone="+Phone+"&Loc="+Location+"&Email="+Email);	
-	Reset();
-}
-
-
-
 </script>
 
 <div id="page-wrapper">
@@ -45,27 +94,27 @@ function AddSuplier(){
 						<div class="row">
 
 							<div class="col-lg-12">
-								
-								<div class="form-group">
-									<label>Name</label>
-									<input id="Name" class="form-control" placeholder="Enter name..">
-								</div>
-								<div class="form-group">
-									<label>Address</label>
-									<input id="Location" class="form-control" placeholder="Enter address..">
-								</div>
-								<div class="form-group">
-									<label>Email Address</label>
-									<input id="Email" class="form-control" placeholder="Enter email address..">
-								</div>
-								<div class="form-group">
-									<label>Phone Numbers</label>
-									<input id="Phone" class="form-control" placeholder="Ex: 1003004000, 555-111-999">
-									<p>Separate multiple phone numbers by comma.</p>
-								</div>
-								<button type="submit" class="btn btn-default btn-success" onClick="AddSuplier()">Submit Button</button>
-								<button type="reset" class="btn btn-default" onClick="Reset()">Reset Button</button>
-							
+								<form id="AddSupForm">
+									<div class="form-group">
+										<label>Name</label>
+										<input id="Name" class="form-control" placeholder="Enter name..">
+									</div>
+									<div class="form-group">
+										<label>Address</label>
+										<input id="Location" class="form-control" placeholder="Enter address..">
+									</div>
+									<div class="form-group">
+										<label>Email Address</label>
+										<input id="Email" class="form-control" placeholder="Enter email address..">
+									</div>
+									<div class="form-group">
+										<label>Phone Numbers</label>
+										<input id="Phone" class="form-control" placeholder="Ex: 1003004000, 555-111-999">
+										<p>Separate multiple phone numbers by comma.</p>
+									</div>
+									<button type="submit" class="btn btn-default btn-success" onClick="AddSuplier()">Submit Button</button>
+									<button id="resAddSup" type="reset" class="btn btn-default">Reset Button</button>
+								</form>
 							</div>
 
 						</div>
@@ -89,34 +138,40 @@ function AddSuplier(){
 						<div class="row">
 
 							<div class="col-lg-12">
-								<form role="form">
+								<form id="EditSupForm" role="form">
 									<label>Supplier</label>
 									<div class="form-group">
-										<select class="form-control">
+										<select id="selSupp" class="form-control">
 											<option>Select supplier..</option>
-											<option>GSK</option>
+											<?
+												include_once("php/MySQLi.php");
+												$res=$db->fetch("SELECT Supplier_ID, Name FROM suppliers",true);
+												for($i=0;$i<count($res);$i++)
+												ECHO "<option value=".$res[$i]['Supplier_ID'].">".$res[$i]['Supplier_ID'].' '.$res[$i]['Name']."</option>";
+											?>
 										</select>
 									</div>
-									<fieldset disabled>
+									<fieldset id="field" disabled>
 										<div class="form-group">
 											<label>Name</label>
-											<input class="form-control" placeholder="Enter text">
+											<input id="SName" class="form-control" placeholder="Enter text">
 										</div>
 										<div class="form-group">
 											<label>Address</label>
-											<input class="form-control" placeholder="Enter text">
+											<input id="SLocation" class="form-control" placeholder="Enter text">
 										</div>
 										<div class="form-group">
 											<label>Email Address</label>
-											<input class="form-control" placeholder="Enter text">
+											<input id="SEmail" class="form-control" placeholder="Enter text">
 										</div>
 										<div class="form-group">
 											<label>Phone Numbers</label>
-											<input class="form-control" placeholder="Ex: 1003004000, 555-111-999">
+											<input id="SPhone" class="form-control" placeholder="Ex: 1003004000, 555-111-999">
 											<p>Separate multiple phone numbers by comma.</p>
 										</div>
 										<button type="submit" class="btn btn-primary">Apply Changes</button>
-										<button type="submit" class="btn btn-danger">Remove Supplier</button>
+										<button id="DelSupp" type="button" class="btn btn-danger" >Remove Supplier</button>
+										<button id="resModiSup" type="reset"  class="btn btn-default">Reset Button</button>
 									</fieldset>
 								</form>
 							</div>

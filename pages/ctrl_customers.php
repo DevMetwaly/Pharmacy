@@ -1,58 +1,73 @@
 <script>
 window.onload=function(){
-$( "#AddCustomer" ).on( "submit", function( event ) {
-  event.preventDefault();
-  var name = $('#Name').val();
-	var address = $('#Address').val();
-	var phone = $('#Phone').val();
-	Send("./php/Customers_ctrl.php?action=add","POST",function(data){
-       alert(data.msg);
-	},"Name="+name+"&Address="+address+"&Phone="+phone);
-});
-$( "#EditCustomer" ).on( "submit", function( event ) {
-  event.preventDefault();
-  var name = $('#Ename').val();
-	var address = $('#Eaddress').val();
-	var phone = $('#Ephone').val();
-	var Sphone = $('#Sphone').val();
-	Send("./php/Customers_ctrl.php?action=edit","POST",function(data){
-       alert(data.msg);
-	},"Name="+name+"&Address="+address+"&Phone="+phone+"&SPhone="+Sphone);
-});
-$( "#DeleteCustomer" ).on( "click", function( event ) {
-	var Sphone = $('#Sphone').val();
-	Send("./php/Customers_ctrl.php?action=delete","POST",function(data){
-       alert(data.msg);
-	},"SPhone="+Sphone);
-});
 
-$( "#Sphone" ).autocomplete({
-					minLength:3,
+	$( "#AddCustomer" ).on( "submit", function( event ) {
+		event.preventDefault();
+		var name = $('#Name').val();
+		var address = $('#Address').val();
+		var phone = $('#Phone').val();
+		Send("./php/Customers_ctrl.php?action=add","POST",function(data){
+		   alert(data.msg);
+		},"Name="+name+"&Address="+address+"&Phone="+phone);
+	});
 
-  source: function( request, response ) {
-		Send("php/Customers_ctrl.php?action=auto","POST", function (data) {
-			response($.map(data, function (value, key) {
-				return {
-					label: value.Phone,
-					value: value.Customer_ID
-					};
-			}),);
-		},"q=" + request.term);
-	},
-	select: function( event, ui ){
-		Send("php/Customers_ctrl.php?action=number","POST",function (data){
-			if(data !="null"){
-				$("#Sphone").val(data.Phone);
-				$("#Ephone").val(data.Phone);
-				$("#Ename").val(data.Name);
-				$("#Eaddress").val(data.Address);
-				$("#field").removeAttr('disabled');;
+	
+	
+	
+	$( "#EditCustomer" ).on( "submit", function( event ) {
+		event.preventDefault();
+		var name = $('#Ename').val();
+		var address = $('#Eaddress').val();
+		var phone = $('#Ephone').val();
+		var Sphone = $('#Sphone').val();
+		Send("./php/Customers_ctrl.php?action=edit","POST",function(data){
+		   alert(data.msg);
+		},"Name="+name+"&Address="+address+"&Phone="+phone+"&SPhone="+Sphone);
+	});
+
+	
+	
+	$( "#DeleteCustomer" ).on( "click", function( event ) {
+		var Sphone = $('#Sphone').val();
+		Send("./php/Customers_ctrl.php?action=delete","POST",function(data){
+		   alert(data.msg);
+		},"SPhone="+Sphone);
+	});
+
+	
+	
+	
+	$( "#Sphone" ).autocomplete(
+		{
+			minLength:3,
+			
+			source: function( request, response ) {
+				Send("php/Customers_ctrl.php?action=auto","POST", function (data) {
+					response($.map(data, function (value, key) {
+						return {
+							label: value.Phone,
+							value: value.Customer_ID
+						};
+					}),);
+				},"q=" + request.term);
+			},
+			
+			select: function( event, ui ){
+				Send("php/Customers_ctrl.php?action=number","POST",function (data){
+					if(data !="null"){
+						$("#Sphone").val(data.Phone);
+						$("#Ephone").val(data.Phone);
+						$("#Ename").val(data.Name);
+						$("#Eaddress").val(data.Address);
+						$("#field").removeAttr('disabled');
+					}
+				},"q="+ui.item.value);
+				return false;
 			}
-		},"q="+ui.item.value);
-		return false;
-	}
-});
-
+		}
+	);
+	
+	
 }
 </script>
 <div id="page-wrapper">
@@ -78,25 +93,25 @@ $( "#Sphone" ).autocomplete({
 							
 							<div class="col-lg-12">
 								<form role="form" id="AddCustomer">
-								<div class="form-group">
-									<label>Name</label>
-									<input id="Name" class="form-control" placeholder="Enter name..">
-								</div>
-								<div class="form-group">
-									<label>Address</label>
-									<input id="Address" class="form-control" placeholder="Enter address..">
-								</div>
-								<!--<div class="form-group">
-									<label>Email Address</label>
-									<input class="form-control" placeholder="Enter email address..">
-								</div>-->
-								<div class="form-group">
-									<label>Phone Number</label>
-									<input class="form-control" id="Phone" placeholder="Ex: 1003004000">
-								</div>
-								<button type="submit" class="btn btn-default btn-success">Submit Button</button>
-								<button type="reset" class="btn btn-default">Reset Button</button>
-							</form>
+									<div class="form-group">
+										<label>Name</label>
+										<input id="Name" class="form-control" placeholder="Enter name..">
+									</div>
+									<div class="form-group">
+										<label>Address</label>
+										<input id="Address" class="form-control" placeholder="Enter address..">
+									</div>
+									<!--<div class="form-group">
+										<label>Email Address</label>
+										<input class="form-control" placeholder="Enter email address..">
+									</div>-->
+									<div class="form-group">
+										<label>Phone Number</label>
+										<input class="form-control" id="Phone" placeholder="Ex: 1003004000">
+									</div>
+									<button type="submit" class="btn btn-default btn-success">Submit Button</button>
+									<button type="reset" class="btn btn-default">Reset Button</button>
+								</form>
 							</div>
 
 						</div>
