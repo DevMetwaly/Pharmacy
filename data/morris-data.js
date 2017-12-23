@@ -10,20 +10,25 @@ console.log(t);
   Morris.Donut({
         element: 'morris-donut-chart',
         data: t,
+		//colors: [ 'orange', 'brown', 'black'],
+		//colors: [ 'blue', 'green','grey'],
+		//colors: [ 'black', 'navy', '#aaa'],
         resize: true
     });
+	
     k=[];
 	l=[]
 	$.each(data.Pharmacies,function(key,value){ k.push(value.Pharmacy_Number); l.push("Pharmacy "+value.Pharmacy_Number);});
     Morris.Bar({
         element: 'morris-bar-chart',
-			data: data.statstics,
+		data: data.statstics,
         xkey: "Month",
         ykeys:k ,
         labels: l,
         hideHover: 'auto',
 		  xLabelAngle: 40,
         resize: false
+		
     });
     
 		 

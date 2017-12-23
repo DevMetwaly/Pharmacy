@@ -33,6 +33,8 @@ die();
     <!-- Custom CSS -->
     <link href="dist/css/pharmax.css" rel="stylesheet">
 	<link href="<?=($_COOKIE["theme"]=="")?"dist/css/style1.css" :$_COOKIE["theme"]?> " rel="stylesheet" id="appTheme">
+
+	
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		
