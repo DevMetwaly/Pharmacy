@@ -1,45 +1,27 @@
 window.onload =function(){$(function() {
-
-    Morris.Donut({
+Send("./php/Home.php","GET",function(data){
+  $.each(data.information,function(key,value){
+	 
+	  $("#"+Object.keys(value)[0]+"").text(value[Object.keys(value)[0]]);
+  });
+  t=[];
+  $.each(data.sold_statstics,function(key,value){ t.push(value)});
+console.log(t);
+  Morris.Donut({
         element: 'morris-donut-chart',
-        data: [{
-            label: "Pharmacy A Sales",
-            value: 50
-        }, {
-            label: "Pharmacy B Sales",
-            value: 6000
-        }, {
-            label: "Pharmacy C Sales",
-            value: 20
-        }, {
-            label: "Pharmacy D Sales",
-            value: 20
-        }, {
-            label: "Pharmacy E Sales",
-            value: 20
-        }, {
-            label: "Pharmacy C Sales",
-            value: 20
-        }, {
-            label: "Pharmacy C Sales",
-            value: 20
-        }, {
-            label: "Pharmacy C Sales",
-            value: 20
-        }],
+        data: t,
 		//colors: [ 'orange', 'brown', 'black'],
 		//colors: [ 'blue', 'green','grey'],
 		//colors: [ 'black', 'navy', '#aaa'],
         resize: true
     });
-Send("./php/Home.php","GET",function(data){
+	
     k=[];
 	l=[]
-	$.each(data.Pharmacies,function(key,value){ k.push(value.Pharmacy_Number); l.push("Pharmacy "+value.Pharmacy_Number);})
-	console.log(k);
+	$.each(data.Pharmacies,function(key,value){ k.push(value.Pharmacy_Number); l.push("Pharmacy "+value.Pharmacy_Number);});
     Morris.Bar({
         element: 'morris-bar-chart',
-			data: data.statstics,
+		data: data.statstics,
         xkey: "Month",
         ykeys:k ,
         labels: l,

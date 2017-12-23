@@ -47,80 +47,90 @@ function invoiceButton(thisButton, inc, Limit){
 			total();
 }
 window.onload=function(){
+$( "#Apply" ).on( "submit", function( event ) {
+  event.preventDefault();
+  var phone=$("#Customer_Phone").val();
+  var name=$("#Customer_Name").val();
+  var address=$("#Customer_Address").val();
+  Send("php/Invoice_ctrl.php?action=invoice","POST", function (data) {
+	  alert(data.msg);
+	  if(data.type="success")
+		  location.reload();
+  },"Phone=" + phone+"&Name="+name+"&Address="+address+"&invoices="+JSON.stringify(invoice));
+});
 
-	$( ".autocomplete" ).autocomplete({
-		                minLength:3,
+$( ".autocomplete" ).autocomplete({
+					minLength:3,
 
-	  source: function( request, response ) {
-			Send("php/Invoice_ctrl.php?action=search","POST", function (data) {
-				response($.map(data, function (value, key) {
-					return {
-						label: value.Name,
-						value: value.Product_ID
-						};
-				}),);
-			},"q=" + request.term);
-		},
-		select: function( event, ui ){
-			Send("php/Invoice_ctrl.php?action=get","POST",function (data){
-			var result = $.grep(sold_products, function(e){ return e.Product_ID == data.Product_ID; });
-			if(result == ""){
-				sold_products.push(data);
-				
-				$("#Invoice").append(
-				"<tr>"
-					+"<td>"+ (j++) +"</td>"
-					+"<td>"+data.Name+"</td>"
-					+"<td>"+data.Barcode+"</td>"
-					+"<td>"+data.Expire_Date+"</td>"
-					+"<td><input type=\"text\" class=\"form-control\" id=\""+data.Product_ID+"\" value=\"1\">"
-						+"<input type=\"button\" onclick='invoiceButton(this,1,"+data.Quantity+")' class='table-button' value='+'>"
-						+"<input type=\"button\" onclick='invoiceButton(this,0,"+data.Quantity+")' class='table-button' value='-'></td>"
-					+"<td>"+data.Price+"</td>"
-					+"<td class=\"text-center\"><i class=\"fa fa-minus-circle\" onclick='delRowInvoice(this,"+data.Product_ID+")'></i></td>"
-				+"</tr>");
-				data.Quantity=1;
-				invoice.push(data);
-			}else{
-				for(key in invoice){
-					if(invoice[key].Product_ID == data.Product_ID && data.Quantity >= invoice[key].Quantity+1){
-						invoice[key].Quantity+=1;
-						$("#"+data.Product_ID).val(invoice[key].Quantity);
-					}
-				}
+  source: function( request, response ) {
+		Send("php/Invoice_ctrl.php?action=search","POST", function (data) {
+			response($.map(data, function (value, key) {
+				return {
+					label: value.Name,
+					value: value.Product_ID
+					};
+			}),);
+		},"q=" + request.term);
+	},
+	select: function( event, ui ){
+		Send("php/Invoice_ctrl.php?action=get","POST",function (data){
+		var result = $.grep(sold_products, function(e){ return e.Product_ID == data.Product_ID; });
+		if(result == ""){
+			sold_products.push(data);
 			
-			}
-			total();
-			},"q="+ui.item.value);
-			return false;
-		}	
-	});
-	$( ".autocompletenumber" ).autocomplete({
-		                minLength:3,
-
-	  source: function( request, response ) {
-			Send("php/Invoice_ctrl.php?action=getnumber","POST", function (data) {
-				response($.map(data, function (value, key) {
-					return {
-						label: value.Phone,
-						value: value.Customer_ID
-						};
-				}),);
-			},"q=" + request.term);
-		},
-		select: function( event, ui ){
-			Send("php/Invoice_ctrl.php?action=number","POST",function (data){
-				if(data !="null"){
-					$("#Customer_Phone").val(data.Phone);
-					$("#Customer_Name").val(data.Name);
-					$("#Customer_Address").val(data.Address);
-					$("#Customer_Phone").val(data.Phone);
+			$("#Invoice").append(
+			"<tr>"
+				+"<td>"+ (j++) +"</td>"
+				+"<td>"+data.Name+"</td>"
+				+"<td>"+data.Barcode+"</td>"
+				+"<td>"+data.Expire_Date+"</td>"
+				+"<td><input type=\"text\" class=\"form-control\" id=\""+data.Product_ID+"\" value=\"1\">"
+					+"<input type=\"button\" onclick='invoiceButton(this,1,"+data.Quantity+")' class='table-button' value='+'>"
+					+"<input type=\"button\" onclick='invoiceButton(this,0,"+data.Quantity+")' class='table-button' value='-'></td>"
+				+"<td>"+data.Price+"</td>"
+				+"<td class=\"text-center\"><i class=\"fa fa-minus-circle\" onclick='delRowInvoice(this,"+data.Product_ID+")'></i></td>"
+			+"</tr>");
+			data.Quantity=1;
+			invoice.push(data);
+		}else{
+			for(key in invoice){
+				if(invoice[key].Product_ID == data.Product_ID && data.Quantity >= invoice[key].Quantity+1){
+					invoice[key].Quantity+=1;
+					$("#"+data.Product_ID).val(invoice[key].Quantity);
 				}
-			},"q="+ui.item.value);
-			return false;
+			}
+		
 		}
-	});
-	
+		total();
+		},"q="+ui.item.value);
+		return false;
+	}	
+});
+$( ".autocompletenumber" ).autocomplete({
+					minLength:3,
+
+  source: function( request, response ) {
+		Send("php/Invoice_ctrl.php?action=getnumber","POST", function (data) {
+			response($.map(data, function (value, key) {
+				return {
+					label: value.Phone,
+					value: value.Customer_ID
+					};
+			}),);
+		},"q=" + request.term);
+	},
+	select: function( event, ui ){
+		Send("php/Invoice_ctrl.php?action=number","POST",function (data){
+			if(data !="null"){
+				$("#Customer_Phone").val(data.Phone);
+				$("#Customer_Name").val(data.Name);
+				$("#Customer_Address").val(data.Address);
+			}
+		},"q="+ui.item.value);
+		return false;
+	}
+});
+
 }
 </script>
 <div id="page-wrapper">
@@ -155,7 +165,7 @@ window.onload=function(){
 											</button>
 										</span>
 									</div>
-									<form role="form">
+									<form role="form" id="Apply">
 									<label>Invoice:</label>
 									<div class="panel panel-primary">
 										<div class="panel-heading">

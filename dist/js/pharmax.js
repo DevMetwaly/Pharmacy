@@ -82,7 +82,7 @@ function Send(url, method, data, post = null) {
 
 $( "#login" ).on( "submit", function( event ) {
   event.preventDefault();
-  Send("./php/login.php","POST",function(data){
+  Send("./php/Login.php?action=login","POST",function(data){
 	  logindiv=$(".login-div");
 	  logindiv.removeClass("alert-success");
 	  logindiv.removeClass("alert-danger");

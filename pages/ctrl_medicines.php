@@ -1,3 +1,25 @@
+<script>
+function Reset(){
+	$('#Name').val('');
+	$('#Desciption').val('');
+	$('#Supplier').val('');
+	
+}
+
+function AddMed(){
+	var Name		= $('#Name').val();
+	var Desciption	= $('#Desciption').val();
+	var Supplier	= $('#Supplier').val();
+
+	Send("./php/Medicines_ctrl.php","POST",function(data){
+
+	},"Name="+Name+"&Description="+Desciption+"&Supplier_IDs="+Supplier);	
+	Reset();
+}
+
+
+
+</script>
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -20,43 +42,30 @@
 						<div class="row">
 
 							<div class="col-lg-12">
-								<form role="form">
+								
 								<div class="form-group">
 									<label>Medicine name</label>
-									<input class="form-control" placeholder="Enter medicine name..">
+									<input id="Name" class="form-control" placeholder="Enter medicine name..">
+								</div>
+								<div class="form-group">
+									<label>Desciption</label>
+									<input id="Desciption" class="form-control" placeholder="Enter Desciption">
 								</div>
 								<div class="form-group">
 									<label>Supplier</label>
-									<select class="form-control">
+									<select id="Supplier" class="form-control">
 										<option>Select a supplier..</option>
-										<option></option>
-										<option></option>
+										<?
+											include_once("php/MySQLi.php");
+											$res=$db->fetch("SELECT Supplier_ID, Name FROM suppliers",true);
+											for($i=0;$i<count($res);$i++)
+											ECHO "<option value=".$res[$i]['Supplier_ID'].">".$res[$i]['Supplier_ID'].' '.$res[$i]['Name']."</option>";
+										?>
 									</select>
 								</div>
-								<div class="form-group">
-									<label>Code</label>
-									<input class="form-control" placeholder="Enter product code..">
-								</div>
-								<div class="form-group">
-									<label>Expire Date</label>
-									<input class="form-control" placeholder="Enter expiration date..">
-								</div>
-								<div class="form-group">
-									<label>Price</label>
-									<input class="form-control" placeholder="Enter price in L.E.">
-								</div>
-								<div class="form-group">
-									<label>Pharmacy</label>
-									<select class="form-control">
-										<option>Select a pharmacy..</option>
-										<option>A</option>
-										<option>B</option>
-										<option>C</option>
-									</select>
-								</div>
-								<button type="submit" class="btn btn-default btn-success">Submit Button</button>
-								<button type="reset" class="btn btn-default">Reset Button</button>
-							</form>
+								<button type="submit" class="btn btn-default btn-success" onClick="AddMed()">Submit Button</button>
+								<button type="reset" class="btn btn-default" onClick="Reset()">Reset Button</button>
+							
 							</div>
 
 						</div>

@@ -6,6 +6,8 @@ include "pages/login.php";
 die();
 }elseif($_GET['page']=="login") {
 	header('Location: ./home');
+}elseif(($_GET["page"]=="home" || $_GET["page"]=="index") && $_SESSION['user'] ==""){
+	header('Location: ./login');
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +33,7 @@ die();
     <!-- Custom CSS -->
     <link href="dist/css/pharmax.css" rel="stylesheet">
 	<link href="<?=($_COOKIE["theme"]=="")?"dist/css/style1.css" :$_COOKIE["theme"]?> " rel="stylesheet" id="appTheme">
-	
+
 	
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -138,7 +140,7 @@ die();
                         <li><a href="settings_app"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="#"  onclick="Send('php/Login.php?action=logout','GET',function(){  window.location = './login';});"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -156,7 +158,7 @@ die();
                             </div>
                             <div class="profile-info">
                                 Welcome,<br>
-                                <span> <a href="#">Abdulrahman</a>! </span>
+                                <span> <a href="#"><?=$_SESSION["user"]["FName"]; ?></a>! </span>
                             </div>
                             <!-- /input-group -->
                         </li>
@@ -299,7 +301,7 @@ die();
 	<script src="vendor/jquery/jquery-ui.js"></script>
 	<script src="vendor/jquery/js.cookie.js"></script>
 	<script>
-		if((Cookies.get('theme')=="undefined"){
+		if(Cookies.get('theme')=="undefined"){
 			Cookies.set('theme','dist/css/style1.css');
 			theme = Cookies.get('theme');
 		}

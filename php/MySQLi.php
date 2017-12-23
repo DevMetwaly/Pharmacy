@@ -14,8 +14,12 @@ protected function connect() {
 }
 public function query($query){
 	$db = $this->connect();
-	return $db->query($query) or die($db->error);
+	return $db->query($query);
 }
+public function lastrow(){
+	return $this->db->insert_id;
+}
+
 public function fetch($query,$loop=false){
 	$db = $this->connect();
 	$result= $db->query($query) or die($db->error);
@@ -26,20 +30,24 @@ public function fetch($query,$loop=false){
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 			$results[] = $row ;
 		}
-		return $results;
+		if(isset($results))
+			return $results;
+		
 	}
+	
+	return false;
 }
 public function num($query){
-$db = $this->connect();
-$result =$db->query($query) or trigger_error($db->error);
-return $result->num_rows;
-$db->close;
-}
-public function escape($string){
-$db = $this->connect();
-return (htmlspecialchars($db->escape_string($string)));
-$db->close;
-}
+	$db = $this->connect();
+	$result =$db->query($query) or trigger_error($db->error);
+	return $result->num_rows;
+	$db->close;
+	}
+	public function escape($string){
+	$db = $this->connect();
+	return (htmlspecialchars($db->escape_string($string)));
+	$db->close;
+	}
 }
 $db = new db('root','','ph');
 
