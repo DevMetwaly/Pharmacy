@@ -16,6 +16,8 @@ window.onload=function(){
 			alert(data.msg);
 			$("#resAddSup").click();
 			$("#resModiSup").click();
+			$("#selSupp").append("<option value="+data.ID+">"+data.ID+' '+Name+"</option>");
+			
 		},"Name="+Name+"&Phone="+Phone+"&Loc="+Location+"&Email="+Email);	
 	});
 	
@@ -44,6 +46,8 @@ window.onload=function(){
 		Send("./php/Suppliers_ctrl.php?action=delete","POST",function(data){
 		   alert(data.msg);
 		   $("#resModiSup").click();
+		   $('#field').prop('disabled', true);
+		   $('#selSupp option[value='+Supplier_ID+']').remove();
 		},"Supplier_ID="+Supplier_ID);
 	});
 	
@@ -59,7 +63,7 @@ window.onload=function(){
 				$("#SName").val(data.Name);
 				$("#SEmail").val(data.Email);
 				$("#SPhone").val(data.Phone);
-				$("#field").removeAttr('disabled');
+				$('#field').prop('disabled', false);
 			}
 		},"Supplier_ID="+Supplier_ID);
 	
