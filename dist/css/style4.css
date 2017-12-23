@@ -1,0 +1,66 @@
+body {
+  background-color: #200;
+}
+.navbar {
+  background: linear-gradient(#600,#400,#200);
+}
+.navbar .navbar-brand>span{
+  color: yellow;
+}
+.navbar .navbar-top-links a.dropdown-toggle {
+  color: yellow;
+}
+.sidebar{
+  background: #200;
+}
+.sidebar .sidebar-profile div {
+  float: left;
+  color: #fff;
+}
+.sidebar .sidebar-profile div.profile-info span a {
+    color: yellow;
+}
+.sidebar .sidebar-profile div.profile-info span a:hover {
+    color: orange;
+}
+
+.sidebar ul li {
+  border-bottom: 1px solid #610000;
+}
+.sidebar ul li:focus {
+  border-bottom: 1px solid #610000;
+}
+.sidebar ul li a:hover {
+  background: none;
+  color: orange;
+}
+.sidebar ul li a:focus {
+  background: none;
+}
+.sidebar ul li a {
+  color: white;
+}
+.sidebar ul li a.active {
+  background-color: brown;
+}
+.sidebar ul li.active {
+    background: linear-gradient(#800,#101010);
+}
+.sidebar ul li ul {
+  background: #411;
+}
+.sidebar ul li.active ul li:before{
+    background: #900;
+}
+.sidebar ul li.active ul li:after{
+    border-left: 1px solid #900;
+}
+.sidebar ul li ul li:before{
+    background: #900;
+}
+.sidebar ul li ul li:after{
+    border-left: 1px solid #900;
+}
+.sidebar ul li ul li a.active{
+   color: yellow;
+}

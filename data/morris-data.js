@@ -27,6 +27,9 @@ window.onload =function(){$(function() {
             label: "Pharmacy C Sales",
             value: 20
         }],
+		//colors: [ 'orange', 'brown', 'black'],
+		//colors: [ 'blue', 'green','grey'],
+		//colors: [ 'black', 'navy', '#aaa'],
         resize: true
     });
 Send("./php/Home.php","GET",function(data){
@@ -43,6 +46,7 @@ Send("./php/Home.php","GET",function(data){
         hideHover: 'auto',
 		  xLabelAngle: 40,
         resize: false
+		
     });
     
 		 
