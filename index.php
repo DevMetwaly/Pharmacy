@@ -156,7 +156,7 @@ die();
                             </div>
                             <div class="profile-info">
                                 Welcome,<br>
-                                <span> <a href="#">Abdulrahman</a>! </span>
+                                <span> <a href="#"><?=$_SESSION["user"]["FName"]; ?></a>! </span>
                             </div>
                             <!-- /input-group -->
                         </li>
