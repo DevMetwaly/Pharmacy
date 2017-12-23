@@ -30,13 +30,29 @@ if($_POST){
 break;
 case "invoice":
 $customer=$db->fetch("SELECT Customer_ID from customers WHERE Phone='".$db->escape($_POST["Phone"])."'",false);
-$customer_id=($_POST["Phone"]!="")? ($customer==null) ? -1:$customer["Customer_ID"]:0;
+$customer_id=($_POST["Phone"]!="")? ($customer==null) ? -1:$customer["Customer_ID"]:1;
+$invoice_id=0;
 if($customer_id == -1){
-$customer_id=$db->query("INSERT INTO customers (Customer_ID, Name, Address, Phone)
+$customer=$db->query("INSERT INTO customers (Customer_ID, Name, Address, Phone)
 		VALUES (NULL, '".$db->escape($_POST['Name'])."', '".$db->escape($_POST['Address'])."','".$db->escape($_POST['Phone'])."')");
-	echo json_encode($db->lastrow());
+$customer_id=$db->lastrow();
 }
-
+if($_POST["invoices"]!="[]"){
+$total=0;
+$items=json_decode($_POST["invoices"]);
+	foreach ($items as $item){
+	 $total+=$item->Price*$item->Quantity;
+	}
+print_r($items);
+$invoice=$db->query("INSERT INTO invoices (Invoice_ID,Empolyee_ID,Customer_ID,Totoal,Date)
+VALUES (NULL,'".$_SESSION["user"]["Empolyee_ID"]."','".$customer_id."','".$total."',NOW())");
+}
+$invoice_id=$db->lastrow();
+foreach ($items as $item){
+$db->query("INSERT INTO soldproudcts (Product_ID,Invoice_ID,Quantity)
+VALUES('".$item->Product_ID."','".$invoice_id."','".$item->Quantity."')");
+$db->query("UPDATE proudcts SET Quantity=Quantity - ".$item->Quantity." WHERE Product_ID='".$item->Product_ID."'");
+}
 break;
 }
 

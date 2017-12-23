@@ -5,7 +5,7 @@ include_once("MySQLi.php");
 header('Content-Type: application/json');
 switch($_GET["action"]){
 case "login":
-$user=$db->Fetch("SELECT Empolyee_ID FROM empolyees WHERE User_Name='".$db->escape($_POST["username"])."' AND Password='".md5($db->escape($_POST["password"]))."'");
+$user=$db->Fetch("SELECT * FROM empolyees WHERE User_Name='".$db->escape($_POST["username"])."' AND Password='".md5($db->escape($_POST["password"]))."'");
 if(isset($user["Empolyee_ID"])){
 	$_SESSION["user"]=$user;
 	$re["type"]="alert-success";
