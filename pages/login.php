@@ -20,9 +20,9 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/pharmax.css" rel="stylesheet">
-<link href="<?=($_COOKIE["theme"]=="")?"dist/css/style1.css" :$_COOKIE["theme"]?> " rel="stylesheet" id="appTheme">
-    
-    <!-- Custom Fonts -->
+	<link href="<?=(!isset($_COOKIE["theme"]) || $_COOKIE["theme"]=="")?"dist/css/style1.css" :$_COOKIE["theme"]?> " rel="stylesheet" id="appTheme">
+
+   <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
