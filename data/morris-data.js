@@ -1,4 +1,5 @@
 window.onload =function(){$(function() {
+	
 Send("./php/Home.php","GET",function(data){
   $.each(data.information,function(key,value){
 	 
@@ -7,7 +8,8 @@ Send("./php/Home.php","GET",function(data){
   t=[];
   $.each(data.sold_statstics,function(key,value){ t.push(value)});
 console.log(t);
-  Morris.Donut({
+
+	Morris.Donut({
         element: 'morris-donut-chart',
         data: t,
 		//colors: [ 'orange', 'brown', 'black'],
