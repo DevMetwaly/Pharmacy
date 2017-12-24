@@ -154,7 +154,7 @@ die();
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-profile">
                             <div class="profile-image">
-                                <img src="img/PP.jpg">
+                                <img src="<?=(isset($_SESSION["user"]["Image"]))?$_SESSION["user"]["Image"]:"./image/default-user.png";?>">
                             </div>
                             <div class="profile-info">
                                 Welcome,<br>
