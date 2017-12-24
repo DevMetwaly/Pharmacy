@@ -83,7 +83,7 @@ switch($_GET['action']){
 				SET 
 					Name='".$db->escape($_POST['Name'])."',
 					Description= '".$db->escape($_POST['Description'])."',
-					Supplier_ID='".$db->escape($_POST['Supplier_ID'])."',
+					Supplier_ID='".$db->escape($_POST['Supplier_ID'])."'
 				WHERE Medicin_ID='".$db->escape($_POST['Medicin_ID'])."'
 						
 			"))

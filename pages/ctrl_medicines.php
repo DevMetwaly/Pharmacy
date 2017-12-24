@@ -4,14 +4,14 @@ window.onload=function(){
 		//prevent default event of submit button
 		event.preventDefault();	
 		var Name		= $('#Name').val();
-		var Desciption	= $('#Desciption').val();
+		var Description	= $('#Description').val();
 		var Supplier	= $('#Supplier').val();	
 		
 		Send("./php/Medicines_ctrl.php?action=add","POST",function(data){
 			alert(data.msg);
 			$("#resAddMed").click();
 			$("#resModiMed").click();
-		},"Name="+Name+"&Description="+Desciption+"&Supplier_IDs="+Supplier);	
+		},"Name="+Name+"&Description="+Description+"&Supplier_IDs="+Supplier);	
 	
 	});
 	
@@ -33,10 +33,11 @@ window.onload=function(){
 				Send("./php/Medicines_ctrl.php?action=number","POST",function (data){
 					if(data !="null"){
 						$('#MName').val(data.Name);
-						$('#MDesciption').val(data.Description);
+						$('#Mid').val(data.Name);
+						$('#MDescription').val(data.Description);
 						$("#field").removeAttr('disabled');
 						$('#Medicin_ID').val(data.Medicin_ID);
-						
+					
 					}
 				},"q="+ui.item.value);
 				return false;
@@ -59,14 +60,14 @@ window.onload=function(){
 		event.preventDefault();	
 		//get all fields values
 		var Name		= $('#MName').val();
-		var Desciption	= $('#MDesciption').val();
+		var Description	= $('#MDescription').val();
 		var Supplier	= $('#MSupplier').val();	
 		var Medicin_ID = $('#Medicin_ID').val();
-		alert(Name);
+		
 		//call php file to store data in DB with action=add
 		Send("./php/Medicines_ctrl.php?action=edit","POST",function(data){
 			alert(data.msg);
-		},"Name="+Name+"&Description="+Desciption+"&Supplier_ID="+Supplier+"&Medicin_ID="+Medicin_ID);	
+		},"Name="+Name+"&Description="+Description+"&Supplier_ID="+Supplier+"&Medicin_ID="+Medicin_ID);	
 	
 	});
 	
@@ -104,8 +105,8 @@ window.onload=function(){
 										<input id="Name" class="form-control" placeholder="Enter medicine name..">
 									</div>
 									<div class="form-group">
-										<label>Desciption</label>
-										<input id="Desciption" class="form-control" placeholder="Enter Desciption">
+										<label>Description</label>
+										<input id="Description" class="form-control" placeholder="Enter Desciption">
 									</div>
 									<div class="form-group">
 										<label>Supplier</label>
@@ -145,11 +146,12 @@ window.onload=function(){
 						<div class="row">
 
 							<div class="col-lg-12">
-									<div class="form-group">
+								
+								<form id="EditMedForm" role="form">
+									<div class="form-group" style="display: none;" disabled>
 										<label>Medicine ID</label>
 										<input id="Medicin_ID" class="form-control" placeholder="Enter medicine name.." disabled>
 									</div>
-								<form id="EditMedForm" role="form">
 									<label>Medicine Name</label>
 									<div class="form-group input-group">
 										<span class="input-group-addon">#</span>
@@ -174,7 +176,7 @@ window.onload=function(){
 										</div>
 										<div class="form-group">
 											<label for="disabledSelect">Desciption</label>
-											<input id="MDesciption" class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
+											<input id="MDescription" class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
 										</div>
 										
 										<button type="submit" class="btn btn-primary">Apply Changes</button>
