@@ -115,12 +115,16 @@ function changeTheme(newTheme){
 	Cookies.set('theme',theme);
 }
 
-function popUp(F){
+function popUp(F,msg="",type=""){
 	if(F){
-		$("body").append('<div class="popUp success"><strong>ALERT : </strong>SUCCESSFUL OPERATION!<br><span class="btn btn-success btn-xs" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
+		if(msg=="") msg="SUCCESSFUL OPERATION!";
+		if(type=="") type="ALERT";
+		$("body").append('<div class="popUp success"><strong>'+type+' : </strong>'+msg+'<br><span class="btn btn-success btn-xs" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
 	}
 	else{
-		$("body").append('<div class="popUp error"><strong>ERROR : </strong>OPERATION UNSUCCESSFUL!<br><span class="btn btn-danger btn-xs" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
+		if(msg=="") msg="OPERATION UNSUCCESSFUL!";
+		if(type=="") type="ERROR";
+		$("body").append('<div class="popUp error"><strong>'+type+' : </strong>'+msg+'<br><span class="btn btn-danger btn-xs" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
 	}
 }
 	
