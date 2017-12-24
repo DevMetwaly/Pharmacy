@@ -29,12 +29,14 @@ switch($_GET['action']){
 			"))
 				{
 					$re["type"]="success";
-					$re["msg"]="New Customer Added";
+					$re["msg"]="New Supplier Added";
+					$re["ID"]=$db->lastrow();
 				}
 		else
 				{
 					$re["type"]="error";
-					$re["msg"]="Customer Already Exist";
+					$re["msg"]="Supplier Already Exist";
+					$re["ID"]=$db->lastrow();
 				}
 		echo (json_encode($re,JSON_PRETTY_PRINT));
 		
@@ -61,7 +63,7 @@ switch($_GET['action']){
 		else
 				{
 					$re["type"]="error";
-					$re["msg"]="Customer Edited Unsuccessfully";
+					$re["msg"]="Supplier Edited Unsuccessfully";
 				}
 		echo (json_encode($re,JSON_PRETTY_PRINT));				
 	break;

@@ -16,6 +16,8 @@ window.onload=function(){
 			alert(data.msg);
 			$("#resAddSup").click();
 			$("#resModiSup").click();
+			$("#selSupp").append("<option value="+data.ID+">"+data.ID+' '+Name+"</option>");
+			
 		},"Name="+Name+"&Phone="+Phone+"&Loc="+Location+"&Email="+Email);	
 	});
 	
@@ -44,6 +46,8 @@ window.onload=function(){
 		Send("./php/Suppliers_ctrl.php?action=delete","POST",function(data){
 		   alert(data.msg);
 		   $("#resModiSup").click();
+		   $('#field').prop('disabled', true);
+		   $('#selSupp option[value='+Supplier_ID+']').remove();
 		},"Supplier_ID="+Supplier_ID);
 	});
 	
@@ -59,7 +63,7 @@ window.onload=function(){
 				$("#SName").val(data.Name);
 				$("#SEmail").val(data.Email);
 				$("#SPhone").val(data.Phone);
-				$("#field").removeAttr('disabled');
+				$('#field').prop('disabled', false);
 			}
 		},"Supplier_ID="+Supplier_ID);
 	
@@ -110,7 +114,7 @@ window.onload=function(){
 									<div class="form-group">
 										<label>Phone Numbers</label>
 										<input id="Phone" class="form-control" placeholder="Ex: 1003004000, 555-111-999">
-										<p>Separate multiple phone numbers by comma.</p>
+										
 									</div>
 									<button type="submit" class="btn btn-default btn-success" onClick="AddSuplier()">Submit Button</button>
 									<button id="resAddSup" type="reset" class="btn btn-default">Reset Button</button>
@@ -167,7 +171,6 @@ window.onload=function(){
 										<div class="form-group">
 											<label>Phone Numbers</label>
 											<input id="SPhone" class="form-control" placeholder="Ex: 1003004000, 555-111-999">
-											<p>Separate multiple phone numbers by comma.</p>
 										</div>
 										<button type="submit" class="btn btn-primary">Apply Changes</button>
 										<button id="DelSupp" type="button" class="btn btn-danger" >Remove Supplier</button>
