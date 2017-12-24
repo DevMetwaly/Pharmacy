@@ -6,7 +6,7 @@ include "pages/login.php";
 die();
 }elseif($_GET['page']=="login") {
 	header('Location: ./home');
-}elseif(($_GET["page"]=="home" || $_GET["page"]=="index") && $_SESSION['user'] ==""){
+}elseif(($_GET["page"]=="home" || $_GET["page"]=="index" || $_GET["page"]=="") && $_SESSION['user'] ==""){
 	header('Location: ./login');
 }
 ?>
@@ -269,7 +269,7 @@ die();
 			//echo $page;
 			if (in_array($page,$pages) && $page!="index.php") {
 			    include $sdir.$page;
-			}elseif($page=="index.php"){
+			}elseif($page=="index.php" || $page==".php"){
 				include $sdir.'home.php';
 			}else{
 				include $sdir.'blank.php';
