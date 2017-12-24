@@ -24,6 +24,8 @@
 							<p>Dark Theme</p>
 						</div>	
 					</div>
+					<span class="btn btn-success" onclick="popUp(1)">Successful Popup</span>
+					<span class="btn btn-danger" onclick="popUp(0)">Error Popup</span>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>

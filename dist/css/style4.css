@@ -64,3 +64,13 @@ body {
 .sidebar ul li ul li a.active{
    color: yellow;
 }
+.popUp.success{
+    background: linear-gradient(green,black);
+    color: white;
+    border: 2px solid black;
+}
+.popUp.error{
+    background: linear-gradient(red,black);
+    color: yellow;
+    border: 2px solid black;
+}

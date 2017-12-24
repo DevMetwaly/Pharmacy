@@ -114,3 +114,17 @@ function changeTheme(newTheme){
 	$("#appTheme").attr("href",theme);
 	Cookies.set('theme',theme);
 }
+
+function popUp(F){
+	if(F){
+		$("body").append('<div class="popUp success"><strong>ALERT : </strong>SUCCESSFUL OPERATION!<br><span class="btn btn-success btn-xs" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
+	}
+	else{
+		$("body").append('<div class="popUp error"><strong>ERROR : </strong>OPERATION UNSUCCESSFUL!<br><span class="btn btn-danger btn-xs" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
+	}
+}
+	
+function closePopUp(){
+	$(".popUp").remove();
+	$(".disable").remove();
+}
