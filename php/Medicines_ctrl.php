@@ -100,7 +100,7 @@ switch($_GET['action']){
 	break;
 	
 	
-	case 'comp':
+	/*case 'comp':
 		$res=$db->fetch
 			("
 				SELECT * FROM medicines 
@@ -108,7 +108,7 @@ switch($_GET['action']){
 			",false);
 		ECHO (json_encode($res,JSON_PRETTY_PRINT));
 		
-	break;
+	break;*/
 	
 	case "auto":
 		if($_POST){
