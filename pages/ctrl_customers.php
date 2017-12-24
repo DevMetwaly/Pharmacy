@@ -42,7 +42,7 @@ window.onload=function(){
 			minLength:3,
 			
 			source: function( request, response ) {
-				Send("php/Customers_ctrl.php?action=auto","POST", function (data) {
+				Send("./php/Customers_ctrl.php?action=auto","POST", function (data) {
 					response($.map(data, function (value, key) {
 						return {
 							label: value.Phone,
@@ -53,7 +53,7 @@ window.onload=function(){
 			},
 			
 			select: function( event, ui ){
-				Send("php/Customers_ctrl.php?action=number","POST",function (data){
+				Send("./php/Customers_ctrl.php?action=number","POST",function (data){
 					if(data !="null"){
 						$("#Sphone").val(data.Phone);
 						$("#Ephone").val(data.Phone);

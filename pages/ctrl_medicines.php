@@ -1,24 +1,79 @@
 <script>
-function Reset(){
-	$('#Name').val('');
-	$('#Desciption').val('');
-	$('#Supplier').val('');
+window.onload=function(){
+	$( "#AddMedForm" ).on( "submit", function( event ) {
+		//prevent default event of submit button
+		event.preventDefault();	
+		var Name		= $('#Name').val();
+		var Desciption	= $('#Desciption').val();
+		var Supplier	= $('#Supplier').val();	
+		
+		Send("./php/Medicines_ctrl.php?action=add","POST",function(data){
+			alert(data.msg);
+			$("#resAddMed").click();
+			$("#resModiMed").click();
+		},"Name="+Name+"&Description="+Desciption+"&Supplier_IDs="+Supplier);	
 	
+	});
+	
+	$( "#Mid" ).autocomplete({
+			minLength:1,
+			
+			source: function( request, response ) {
+				Send("./php/Medicines_ctrl.php?action=auto","POST", function (data) {
+					response($.map(data, function (value, key) {
+						return {
+							label: value.Name,
+							value: value.Medicin_ID
+						};
+					}),);
+				},"q=" + request.term);
+			},
+			
+			select: function( event, ui ){
+				Send("./php/Medicines_ctrl.php?action=number","POST",function (data){
+					if(data !="null"){
+						$('#MName').val(data.Name);
+						$('#MDesciption').val(data.Description);
+						$("#field").removeAttr('disabled');
+						$('#Medicin_ID').val(data.Medicin_ID);
+						
+					}
+				},"q="+ui.item.value);
+				return false;
+			}
+	});
+	
+	
+	$( "#DelMed" ).on( "click", function( event ) {
+		var Medicin_ID = $('#Medicin_ID').val();
+		Send("./php/Medicines_ctrl.php?action=delete","POST",function(data){
+		   alert(data.msg);
+		   $("#resModiMed").click();
+		   $('#field').prop('disabled', true);
+		},"Medicin_ID="+Medicin_ID);
+	});
+
+	
+	$( "#EditMedForm" ).on( "submit", function( event ) {
+		//prevent default event of submit button
+		event.preventDefault();	
+		//get all fields values
+		var Name		= $('#MName').val();
+		var Desciption	= $('#MDesciption').val();
+		var Supplier	= $('#MSupplier').val();	
+		var Medicin_ID = $('#Medicin_ID').val();
+		alert(Name);
+		//call php file to store data in DB with action=add
+		Send("./php/Medicines_ctrl.php?action=edit","POST",function(data){
+			alert(data.msg);
+		},"Name="+Name+"&Description="+Desciption+"&Supplier_ID="+Supplier+"&Medicin_ID="+Medicin_ID);	
+	
+	});
+	
+
+
+
 }
-
-function AddMed(){
-	var Name		= $('#Name').val();
-	var Desciption	= $('#Desciption').val();
-	var Supplier	= $('#Supplier').val();
-
-	Send("./php/Medicines_ctrl.php","POST",function(data){
-
-	},"Name="+Name+"&Description="+Desciption+"&Supplier_IDs="+Supplier);	
-	Reset();
-}
-
-
-
 </script>
 <div id="page-wrapper">
 	<div class="container-fluid">
@@ -42,30 +97,31 @@ function AddMed(){
 						<div class="row">
 
 							<div class="col-lg-12">
-								
-								<div class="form-group">
-									<label>Medicine name</label>
-									<input id="Name" class="form-control" placeholder="Enter medicine name..">
-								</div>
-								<div class="form-group">
-									<label>Desciption</label>
-									<input id="Desciption" class="form-control" placeholder="Enter Desciption">
-								</div>
-								<div class="form-group">
-									<label>Supplier</label>
-									<select id="Supplier" class="form-control">
-										<option>Select a supplier..</option>
-										<?
-											include_once("php/MySQLi.php");
-											$res=$db->fetch("SELECT Supplier_ID, Name FROM suppliers",true);
-											for($i=0;$i<count($res);$i++)
-											ECHO "<option value=".$res[$i]['Supplier_ID'].">".$res[$i]['Supplier_ID'].' '.$res[$i]['Name']."</option>";
-										?>
-									</select>
-								</div>
-								<button type="submit" class="btn btn-default btn-success" onClick="AddMed()">Submit Button</button>
-								<button type="reset" class="btn btn-default" onClick="Reset()">Reset Button</button>
-							
+									
+								<form id="AddMedForm" role="form">
+									<div class="form-group">
+										<label>Medicine name</label>
+										<input id="Name" class="form-control" placeholder="Enter medicine name..">
+									</div>
+									<div class="form-group">
+										<label>Desciption</label>
+										<input id="Desciption" class="form-control" placeholder="Enter Desciption">
+									</div>
+									<div class="form-group">
+										<label>Supplier</label>
+										<select id="Supplier" class="form-control">
+											<option>Select a supplier..</option>
+											<?
+												include_once("php/MySQLi.php");
+												$res=$db->fetch("SELECT Supplier_ID, Name FROM suppliers",true);
+												for($i=0;$i<count($res);$i++)
+												ECHO "<option value=".$res[$i]['Supplier_ID'].">".$res[$i]['Supplier_ID'].' '.$res[$i]['Name']."</option>";
+											?>
+										</select>
+									</div>
+									<button type="submit" class="btn btn-default btn-success">Submit Button</button>
+									<button id="resAddMed" type="reset" class="btn btn-default">Reset Button</button>
+								</form>
 							</div>
 
 						</div>
@@ -89,33 +145,41 @@ function AddMed(){
 						<div class="row">
 
 							<div class="col-lg-12">
-								<form role="form">
-									<label>Medicine ID</label>
+									<div class="form-group">
+										<label>Medicine ID</label>
+										<input id="Medicin_ID" class="form-control" placeholder="Enter medicine name.." disabled>
+									</div>
+								<form id="EditMedForm" role="form">
+									<label>Medicine Name</label>
 									<div class="form-group input-group">
 										<span class="input-group-addon">#</span>
-										<input type="text" class="form-control" placeholder="Search..">
+										<input id="Mid" type="text" class="form-control" placeholder="Search..">
 									</div>
-									<fieldset disabled>
+									<fieldset id="field" disabled>
 										<div class="form-group">
 											<label for="disabledSelect">Name</label>
-											<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
+											<input id="MName" class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
 										</div>
 										<div class="form-group">
 											<label for="disabledSelect">Supplier</label>
-											<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-										</div>
-										<div class="form-group">
-											<label for="disabledSelect">Price</label>
-											<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-										</div>
-										<div class="form-group">
-											<label for="disabledSelect">Pharmacy</label>
-											<select id="disabledSelect" class="form-control">
-												<option>Disabled select</option>
+											<select id="MSupplier" class="form-control">
+												<option>Select a supplier..</option>
+												<?
+													include_once("php/MySQLi.php");
+													$res=$db->fetch("SELECT Supplier_ID, Name FROM suppliers",true);
+													for($i=0;$i<count($res);$i++)
+													ECHO "<option value=".$res[$i]['Supplier_ID'].">".$res[$i]['Supplier_ID'].' '.$res[$i]['Name']."</option>";
+												?>
 											</select>
 										</div>
+										<div class="form-group">
+											<label for="disabledSelect">Desciption</label>
+											<input id="MDesciption" class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
+										</div>
+										
 										<button type="submit" class="btn btn-primary">Apply Changes</button>
-										<button type="submit" class="btn btn-danger">Remove Medicine</button>
+										<button id="DelMed" type="button" class="btn btn-danger">Remove Medicine</button>
+										<button id="resModiMed" type="reset"  class="btn btn-default">Reset Button</button>
 									</fieldset>
 								</form>
 							</div>

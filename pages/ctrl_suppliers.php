@@ -33,6 +33,7 @@ window.onload=function(){
 		var Location	= $('#SLocation').val();
 		var Email		= $('#SEmail').val();
 		var selSupp		= $('#selSupp').val();
+		
 		//call php file to store data in DB with action=add
 		Send("./php/Suppliers_ctrl.php?action=edit","POST",function(data){
 			alert(data.msg);
