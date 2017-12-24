@@ -4,6 +4,9 @@
 	session_start();
 	include_once("MySQLi.php");
 	header('Content-Type: application/json');
+	
+	switch($_GET['action']){
+	
 	$mysqltime = date ("Y-m-d H:i:s", $phptime);
 	ECHO $mysqltime;
 	$db->query
@@ -28,6 +31,11 @@
 		)
 	");
 	
+	
+	case 'table':
+		$res=$db->fetch("SELECT Empolyee_ID,FName,LName,Phone,Address,Type,User_Name,Shift,Salary,Pharmacy_Number,Hire_Date FROM empolyees,pharmacies WHERE pharmacies.Pharmacy_ID=empolyees.Pharmacy_ID",true);
 
-
+		echo (json_encode($res,JSON_PRETTY_PRINT));
+	break;
+{
 ?>

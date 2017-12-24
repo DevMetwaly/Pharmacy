@@ -142,11 +142,9 @@ window.onload=function(){
 					</div>
 
 					<div class="panel-body">
-
 						<div class="row">
-
 							<div class="col-lg-12">
-								
+							
 								<form id="EditMedForm" role="form">
 									<div class="form-group" style="display: none;" disabled>
 										<label>Medicine ID</label>
@@ -157,6 +155,7 @@ window.onload=function(){
 										<span class="input-group-addon">#</span>
 										<input id="Mid" type="text" class="form-control" placeholder="Search..">
 									</div>
+									
 									<fieldset id="field" disabled>
 										<div class="form-group">
 											<label for="disabledSelect">Name</label>
@@ -183,7 +182,9 @@ window.onload=function(){
 										<button id="DelMed" type="button" class="btn btn-danger">Remove Medicine</button>
 										<button id="resModiMed" type="reset"  class="btn btn-default">Reset Button</button>
 									</fieldset>
+									
 								</form>
+								
 							</div>
 
 						</div>
