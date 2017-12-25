@@ -1,7 +1,6 @@
 <?php 
 ob_start();
 session_start();
-$_SESSION["user"]["Type"]="Sales";
 include_once './php/MYSQLi.php';
 if($_GET["page"]=="login" && $_SESSION['user'] ==""){
 include "pages/login.php";
