@@ -180,7 +180,7 @@ die();
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Tables<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level permission">
                                 <li>
                                     <a href="pharmacies">Pharmacies</a>
                                 </li>
@@ -206,7 +206,7 @@ die();
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Management<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level permission">
                                 <li>
                                     <a href="ctrl_invoices">Invoices</a>
                                 </li>
@@ -308,9 +308,9 @@ die();
 		}
 		<?
 		if ($_SESSION["user"]["Type"] !='Admin'){	
-		echo "$('ul.nav.nav-second-level a').hide();";
+		echo "$('ul.nav.nav-second-level.permission a').hide();";
 		foreach($permission[$_SESSION["user"]["Type"]] as $per){
-			echo "$('ul.nav.nav-second-level a[href=".$per."]').show();";
+			echo "$('ul.nav.nav-second-level.permission a[href=".$per."]').show();";
 		}
 		}
 		?>
