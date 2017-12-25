@@ -1,7 +1,7 @@
 <script>
 
 window.onload = function(){
-	Send("./php/Customers_ctrl.php?action=table","GET",function(data){
+	Send("./php/Customers_table.php","GET",function(data){
 		$.each(data,function(index,row){
 			$("#Customers").append(
 			"<tr>"+

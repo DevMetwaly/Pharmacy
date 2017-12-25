@@ -48,21 +48,6 @@ $(function() {
     }
 });
 
-
-
-function delRow(row,id){
-	a=confirm("Do you want to delete this row?");
-	if(a){
-		$(row).closest('tr').remove();
-		Send("./php/Delete_Product.php","POST",function(data){
-			
-		},"id="+id+"");
-	}
-	
-}
-
-
-
 function Send(url, method, data, post = null) {
 	$.ajax({
 		url: url,
@@ -101,9 +86,9 @@ $( "#login" ).on( "submit", function( event ) {
   },$( this ).serialize());
 });
 
-function formAddBox(page,type){
+function formAddBox(page,type,value="",id="phoneBoxList",name="addPhone"){
 	if(page=="pharmacy" && type=="phone"){
-		$("#phoneBoxList").append('<span><input class="form-control phoneBox" name="addPhone[]" placeholder="Ex: 1003004000, 555-111-999"><i class="fa fa-remove" onclick="$(this).closest(\'span\').remove()"></i></span>');
+		$("#"+id).append('<span><input class="form-control phoneBox" value="'+value+'" name="'+name+'[]" placeholder="Ex: 1003004000, 555-111-999"><i class="fa fa-remove" onclick="$(this).closest(\'span\').remove()"></i></span>');
 		
 	}
 }

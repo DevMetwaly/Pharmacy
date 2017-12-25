@@ -1,7 +1,17 @@
 <script>
 var x=[];
+function delRow(row,id){
+	a=confirm("Do you want to delete this row?");
+	if(a){
+		$(row).closest('tr').remove();
+		Send("./php/Inventory_table.php?action=delete","POST",function(data){
+			alert(data.msg);
+		},"id="+id+"");
+	}
+	
+}
 window.onload = function(){
-	Send("./php/Inventory_table.php","GET",function(data){
+	Send("./php/Inventory_table.php?action","GET",function(data){
 		var arr=[];
 		var active="active in";
 		$.each(data,function(index,row){

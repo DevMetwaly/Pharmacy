@@ -7,7 +7,7 @@ window.onload = function(){
 				phones+= phone.Phone+"<br>";
 			});
 			$("#Pharmacies").append("<tr>"+
-			"<td>"+row.Pharmacy_Number+"</td><td>"+row.Location+"</td><td>"+phones+"</td>"+
+			"<td>"+row.Pharmacy_Number+"</td><td>"+row.Location+"</td><td>"+phones+"</td><td>"+row.FName+" "+row.LName+"</td><td>"+row.Phone+"</td>"+
 			"</tr>");
 		});
 		$('#dataTables-example').DataTable({
@@ -39,6 +39,8 @@ window.onload = function(){
 								<th>Pharmacy</th>
 								<th>Location</th>
 								<th>Phones</th>
+								<th>Administrator</th>
+								<th>Admin Phone</th>
 							</tr>
 						</thead>
 						<tbody id="Pharmacies">

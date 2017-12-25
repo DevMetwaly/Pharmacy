@@ -1,6 +1,6 @@
 <script>
 window.onload = function(){
-	Send("./php/Medicines_ctrl.php?action=table","GET",function(data){
+	Send("./php/Medicines_table.php","GET",function(data){
 		$.each(data,function(index,row){
 			$("#Medicines").append(
 			"<tr>"+

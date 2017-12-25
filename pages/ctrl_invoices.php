@@ -52,7 +52,7 @@ $( "#Apply" ).on( "submit", function( event ) {
   var phone=$("#Customer_Phone").val();
   var name=$("#Customer_Name").val();
   var address=$("#Customer_Address").val();
-  Send("php/Invoice_ctrl.php?action=invoice","POST", function (data) {
+  Send("php/Invoices_ctrl.php?action=invoice","POST", function (data) {
 	  alert(data.msg);
 	  if(data.type="success")
 		  location.reload();
@@ -63,7 +63,7 @@ $( ".autocomplete" ).autocomplete({
 					minLength:3,
 
   source: function( request, response ) {
-		Send("php/Invoice_ctrl.php?action=search","POST", function (data) {
+		Send("php/Invoices_ctrl.php?action=search","POST", function (data) {
 			response($.map(data, function (value, key) {
 				return {
 					label: value.Name,
@@ -73,7 +73,7 @@ $( ".autocomplete" ).autocomplete({
 		},"q=" + request.term);
 	},
 	select: function( event, ui ){
-		Send("php/Invoice_ctrl.php?action=get","POST",function (data){
+		Send("php/Invoices_ctrl.php?action=get","POST",function (data){
 		var result = $.grep(sold_products, function(e){ return e.Product_ID == data.Product_ID; });
 		if(result == ""){
 			sold_products.push(data);
@@ -110,7 +110,7 @@ $( ".autocompletenumber" ).autocomplete({
 					minLength:3,
 
   source: function( request, response ) {
-		Send("php/Invoice_ctrl.php?action=getnumber","POST", function (data) {
+		Send("php/Invoices_ctrl.php?action=getnumber","POST", function (data) {
 			response($.map(data, function (value, key) {
 				return {
 					label: value.Phone,
@@ -120,7 +120,7 @@ $( ".autocompletenumber" ).autocomplete({
 		},"q=" + request.term);
 	},
 	select: function( event, ui ){
-		Send("php/Invoice_ctrl.php?action=number","POST",function (data){
+		Send("php/Invoices_ctrl.php?action=number","POST",function (data){
 			if(data !="null"){
 				$("#Customer_Phone").val(data.Phone);
 				$("#Customer_Name").val(data.Name);

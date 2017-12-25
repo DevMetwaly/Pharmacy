@@ -4,9 +4,8 @@ ob_start();
 session_start();
 include_once("MySQLi.php");
 header('Content-Type: application/json');
-
+if($_SESSION["user"]["Type"]!="Admin" && !in_array(fname(basename(__FILE__, '.php')),$permission[$_SESSION["user"]["Type"]])) die(json_encode(["type"=>"error","msg"=>"Permission Denied"]));
 switch($_GET['action']){
-	
 	case 'add':
 		$mysqltime = date ("Y-m-d H:i:s");
 			if($db->query
@@ -80,12 +79,12 @@ switch($_GET['action']){
 			"))
 			{
 				$re["type"]="success";
-				$re["msg"]="Medicine Deleted Successfully";
+				$re["msg"]="Employee Deleted Successfully";
 			}
 		else
 			{
 				$re["type"]="error";
-				$re["msg"]="Medicine Deleted Unsuccessfully";
+				$re["msg"]="Employee Deleted Unsuccessfully";
 			}
 		echo (json_encode($re,JSON_PRETTY_PRINT));
 	
@@ -119,22 +118,21 @@ switch($_GET['action']){
 					Address= '".$db->escape($_POST['Address'])."',
 					Type= '".$db->escape($_POST['Type'])."',
 
-					User_Name= '".$db->escape($_POST['User_Name'])."',
-					Password= '".md5($db->escape($_POST['Password']))."',
+					".(($_POST['Password'] !="") ?"Password= '".md5($db->escape($_POST['Password']))."',":"")."
 					Salary= '".$db->escape($_POST['Salary'])."',
 					Hire_Date= '".$db->escape($_POST['Hire_Date'])."',
 					Shift= '".$db->escape($_POST['Shift'])."'
-				WHERE Empolyee_ID='".$db->escape($_POST['Empolyee_ID'])."'
+				WHERE User_Name='".$db->escape($_POST['User_Name'])."'
 						
 			"))
 				{
 					$re["type"]="success";
-					$re["msg"]="Medicine Edited Successfully";
+					$re["msg"]="Employee Edited Successfully";
 				}
 		else
 				{
 					$re["type"]="error";
-					$re["msg"]="Medicine Edited Unsuccessfully";
+					$re["msg"]="Employee Edited Unsuccessfully";
 				}
 		echo (json_encode($re,JSON_PRETTY_PRINT));		
 	break;

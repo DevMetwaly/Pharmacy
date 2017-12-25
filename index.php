@@ -1,6 +1,7 @@
 <?php 
 ob_start();
 session_start();
+include_once './php/MYSQLi.php';
 if($_GET["page"]=="login" && $_SESSION['user'] ==""){
 include "pages/login.php";
 die();

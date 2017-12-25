@@ -55,9 +55,10 @@ window.onload=function(){
 			select: function( event, ui ){
 				Send("./php/Employees_ctrl.php?action=number","POST",function (data){
 					if(data !="null"){
-						//$('input[name=EoptionsACC]:checked').val();
-						//$('input[name=EoptionsShift]:checked').val();
-						//$('#EoptionsPH').val();
+						$('input[value='+data.Type+']').attr("checked",true);
+						$('input[value='+data.Shift+']').attr("checked",true);
+						$('#EoptionsPH').val();
+						$('#EoptionsPH option[value='+data.Pharmacy_ID+']').attr("selected",true);
 						$('#EUsername').val(data.User_Name);
 						$('#EEUsername').val(data.User_Name);
 						$('#EFName').val(data.FName);
@@ -81,7 +82,6 @@ window.onload=function(){
 		var opACC 	= $('input[name=EoptionsACC]:checked').val();
 		var opSH 	= $('input[name=EoptionsShift]:checked').val();
 		var opPH	= $('#EoptionsPH').val();
-		var Username= $('#EEUsername').val();
 		var Password= $('#EPassword').val();
 		var FName 	= $('#EFName').val();
 		var LName 	= $('#ELName').val();
@@ -89,12 +89,12 @@ window.onload=function(){
 		var Salary 	= $('#ESalary').val();
 		var Phone 	= $('#EPhone').val();
 		var Hire_Date=$('#EHire_date').val();
-		var Empolyee_ID = $('#Empolyee_ID').val();
+		var User_Name = $('#EUsername').val();
 		
 		//call php file to store data in DB with action=add
 		Send("./php/Employees_ctrl.php?action=edit","POST",function(data){
 			alert(data.msg);
-		},"Empolyee_ID="+Empolyee_ID+"&Pharmacy_ID="+opPH+"&FName="+FName+"&LName="+LName+"&Phone="+Phone+"&Address="+Address+"&User_Name="+Username+"&Password="+Password+"&Salary="+Salary+"&Type="+opACC+"&Shift="+opSH+"&Hire_Date="+Hire_Date);
+		},"User_Name="+User_Name+"&Pharmacy_ID="+opPH+"&FName="+FName+"&LName="+LName+"&Phone="+Phone+"&Address="+Address+"&Password="+Password+"&Salary="+Salary+"&Type="+opACC+"&Shift="+opSH+"&Hire_Date="+Hire_Date);
 	
 	});
 	
@@ -242,11 +242,6 @@ window.onload=function(){
 										<input id="EUsername" type="text" class="form-control" placeholder="Username">
 									</div>
 									<fieldset id="field" disabled>
-										<label>Username</label>
-										<div class="form-group input-group">
-											<span class="input-group-addon">@</span>
-											<input id="EEUsername" type="text" class="form-control" placeholder="Username">
-										</div>
 										<div class="form-group">
 											<label>Password</label>
 											<input id="EPassword" class="form-control" type="password">

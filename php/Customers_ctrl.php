@@ -4,6 +4,7 @@ ob_start();
 session_start();
 include_once("MySQLi.php");
 header('Content-Type: application/json');
+if($_SESSION["user"]["Type"]!="Admin" && !in_array(fname(basename(__FILE__, '.php')),$permission[$_SESSION["user"]["Type"]])) die(json_encode(["type"=>"error","msg"=>"Permission Denied"]));
 switch($_GET['action']){
 	
 	
@@ -84,11 +85,6 @@ switch($_GET['action']){
 			$num=$db->fetch("SELECT * from  customers WHERE Customer_ID ='".$db->escape($_POST["q"])."'",false);
 			echo (json_encode($num,JSON_PRETTY_PRINT));
 		}
-	break;
-	
-	case "table":
-		$res=$db->fetch("SELECT * FROM customers",true);
-		echo (json_encode($res,JSON_PRETTY_PRINT));
 	break;
 }
 
