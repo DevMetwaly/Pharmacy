@@ -1,6 +1,7 @@
 <?php 
 ob_start();
 session_start();
+$_SESSION["user"]["Type"]="Sales";
 include_once './php/MYSQLi.php';
 if($_GET["page"]=="login" && $_SESSION['user'] ==""){
 include "pages/login.php";
@@ -306,6 +307,14 @@ die();
 			Cookies.set('theme','dist/css/style1.css');
 			theme = Cookies.get('theme');
 		}
+		<?
+		if ($_SESSION["user"]["Type"] !='Admin'){	
+		echo "$('ul.nav.nav-second-level a').hide();";
+		foreach($permission[$_SESSION["user"]["Type"]] as $per){
+			echo "$('ul.nav.nav-second-level a[href=".$per."]').show();";
+		}
+		}
+		?>
 	</script>
 
 </body>
