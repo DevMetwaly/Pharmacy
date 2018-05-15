@@ -8,8 +8,7 @@ window.onload=function(){
 		var Price 		= $('#Price').val();
 		var Quantity	= $('#Quantity').val();
 		var ExpireDate  = $('#ExpireDate').val();
-		var Barcode		= $('#Barcode').val();
-		
+		var Barcode		= $('#Barcode').val();		
 		Send("./php/Product_ctrl.php?action=add","POST",function(data){
 			if(data.type=='success')
 			{	
@@ -47,31 +46,33 @@ window.onload=function(){
 			}
 	});
 
+	var PID=0;
 
-
-	$( "#Mid" ).autocomplete({
+	$( "#P_Mid" ).autocomplete({
 			minLength:1,
 			
 			source: function( request, response ) {
-				Send("./php/Medicines_ctrl.php?action=auto","POST", function (data) {
+				Send("./php/Product_ctrl.php?action=auto","POST", function (data) {
 					response($.map(data, function (value, key) {
 						return {
 							label: value.Name,
-							value: value.Medicin_ID
+							value: value.Product_ID
 						};
 					}),);
 				},"q=" + request.term);
 			},
 			
 			select: function( event, ui ){
-				Send("./php/Medicines_ctrl.php?action=number","POST",function (data){
+				Send("./php/Product_ctrl.php?action=number","POST",function (data){
 					if(data !="null"){
-						$('#MName').val(data.Name);
-						$('#Mid').val(data.Name);
-						$('#MDescription').val(data.Description);
+						$('#P_Mid').val(data.Name);
+						$('#P_optionsPH option[value='+data.Pharmacy_ID+']').attr("selected",true);
+						$('#P_Price').val(data.Price);
+						$('#P_ExpireDate').val(data.Expire_Date);
+						$('#P_Quantity').val(data.Quantity);
+						$('#P_Barcode').val(data.Barcode);
 						$("#field").removeAttr('disabled');
-						$('#Medicin_ID').val(data.Medicin_ID);
-					
+						PID=ui.item.value;
 					}
 				},"q="+ui.item.value);
 				return false;
@@ -80,12 +81,15 @@ window.onload=function(){
 	
 	
 	$( "#DelMed" ).on( "click", function( event ) {
-		var Medicin_ID = $('#Medicin_ID').val();
-		Send("./php/Medicines_ctrl.php?action=delete","POST",function(data){
-		   alert(data.msg);
-		   $("#resModiMed").click();
-		   $('#field').prop('disabled', true);
-		},"Medicin_ID="+Medicin_ID);
+		Send("./php/Product_ctrl.php?action=delete","POST",function(data){
+		  if(data.type=='success')
+				popUp(1,data.msg);
+				$("#resModiMed").click();
+		   		$('#field').prop('disabled', true);
+			else
+				popUp(0,data.msg);
+		   
+		},"Product_ID="+PID);
 	});
 
 	
@@ -93,15 +97,18 @@ window.onload=function(){
 		//prevent default event of submit button
 		event.preventDefault();	
 		//get all fields values
-		var Name		= $('#MName').val();
-		var Description	= $('#MDescription').val();
-		var Supplier	= $('#MSupplier').val();	
-		var Medicin_ID = $('#Medicin_ID').val();
-		
+		var Pharmacy 	= $('#P_optionsPH').val();
+		var Price 		= $('#P_Price').val();
+		var Quantity	= $('#P_Quantity').val();
+		var ExpireDate  = $('#P_ExpireDate').val();
+		var Barcode		= $('#P_Barcode').val();
 		//call php file to store data in DB with action=add
-		Send("./php/Medicines_ctrl.php?action=edit","POST",function(data){
-			alert(data.msg);
-		},"Name="+Name+"&Description="+Description+"&Supplier_ID="+Supplier+"&Medicin_ID="+Medicin_ID);	
+		Send("./php/Product_ctrl.php?action=edit","POST",function(data){
+			if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
+		},"Product_ID="+PID+"&Pharmacy="+Pharmacy+"&Price="+Price+"&Quantity="+Quantity+"&ExpireDate="+ExpireDate+"&Barcode="+Barcode);	
 	
 	});
 	
@@ -198,36 +205,52 @@ window.onload=function(){
 							<div class="col-lg-12">
 							
 								<form id="EditMedForm" role="form">
+									
+									<!-- hidden -->
 									<div class="form-group" style="display: none;" disabled>
-										<label>Medicine ID</label>
-										<input id="Medicin_ID" class="form-control" placeholder="Enter medicine name.." disabled>
-									</div>
-									<label>Medicine Name</label>
-									<div class="form-group input-group">
-										<span class="input-group-addon">#</span>
-										<input id="Mid" type="text" class="form-control" placeholder="Search..">
+										<label>Product ID</label>
+										<input id="P_id" class="form-control" placeholder="Enter medicine name.." disabled>
 									</div>
 									
+
+
+									<label>Product Name</label>
+									<div class="form-group input-group">
+										<span class="input-group-addon">#</span>
+										<input id="P_Mid" type="text" class="form-control" placeholder="Search..">
+									</div>
 									<fieldset id="field" disabled>
+										
 										<div class="form-group">
-											<label for="disabledSelect">Name</label>
-											<input id="MName" class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
-										</div>
-										<div class="form-group">
-											<label for="disabledSelect">Supplier</label>
-											<select id="MSupplier" class="form-control">
-												<option>Select a supplier..</option>
-												<?
-													include_once("php/MySQLi.php");
-													$res=$db->fetch("SELECT Supplier_ID, Name FROM suppliers",true);
-													for($i=0;$i<count($res);$i++)
-													ECHO "<option value=".$res[$i]['Supplier_ID'].">".$res[$i]['Supplier_ID'].' '.$res[$i]['Name']."</option>";
-												?>
+											<label>Pharmacy</label>
+											<select id="P_optionsPH" class="form-control" required>
+												<option></option>
+											<?
+												
+												include_once("php/MySQLi.php");
+												$res=$db->fetch("SELECT Pharmacy_ID FROM pharmacies",true);
+												for($i=0;$i<count($res);$i++)
+													ECHO "<option value=".$res[$i]['Pharmacy_ID'].">".$res[$i]['Pharmacy_ID']."</option>";
+
+											?>
 											</select>
 										</div>
 										<div class="form-group">
-											<label for="disabledSelect">Desciption</label>
-											<input id="MDescription" class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
+											<label>Price</label>
+											<input id="P_Price" class="form-control" placeholder="Medicine Price" pattern="[0-9]+" required>
+										</div>
+										<div class="form-group">
+											<label>Quantity</label>
+											<input id="P_Quantity" class="form-control" placeholder="Medicine Quantity" pattern="[0-9]+" required>
+										</div>
+										<div class="form-group">
+											<label>Expire Date</label>
+											<input type="date" id="P_ExpireDate" class="form-control" placeholder="20xx-xx-xx"  required>
+										</div>
+
+										<div class="form-group">
+											<label>Barcode</label>
+											<input id="P_Barcode" class="form-control" placeholder="Scan Barcode" required>
 										</div>
 										
 										<button type="submit" class="btn btn-primary">Apply Changes</button>
