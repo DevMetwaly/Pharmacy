@@ -104,7 +104,7 @@ window.onload = function(){
 
 			<div id="notf_stock" class="panel panel-default tab-pane fade">
 					<div class="panel-heading">
-					<h4><b>Medicines needs to restock.</b></h4>
+					<h4><b>Medicines need to restock.</b></h4>
 				</div>
 
 				<div class="panel-body">
