@@ -295,7 +295,7 @@ die();
     </div>
     <!-- /#wrapper -->
     <footer>
-              PHARMAX WEB APPLICATION - Created by "Database Ghosts Team" - Supervised by Dr. Amany Sarhan.
+              PHARMAX WEB APPLICATION - DEVELOPED BY SOFTWARE GHOSTS 👻 - SUPERVISION: PROF. AMANY SARHAN.
     </footer>
     
 
