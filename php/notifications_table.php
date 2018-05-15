@@ -19,13 +19,15 @@ $num2=$db->fetch("SELECT p.Pharmacy_ID as Pharmacy_ID,
                         m.Name as Name
                 FROM proudcts p 
                 JOIN medicines m on p.Medicine_ID=m.Medicin_ID
-                where Expire_Date >= (NOW() -    INTERVAL 1 MONTH ) ; 
+                where Expire_Date >= (NOW() -    INTERVAL 3 MONTH ) ; 
                 ",true);
 $out["Epire_Soon"] =  $num2;                 
-$num3=$db->fetch("SELECT p.Pharmacy_ID as Pharmacy_ID, p.Quantity as Quantity, m.Name as Name 
+$num3=$db->fetch("SELECT p.Pharmacy_ID as Pharmacy_ID, 
+                        p.Quantity as Quantity, 
+                        m.Name as Name 
                 FROM proudcts p
                 JOIN medicines m on p.Medicine_ID=m.Medicin_ID 
-                where Quantity < 20 
+                where Quantity < 10 
                 ",true);
 $out["Out_of_stock"] =  $num3;  
 echo (json_encode(($out==null) ?[]:$out,JSON_PRETTY_PRINT));

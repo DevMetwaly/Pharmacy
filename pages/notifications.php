@@ -38,16 +38,19 @@ window.onload = function(){
 		});
 
 
-		
-
-
-
-
-
-
 		$('.dataTables').DataTable({
             responsive: true
         });
+
+		function func(){
+			//$("a[href$='"+location.hash+"']").parent().addClass("active")[1];
+			$("a[href$='"+location.hash+"']").trigger("click")[1];
+		}
+
+		window.onhashchange= func;
+        $("a[href$='"+location.hash+"']").trigger("click")[1];
+
+
 	});	
 }
 	
@@ -66,7 +69,7 @@ window.onload = function(){
 	<div class="row">
 		<div class="col-lg-12">    
 			<ul class="nav nav-tabs" id="PH_TABS">
-				<li class='active'><a data-toggle="tab" href="#notf_soon">Expire Soon</a></li>
+				<li class="active"><a data-toggle="tab" href="#notf_soon">Expire Soon</a></li>
 				<li><a data-toggle="tab" href="#notf_exp">Expired</a></li>
 				<li><a data-toggle="tab" href="#notf_stock">Out of Stock</a></li>
 			</ul>

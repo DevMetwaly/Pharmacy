@@ -78,49 +78,59 @@ die();
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a href="#">
+                            <a href="./notifications#notf_soon">
                                 <div>
-                                    <i class="fa fa-warning fa-fw"></i> 3 Medicines expire soon
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-warning fa-fw"></i> 
+                                        <span>
+                                            <?
+                                                $res=$db->fetch("SELECT COUNT(*) as ExpireSoon
+                                                            FROM proudcts p 
+                                                            JOIN medicines m on p.Medicine_ID=m.Medicin_ID
+                                                            where Expire_Date >= (NOW() -    INTERVAL 3 MONTH ) ; 
+                                                ",false);
+                                                echo ($res["ExpireSoon"]);
+                                            ?>
+                                        </span> Medicines expire soon
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a href="./notifications#notf_exp">
                                 <div>
-                                    <i class="fa fa-tasks fa-fw"></i> 10 New invoices
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                    <i class="fa fa-warning fa-fw"></i>
+                                         <span>
+                                            <?
+                                                $res=$db->fetch("SELECT COUNT(*) as Expired
+                                                            FROM proudcts p 
+                                                            JOIN medicines m on p.Medicine_ID=m.Medicin_ID
+                                                            where Expire_Date < NOW(); 
+                                                ",false);
+                                                echo ($res["Expired"]);
+                                            ?>
+                                        </span> Medicines expired
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a href="./notifications#notf_stock">
                                 <div>
-                                    <i class="fa fa-users fa-fw"></i> 5 New customers
-                                    <span class="pull-right text-muted small">13 minutes ago</span>
+                                    <i class="fa fa-warning fa-fw"></i> 
+                                         <span>
+                                            <?
+                                                $res=$db->fetch("SELECT COUNT(*) as Stock
+                                                                FROM proudcts p
+                                                                JOIN medicines m on p.Medicine_ID=m.Medicin_ID 
+                                                                where Quantity < 10; 
+                                                ",false);
+                                                echo ($res["Stock"]);
+                                            ?>
+                                        </span> Medicines out of stock
                                 </div>
                             </a>
                         </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-warning fa-fw"></i> 2 Medicines out of stock
-                                    <span class="pull-right text-muted small">15 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">32 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
+                        
                         <li class="divider"></li>
                         <li>
                             <a class="text-center" href="notifications">
