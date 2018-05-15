@@ -8,7 +8,10 @@ window.onload=function(){
 		var phone = $('#Phone').val();
 		Send("./php/Customers_ctrl.php?action=add","POST",function(data){
 		   if(data.type=='success')
+		   {
+		   		$("#resetFields").click();
 				popUp(1,data.msg);
+		   }
 			else
 				popUp(0,data.msg);
 		},"Name="+name+"&Address="+address+"&Phone="+phone);
@@ -118,8 +121,8 @@ window.onload=function(){
 										<label>Phone Number</label>
 										<input class="form-control" id="Phone" placeholder="Ex: 1003004000" minLength=7 maxLength=15 pattern="[0-9]+" required>
 									</div>
-									<button type="submit" class="btn btn-default btn-success">Submit Button</button>
-									<button type="reset" class="btn btn-default">Reset Button</button>
+									<button type="submit" class="btn btn-default btn-success" onfocus="this.blur()">Submit Button</button>
+									<button id="resetFields" type="reset" class="btn btn-default">Reset Button</button>
 								</form>
 							</div>
 

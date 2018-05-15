@@ -8,7 +8,7 @@ window.onload=function(){
 		var Supplier	= $('#Supplier').val();	
 		
 		Send("./php/Medicines_ctrl.php?action=add","POST",function(data){
-			alert(data.msg);
+			popUp(1,data.msg);
 			$("#resAddMed").click();
 			$("#resModiMed").click();
 		},"Name="+Name+"&Description="+Description+"&Supplier_IDs="+Supplier);	
@@ -120,7 +120,7 @@ window.onload=function(){
 											?>
 										</select>
 									</div>
-									<button type="submit" class="btn btn-default btn-success">Submit Button</button>
+									<button type="submit" class="btn btn-default btn-success" onfocus="this.blur()">Submit Button</button>
 									<button id="resAddMed" type="reset" class="btn btn-default">Reset Button</button>
 								</form>
 							</div>

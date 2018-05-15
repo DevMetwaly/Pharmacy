@@ -131,7 +131,7 @@ window.onload = function(){
 										</div>
 
 									</div>
-									<button type="submit" class="btn btn-default btn-success">Submit Button</button>
+									<button type="submit" class="btn btn-default btn-success" onfocus="this.blur()">Submit Button</button>
 									<button type="reset" class="btn btn-default">Reset Button</button>
 							</form>
 							</div>
