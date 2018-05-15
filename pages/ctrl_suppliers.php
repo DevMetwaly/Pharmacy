@@ -112,15 +112,15 @@ window.onload=function(){
 								<form id="AddSupForm">
 									<div class="form-group">
 										<label>Name</label>
-										<input id="Name" class="form-control" placeholder="Enter name.." pattern="^[a-zA-Z][a-zA-Z ]+" required>
+										<input id="Name" class="form-control" placeholder="Enter supplier name" pattern="^[a-zA-Z][a-zA-Z ]+" required>
 									</div>
 									<div class="form-group">
 										<label>Address</label>
-										<input id="Location" class="form-control" minlength="4" placeholder="Enter address.." required>
+										<input id="Location" class="form-control" minlength="4" placeholder="Enter supplier address" required>
 									</div>
 									<div class="form-group">
 										<label>Email Address</label>
-										<input type="email" id="Email" class="form-control" placeholder="Enter email address.." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+										<input type="email" id="Email" class="form-control" placeholder="Enter supplier email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
 									</div>
 									<div class="form-group">
 										<label>Phone Numbers</label>
@@ -169,19 +169,19 @@ window.onload=function(){
 									<fieldset id="field" disabled>
 										<div class="form-group">
 											<label>Name</label>
-											<input id="SName" class="form-control" placeholder="Enter text">
+											<input id="SName" class="form-control" placeholder="Update name">
 										</div>
 										<div class="form-group">
 											<label>Address</label>
-											<input id="SLocation" class="form-control" placeholder="Enter text">
+											<input id="SLocation" class="form-control" placeholder="Update address">
 										</div>
 										<div class="form-group">
 											<label>Email Address</label>
-											<input id="SEmail" class="form-control" placeholder="Enter text">
+											<input id="SEmail" class="form-control" placeholder="Update email">
 										</div>
 										<div class="form-group">
 											<label>Phone Numbers</label>
-											<input id="SPhone" class="form-control" placeholder="Ex: 1003004000, 555-111-999">
+											<input id="SPhone" class="form-control" placeholder="Update phone number">
 										</div>
 										<button type="submit" class="btn btn-primary">Apply Changes</button>
 										<button id="DelSupp" type="button" class="btn btn-danger" >Remove Supplier</button>

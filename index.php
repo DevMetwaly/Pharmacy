@@ -170,7 +170,7 @@ die();
                             </div>
                             <div class="profile-info">
                                 Welcome,<br>
-                                <span> <a href="#"><?=$_SESSION["user"]["FName"]; ?></a>! </span>
+                                <span> <a id="profile-li" href="./settings_acc"><?=$_SESSION["user"]["FName"]; ?></a>! </span>
                             </div>
                             <!-- /input-group -->
                         </li>
