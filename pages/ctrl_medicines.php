@@ -8,7 +8,10 @@ window.onload=function(){
 		var Supplier	= $('#Supplier').val();	
 		
 		Send("./php/Medicines_ctrl.php?action=add","POST",function(data){
-			popUp(1,data.msg);
+			if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 			$("#resAddMed").click();
 			$("#resModiMed").click();
 		},"Name="+Name+"&Description="+Description+"&Supplier_IDs="+Supplier);	

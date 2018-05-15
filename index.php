@@ -231,6 +231,9 @@ die();
                                     <a href="ctrl_customers">Customers</a>
                                 </li>
                                 <li>
+                                    <a href="ctrl_inventory">Inventory</a>
+                                </li>
+                                <li>
                                     <a href="ctrl_medicines">Medicines</a>
                                 </li>
                                 <li>
