@@ -8,13 +8,14 @@ window.onload = function(){
 			"</tr>"
 			);
 		});
+		
 		$('#dataTables-example').DataTable({
-            responsive: true
+            responsive: true, 
         });
 	});	
 }
-	
 </script>
+
 <div id="page-wrapper">
 	<div class="row">
 		<div class="col-lg-12">
