@@ -22,7 +22,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="#">
+				<a href="./customers">
 					<div class="panel-footer">
 						<span class="pull-left">View Details</span>
 						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="#">
+				<a href="./invoices">
 					<div class="panel-footer">
 						<span class="pull-left">View Details</span>
 						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -66,7 +66,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="#">
+				<a href="./notifications#notf_stock">
 					<div class="panel-footer">
 						<span class="pull-left">View Details</span>
 						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -88,7 +88,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="#">
+				<a href="./notifications#notf_soon">
 					<div class="panel-footer">
 						<span class="pull-left">View Details</span>
 						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

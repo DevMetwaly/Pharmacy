@@ -27,6 +27,8 @@ $(function() {
     });
 
     var url = window.location;
+    url = String(url).split('#')[0];
+    
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
     // }).addClass('active').parent().parent().addClass('in').parent();
