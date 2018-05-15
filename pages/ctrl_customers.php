@@ -104,11 +104,11 @@ window.onload=function(){
 								<form role="form" id="AddCustomer">
 									<div class="form-group">
 										<label>Name</label>
-										<input id="Name" class="form-control" placeholder="Enter name..">
+										<input id="Name" class="form-control" placeholder="Enter name.." pattern="^[a-zA-Z]{2}[a-zA-Z ]+" required>
 									</div>
 									<div class="form-group">
 										<label>Address</label>
-										<input id="Address" class="form-control" placeholder="Enter address..">
+										<input id="Address" class="form-control" placeholder="Enter address.." required>
 									</div>
 									<!--<div class="form-group">
 										<label>Email Address</label>
@@ -116,7 +116,7 @@ window.onload=function(){
 									</div>-->
 									<div class="form-group">
 										<label>Phone Number</label>
-										<input class="form-control" id="Phone" placeholder="Ex: 1003004000">
+										<input class="form-control" id="Phone" placeholder="Ex: 1003004000" minLength=7 maxLength=15 pattern="[0-9]+" required>
 									</div>
 									<button type="submit" class="btn btn-default btn-success">Submit Button</button>
 									<button type="reset" class="btn btn-default">Reset Button</button>

@@ -112,22 +112,22 @@ window.onload=function(){
 								<form id="AddSupForm">
 									<div class="form-group">
 										<label>Name</label>
-										<input id="Name" class="form-control" placeholder="Enter name..">
+										<input id="Name" class="form-control" placeholder="Enter name.." pattern="^[a-zA-Z][a-zA-Z ]+" required>
 									</div>
 									<div class="form-group">
 										<label>Address</label>
-										<input id="Location" class="form-control" placeholder="Enter address..">
+										<input id="Location" class="form-control" minlength="4" placeholder="Enter address.." required>
 									</div>
 									<div class="form-group">
 										<label>Email Address</label>
-										<input id="Email" class="form-control" placeholder="Enter email address..">
+										<input type="email" id="Email" class="form-control" placeholder="Enter email address.." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
 									</div>
 									<div class="form-group">
 										<label>Phone Numbers</label>
-										<input id="Phone" class="form-control" placeholder="Ex: 1003004000, 555-111-999">
+										<input id="Phone" class="form-control" placeholder="Ex: 01003004000" minLength=7 maxLength=15 pattern="[0-9]+" required>
 										
 									</div>
-									<button type="submit" class="btn btn-default btn-success" onClick="AddSuplier()">Submit Button</button>
+									<button type="submit" class="btn btn-default btn-success" onClick="AddSuplier()" onfocus="this.blur()">Submit Button</button>
 									<button id="resAddSup" type="reset" class="btn btn-default">Reset Button</button>
 								</form>
 							</div>

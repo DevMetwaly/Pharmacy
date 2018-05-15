@@ -102,11 +102,11 @@ window.onload=function(){
 								<form id="AddMedForm" role="form">
 									<div class="form-group">
 										<label>Medicine name</label>
-										<input id="Name" class="form-control" placeholder="Enter medicine name..">
+										<input id="Name" class="form-control" placeholder="Enter medicine name.." pattern="^[a-zA-Z][a-zA-Z ]+" required>
 									</div>
 									<div class="form-group">
 										<label>Description</label>
-										<input id="Description" class="form-control" placeholder="Enter Desciption">
+										<input id="Description" class="form-control" placeholder="Enter Desciption" required>
 									</div>
 									<div class="form-group">
 										<label>Supplier</label>

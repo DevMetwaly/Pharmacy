@@ -137,36 +137,36 @@ window.onload=function(){
 									<label>Username</label>
 									<div class="form-group input-group">
 										<span class="input-group-addon">@</span>
-										<input id="Username" type="text" class="form-control" placeholder="Username">
+										<input id="Username" type="text" class="form-control" placeholder="Username" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required>
 									</div>
 									<div class="form-group">
 										<label>Password</label>
-										<input id="Password" class="form-control" type="password">
+										<input id="Password" minLength=5 class="form-control" type="password" required>
 										<p class="help-block">This will be modified by the employee later.</p>
 									</div>
 									<div class="form-group">
 										<label>First Name</label>
-										<input id="FName" class="form-control" placeholder="Enter text">
+										<input id="FName" pattern="^[a-zA-Z]{1,25}" class="form-control" placeholder="Enter frist name.." required>
 									</div>
 									<div class="form-group">
 										<label>Last Name</label>
-										<input id="LName" class="form-control" placeholder="Enter text">
+										<input id="LName" pattern="^[a-zA-Z]{1,25}" class="form-control" placeholder="Enter last name.." required>
 									</div>
 									<div class="form-group">
 										<label>Address</label>
-										<input id="Address" class="form-control" placeholder="Enter text">
+										<input id="Address" class="form-control" placeholder="Enter address" required>
 									</div>
 									<div class="form-group">
 										<label>Salary</label>
-										<input id="Salary" class="form-control" placeholder="Enter text">
+										<input id="Salary" minlength="3" pattern="[0-9]+" class="form-control" placeholder="Enter salary.." required>
 									</div>
 									<div class="form-group">
 										<label>Phone</label>
-										<input id="Phone" class="form-control" placeholder="Enter text">
+										<input id="Phone" minLength=7 maxLength=15 pattern="[0-9]+" class="form-control" placeholder="Enter phone number.." required>
 									</div>
 									<div class="form-group">
 										<label>Pharmacy</label>
-										<select id="optionsPH" class="form-control">
+										<select id="optionsPH" class="form-control" required>
 											<option></option>
 										<?
 											

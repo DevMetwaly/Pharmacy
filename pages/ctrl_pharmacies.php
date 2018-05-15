@@ -108,19 +108,19 @@ window.onload = function(){
 								<form role="form" id="AddPH">
 									<label>Pharmacy Number</label>
 									<div class="form-group input-group">
-										<span class="input-group-addon">@</span>
+										<span class="input-group-addon">#</span>
 										<input id="PhNum" type="text" name="Pharmacy_Number" class="form-control" placeholder="Use a unique single letter, or leave empty for auto generation.">
 									</div>
 									<div class="form-group">
 										<label>Address</label>
-										<input id="PhAdd" class="form-control" name="Pharmacy_Address" placeholder="Enter text">
+										<input id="PhAdd" class="form-control" name="Pharmacy_Address" placeholder="Enter address.." required>
 									</div>
 									<div class="form-group">
 										<label>Phone Numbers</label>
 										
 										<div id="phoneBoxList">
 											<span>
-												<input class="form-control phoneBox" name="addPhone[]" placeholder="Ex: 1003004000, 555-111-999">
+												<input class="form-control phoneBox" name="addPhone[]" placeholder="Ex: 01003004000" minLength=7 maxLength=15 pattern="[0-9]+" required>
 											</span>
 										</div>
 										
