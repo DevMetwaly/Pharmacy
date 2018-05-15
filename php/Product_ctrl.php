@@ -10,19 +10,25 @@ case 'add':
 		if($db->query
 			("
 
-				insert into medicines 
+				insert into proudcts 
 					(
-						Medicin_ID,
-						Name,
-						Description,
-						Supplier_ID
+						Product_ID,
+						Pharmacy_ID,
+						Price,
+						Quantity,
+						Expire_Date,
+						Barcode,
+						Medicine_ID
 					)
 				values 
 					(
 						NULL,
-						'".$db->escape($_POST['Name'])."',
-						'".$db->escape($_POST['Description'])."',
-						'".$db->escape($_POST['Supplier_IDs'])."'
+						'".$db->escape($_POST['Pharmacy'])."',
+						'".$db->escape($_POST['Price'])."',
+						'".$db->escape($_POST['Quantity'])."',
+						'".$db->escape($_POST['ExpireDate'])."',
+						'".$db->escape($_POST['Barcode'])."',
+						'".$db->escape($_POST['Medicin_ID'])."'		
 					)
 			"))
 			
