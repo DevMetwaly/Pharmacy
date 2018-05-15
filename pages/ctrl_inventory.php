@@ -9,15 +9,16 @@ window.onload=function(){
 		var Quantity	= $('#Quantity').val();
 		var ExpireDate  = $('#ExpireDate').val();
 		var Barcode		= $('#Barcode').val();
-		alert(medicineID);
 		
 		Send("./php/Product_ctrl.php?action=add","POST",function(data){
 			if(data.type=='success')
+			{	
+				$("#resAddMed").click();
 				popUp(1,data.msg);
+			}
 			else
 				popUp(0,data.msg);
-			$("#resAddMed").click();
-			$("#resModiMed").click();
+
 		},"Pharmacy="+Pharmacy+"&Price="+Price+"&Quantity="+Quantity+"&ExpireDate="+ExpireDate+"&Barcode="+Barcode+"&Medicin_ID="+medicineID);	
 	
 	});
@@ -171,7 +172,7 @@ window.onload=function(){
 									
 									
 									
-									<button type="submit" class="btn btn-default btn-success">Submit Button</button>
+									<button type="submit" class="btn btn-default btn-success"  onfocus="this.blur()">Submit Button</button>
 									<button id="resAddMed" type="reset" class="btn btn-default">Reset Button</button>
 								</form>
 							</div>

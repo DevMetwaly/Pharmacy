@@ -57,15 +57,16 @@ $( "#Apply" ).on( "submit", function( event ) {
 				popUp(1,data.msg);
 			else
 				popUp(0,data.msg);
-	if(data.type="success")
-		  location.reload();
+	$(document).on("click",".popUpButton",function(){
+		location.reload();
+	});
   },"Phone=" + phone+"&Name="+name+"&Address="+address+"&invoices="+JSON.stringify(invoice));
 });
 
 $( ".autocomplete" ).autocomplete({
 					minLength:3,
 
-  source: function( request, response ) {
+  	source: function( request, response ) {
 		Send("php/Invoices_ctrl.php?action=search","POST", function (data) {
 			response($.map(data, function (value, key) {
 				return {

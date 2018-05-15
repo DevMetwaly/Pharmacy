@@ -21,7 +21,7 @@ window.onload = function(){
 				$("#PH_TABLES").append(
 				'<div id='+row.Pharmacy_ID+' class="panel panel-default tab-pane fade '+active+' ">'
 					+'<div class="panel-heading">'
-					+'<h4><b>Pharmacy'+ row.Pharmacy_ID +'Inventory Data Table</b></h4>'
+					+'<h4><b>Pharmacy '+ row.Pharmacy_ID +' Inventory Data Table</b></h4>'
 				+'</div>'
 
 				+'<div class="panel-body">'

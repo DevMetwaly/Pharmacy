@@ -104,12 +104,12 @@ function popUp(F,msg="",type=""){
 	if(F){
 		if(msg=="") msg="SUCCESSFUL OPERATION!";
 		if(type=="") type="ALERT";
-		$("body").append('<div class="popUp success"><i class="fa fa-check-circle" style="font-size: 58px; margin-bottom: 4px;"></i><br><strong>'+type+' : </strong>'+msg+'<br><span class="btn btn-success btn-md" style="margin-top:4px;" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
+		$("body").append('<div class="popUp success"><i class="fa fa-check-circle" style="font-size: 58px; margin-bottom: 4px;"></i><br><strong>'+type+' : </strong>'+msg+'<br><span class="btn btn-success btn-md popUpButton" style="margin-top:4px;" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
 	}
 	else{
 		if(msg=="") msg="OPERATION UNSUCCESSFUL!";
 		if(type=="") type="ERROR";
-		$("body").append('<div class="popUp error"><i class="fa fa-exclamation-triangle" style="font-size: 58px; margin-bottom: 4px;"></i><br><strong>'+type+' : </strong>'+msg+'<br><span class="btn btn-danger btn-md" style="margin-top:4px;" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
+		$("body").append('<div class="popUp error"><i class="fa fa-exclamation-triangle" style="font-size: 58px; margin-bottom: 4px;"></i><br><strong>'+type+' : </strong>'+msg+'<br><span class="btn btn-danger btn-md popUpButton" style="margin-top:4px;" onclick="closePopUp();">CLOSE</span></div><div class="disable"></div>');
 	}
 }
 	
