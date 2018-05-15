@@ -34,13 +34,13 @@ case 'add':
 			
 			{
 				$re["type"]="success";
-				$re["msg"]="New Medicine Added";
+				$re["msg"]="New Product Added";
 				$re["ID"]=$db->lastrow();
 			}
 		else	
 			{
 				$re["type"]="error";
-				$re["msg"]="Medicine Already Exist";
+				$re["msg"]="Product Already Exist";
 				$re["ID"]=$db->lastrow();
 			}
 		echo (json_encode($re,JSON_PRETTY_PRINT));	
@@ -51,16 +51,16 @@ case 'add':
 	case 'delete':
 		if($db->query
 			("
-				DELETE FROM medicines WHERE Medicin_ID='".$db->escape($_POST['Medicin_ID'])."'
+				DELETE FROM proudcts WHERE Product_ID='".$db->escape($_POST['Product_ID'])."'
 			"))
 			{
 				$re["type"]="success";
-				$re["msg"]="Medicine Deleted Successfully";
+				$re["msg"]="Product Deleted Successfully";
 			}
 		else
 			{
 				$re["type"]="error";
-				$re["msg"]="Medicine Deleted Unsuccessfully";
+				$re["msg"]="Product Deleted Unsuccessfully";
 			}
 		echo (json_encode($re,JSON_PRETTY_PRINT));
 	
@@ -69,22 +69,24 @@ case 'add':
 	case 'edit':
 		if($db->query
 			("
-				UPDATE medicines 
+				UPDATE proudcts 
 				SET 
-					Name='".$db->escape($_POST['Name'])."',
-					Description= '".$db->escape($_POST['Description'])."',
-					Supplier_ID='".$db->escape($_POST['Supplier_ID'])."'
-				WHERE Medicin_ID='".$db->escape($_POST['Medicin_ID'])."'
+					Pharmacy_ID='".$db->escape($_POST['Pharmacy'])."',
+					Price='".$db->escape($_POST['Price'])."',
+					Quantity='".$db->escape($_POST['Quantity'])."',
+					Expire_Date='".$db->escape($_POST['ExpireDate'])."',
+					Barcode='".$db->escape($_POST['Barcode'])."'
+				WHERE Product_ID='".$db->escape($_POST['Product_ID'])."'
 						
 			"))
 				{
 					$re["type"]="success";
-					$re["msg"]="Medicine Edited Successfully";
+					$re["msg"]="Product Edited Successfully";
 				}
 		else
 				{
 					$re["type"]="error";
-					$re["msg"]="Medicine Edited Unsuccessfully";
+					$re["msg"]="Product Edited Unsuccessfully";
 				}
 		echo (json_encode($re,JSON_PRETTY_PRINT));		
 	break;
@@ -102,36 +104,18 @@ case 'add':
 	
 	case "auto":
 		if($_POST){
-			$num=$db->fetch("SELECT Medicin_ID,Name from medicines WHERE Name Like '%".$db->escape($_POST['q'])."%'",true);
+			$num=$db->fetch("SELECT Product_ID,Name from medicines,proudcts WHERE Name Like '%".$db->escape($_POST['q'])."%' and proudcts.Medicine_ID=medicines.Medicin_ID",true);
 			echo (json_encode(($num==null)?[]:$num,JSON_PRETTY_PRINT));
 		}
 	break;
 	
 	case "number":
 		if($_POST){
-			$num=$db->fetch("SELECT * from  medicines WHERE Medicin_ID ='".$db->escape($_POST["q"])."'",false);
+			$num=$db->fetch("SELECT * from  proudcts,medicines WHERE Product_ID ='".$db->escape($_POST["q"])."' and Medicin_ID=Medicine_ID",false);
 			echo (json_encode($num,JSON_PRETTY_PRINT));
 		}
 	break;
 	
-	case 'delete':
-		if($db->query
-			("
-				DELETE FROM medicines WHERE Medicin_ID='".$db->escape($_POST['Medicin_ID'])."'
-			"))
-			{
-				$re["type"]="success";
-				$re["msg"]="Medicine Deleted Successfully";
-			}
-		else
-			{
-				$re["type"]="error";
-				$re["msg"]="Medicine Deleted Unsuccessfully";
-			}
-		echo (json_encode($re,JSON_PRETTY_PRINT));
-	break;
-	
-		
 	
 }
 ?>
