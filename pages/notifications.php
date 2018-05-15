@@ -4,7 +4,12 @@ window.onload = function(){
 	Send("./php/Notification_table.php","GET",function(data){
 
 		$.each(data.Expired,function(index,row){
-			
+			$("#notf_exp_table").append(
+			"<tr>"+
+			"<td>"+row.Pharmacy_ID+"</td><td>"+row.Expire_Date+"</td><td>"+row.Name+"</td>"+
+			"</tr>"
+			);
+
 
 
 		});
@@ -12,7 +17,11 @@ window.onload = function(){
 
 
 		$.each(data.Epire_Soon,function(index,row){
-
+			$("#notf_soon_table").append(
+			"<tr>"+
+			"<td>"+row.Pharmacy_ID+"</td><td>"+row.Expire_Date+"</td><td>"+row.Name+"</td>"+
+			"</tr>"
+			);
 
 
 		});
@@ -20,8 +29,11 @@ window.onload = function(){
 
 
 		$.each(data.Out_of_stock,function(index,row){
-
-
+			$("#notf_stock_table").append(
+			"<tr>"+
+			"<td>"+row.Pharmacy_ID+"</td><td>"+row.Quantity+"</td><td>"+row.Name+"</td>"+
+			"</tr>"
+			);
 
 		});
 
