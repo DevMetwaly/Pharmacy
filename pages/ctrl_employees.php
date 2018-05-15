@@ -251,7 +251,7 @@ window.onload=function(){
 										<div class="form-group">
 											<label>Password</label>
 											<input id="EPassword" class="form-control" type="password">
-											<p class="help-block">This will be modified by the employee later.</p>
+											<p class="help-block">This may be modified by employee later.</p>
 										</div>
 										<div class="form-group input-group" style="display:none">
 											<input id="Empolyee_ID" type="text" class="form-control" placeholder="Search..">
@@ -259,25 +259,25 @@ window.onload=function(){
 										
 										<div class="form-group">
 											<label for="disabledSelect">First Name</label>
-											<input id="EFName" class="form-control" class="disabledInput" type="text" placeholder="Disabled input">
+											<input id="EFName" class="form-control" class="disabledInput" type="text" placeholder="Update first name">
 										</div>
 										
 										
 										<div class="form-group">
 											<label for="disabledSelect">Last Name</label>
-											<input  id="ELName" class="form-control" class="disabledInput" type="text" placeholder="Disabled input">
+											<input  id="ELName" class="form-control" class="disabledInput" type="text" placeholder="Update last name">
 										</div>
 										<div class="form-group">
 											<label>Address</label>
-											<input id="EAddress" class="form-control" placeholder="Enter text">
+											<input id="EAddress" class="form-control" placeholder="Update address">
 										</div>
 										<div class="form-group">
 											<label>Salary</label>
-											<input id="ESalary" class="form-control" placeholder="Enter text">
+											<input id="ESalary" class="form-control" placeholder="Update salary">
 										</div>
 										<div class="form-group">
 											<label>Phone</label>
-											<input id="EPhone" class="form-control" placeholder="Enter text">
+											<input id="EPhone" class="form-control" placeholder="Update phone number">
 										</div>
 										<div class="form-group">
 											<label>Pharmacy</label>
@@ -295,7 +295,7 @@ window.onload=function(){
 										</div>
 										<div class="form-group">
 											<label>Hire-date</label>
-											<input id="EHire_date" class="form-control" placeholder="Enter text">
+											<input id="EHire_date" class="form-control" placeholder="Update date">
 										</div>
 										<div class="form-group">
 											<label>Account Type</label>

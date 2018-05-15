@@ -104,11 +104,11 @@ window.onload=function(){
 								<form role="form" id="AddCustomer">
 									<div class="form-group">
 										<label>Name</label>
-										<input id="Name" class="form-control" placeholder="Enter name.." pattern="^[a-zA-Z]{2}[a-zA-Z ]+" required>
+										<input id="Name" class="form-control" placeholder="Enter customer name" pattern="^[a-zA-Z]{2}[a-zA-Z ]+" required>
 									</div>
 									<div class="form-group">
 										<label>Address</label>
-										<input id="Address" class="form-control" placeholder="Enter address.." required>
+										<input id="Address" class="form-control" placeholder="Enter customer address" required>
 									</div>
 									<!--<div class="form-group">
 										<label>Email Address</label>
@@ -153,11 +153,11 @@ window.onload=function(){
 									<fieldset id="field" disabled>
 										<div class="form-group">
 											<label>Name</label>
-											<input class="form-control" id="Ename" placeholder="Enter text">
+											<input class="form-control" id="Ename" placeholder="Update customer name">
 										</div>
 										<div class="form-group">
 											<label>Address</label>
-											<input class="form-control" id="Eaddress" placeholder="Enter text">
+											<input class="form-control" id="Eaddress" placeholder="Update customer address">
 										</div>
 										<!--<div class="form-group">
 											<label>Email Address</label>
@@ -165,7 +165,7 @@ window.onload=function(){
 										</div>-->
 										<div class="form-group">
 										<label>Phone Number</label>
-										<input class="form-control" id="Ephone" placeholder="Ex: 1003004000">
+										<input class="form-control" id="Ephone" placeholder="Update phone number">
 										</div>
 										<button type="submit" class="btn btn-primary">Apply Changes</button>
 										<button type="button" class="btn btn-danger" id="DeleteCustomer">Remove Customer</button>

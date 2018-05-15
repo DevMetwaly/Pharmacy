@@ -102,11 +102,11 @@ window.onload=function(){
 								<form id="AddMedForm" role="form">
 									<div class="form-group">
 										<label>Medicine name</label>
-										<input id="Name" class="form-control" placeholder="Enter medicine name.." pattern="^[a-zA-Z][a-zA-Z ]+" required>
+										<input id="Name" class="form-control" placeholder="Enter medicine name" pattern="^[a-zA-Z][a-zA-Z ]+" required>
 									</div>
 									<div class="form-group">
 										<label>Description</label>
-										<input id="Description" class="form-control" placeholder="Enter Desciption" required>
+										<input id="Description" class="form-control" placeholder="Enter desciption" required>
 									</div>
 									<div class="form-group">
 										<label>Supplier</label>
@@ -159,7 +159,7 @@ window.onload=function(){
 									<fieldset id="field" disabled>
 										<div class="form-group">
 											<label for="disabledSelect">Name</label>
-											<input id="MName" class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
+											<input id="MName" class="form-control" id="disabledInput" type="text" placeholder="Update name..">
 										</div>
 										<div class="form-group">
 											<label for="disabledSelect">Supplier</label>
@@ -175,7 +175,7 @@ window.onload=function(){
 										</div>
 										<div class="form-group">
 											<label for="disabledSelect">Desciption</label>
-											<input id="MDescription" class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
+											<input id="MDescription" class="form-control" id="disabledInput" type="text" placeholder="Update description">
 										</div>
 										
 										<button type="submit" class="btn btn-primary">Apply Changes</button>

@@ -31,7 +31,7 @@ $(function() {
     //     return this.href == url;
     // }).addClass('active').parent().parent().addClass('in').parent();
     var element = $('ul.nav a').filter(function() {
-        return this.href == url;
+        return this.href == url && $(this).attr('id') != "profile-li";
     }).addClass('active').parent();
 	
 	if (element.is('li')){

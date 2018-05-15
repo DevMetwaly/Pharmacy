@@ -113,7 +113,7 @@ window.onload = function(){
 									</div>
 									<div class="form-group">
 										<label>Address</label>
-										<input id="PhAdd" class="form-control" name="Pharmacy_Address" placeholder="Enter address.." required>
+										<input id="PhAdd" class="form-control" name="Pharmacy_Address" placeholder="Enter pharmacy address" required>
 									</div>
 									<div class="form-group">
 										<label>Phone Numbers</label>
@@ -170,13 +170,13 @@ window.onload = function(){
 									<fieldset id="field" disabled>
 										<div class="form-group">
 											<label>Address</label>
-											<input id="Address" class="form-control" placeholder="Enter text">
+											<input id="Address" class="form-control" placeholder="Update pharmacy address">
 										</div>
 										<div class="form-group">
 											<label>Phone Numbers</label>
 											<div id="EphoneBoxList">
 											<span>
-												<input id="Phone" class="form-control phoneBox" name="editPhone[]" placeholder="Ex: 1003004000, 555-111-999">
+												<input id="Phone" class="form-control phoneBox" name="editPhone[]" placeholder="Update phone list">
 											</span>
 										</div>
 										<div class="formAddButtonDiv">

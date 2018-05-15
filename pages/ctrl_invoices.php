@@ -208,15 +208,15 @@ $( ".autocompletenumber" ).autocomplete({
 										<label>Customer Phone</label>
 										<div class="form-group input-group">
 											<span class="input-group-addon">#</span>
-											<input type="text" id="Customer_Phone" class="autocompletenumber form-control" placeholder="Customer Phone.." minLength=7 maxLength=15 pattern="[0-9]+" required>
+											<input type="text" id="Customer_Phone" class="autocompletenumber form-control" placeholder="Customer phone" minLength=7 maxLength=15 pattern="[0-9]+" required>
 										</div>
 										<label>Customer Name</label>
 										<div class="form-group">
-											<input type="text" id="Customer_Name" class="form-control" placeholder="Customer name.." pattern="^[a-zA-Z][a-zA-Z ]+" required>
+											<input type="text" id="Customer_Name" class="form-control" placeholder="Customer name" pattern="^[a-zA-Z][a-zA-Z ]+" required>
 										</div>
 										<label>Customer Address</label>
 										<div class="form-group">
-											<input type="text" id="Customer_Address" class="form-control" placeholder="Address.." required>
+											<input type="text" id="Customer_Address" class="form-control" placeholder="Customer address" required>
 										</div>
 										<button type="submit" class="btn btn-default btn-success">Confirm & Print</button>
 										<button type="reset" class="btn btn-default">Reset</button>
