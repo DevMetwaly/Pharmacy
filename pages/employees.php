@@ -10,7 +10,7 @@ window.onload = function(){
 		});
 		
 		$('#dataTables-example').DataTable({
-            responsive: true, 
+            responsive: true
         });
 	});	
 }
