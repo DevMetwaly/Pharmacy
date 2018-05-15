@@ -1,12 +1,12 @@
 <script>
 
 window.onload = function(){
-	Send("./php/Notification_table.php","GET",function(data){
+	Send("./php/notifications_table.php","GET",function(data){
 
 		$.each(data.Expired,function(index,row){
 			$("#notf_exp_table").append(
 			"<tr>"+
-			"<td>"+row.Pharmacy_ID+"</td><td>"+row.Expire_Date+"</td><td>"+row.Name+"</td>"+
+			"<td>"+row.Pharmacy_ID+"</td><td>"+row.Expire_Data+"</td><td>"+row.Name+"</td>"+
 			"</tr>"
 			);
 
@@ -19,7 +19,7 @@ window.onload = function(){
 		$.each(data.Epire_Soon,function(index,row){
 			$("#notf_soon_table").append(
 			"<tr>"+
-			"<td>"+row.Pharmacy_ID+"</td><td>"+row.Expire_Date+"</td><td>"+row.Name+"</td>"+
+			"<td>"+row.Pharmacy_ID+"</td><td>"+row.Expire_Data+"</td><td>"+row.Name+"</td>"+
 			"</tr>"
 			);
 
@@ -45,7 +45,7 @@ window.onload = function(){
 
 
 
-		$('#dataTables-example').DataTable({
+		$('.dataTables').DataTable({
             responsive: true
         });
 	});	
@@ -80,12 +80,12 @@ window.onload = function(){
 				</div>
 
 				<div class="panel-body">
-					<table width="100%" class="table table-striped table-bordered table-hover dataTables">
+					<table width="100%" class="table table-striped table-bordered table-hover dataTables" >
 						<thead>
 							<tr>
-								<th>Medicines</th>
-								<th>Status</th>
-								<th></th>
+								<th>Pharmacy</th>
+								<th>Expire Date</th>
+								<th>Medicine Name</th>
 							</tr>
 						</thead>
 						<tbody id="notf_soon_table">
@@ -103,9 +103,9 @@ window.onload = function(){
 					<table width="100%" class="table table-striped table-bordered table-hover dataTables">
 						<thead>
 							<tr>
-								<th>Medicines</th>
-								<th>Status</th>
-								<th></th>
+								<th>Pharmacy</th>
+								<th>Expire Date</th>
+								<th>Medicine Name</th>
 							</tr>
 						</thead>
 						<tbody id="notf_exp_table">
@@ -123,9 +123,9 @@ window.onload = function(){
 					<table width="100%" class="table table-striped table-bordered table-hover dataTables">
 						<thead>
 							<tr>
-								<th>Medicines</th>
-								<th>Status</th>
-								<th></th>
+								<th>Pharmacy</th>
+								<th>Quantity</th>
+								<th>Medicine Name</th>
 							</tr>
 						</thead>
 						<tbody id="notf_stock_table">
