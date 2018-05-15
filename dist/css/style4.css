@@ -63,7 +63,11 @@ body {
 }
 .sidebar ul li ul li a.active{
    color: yellow;
-}/*
+}
+footer{
+	background-color: #180000;
+}
+/*
 .popUp.success{
     background: linear-gradient(green,black);
     color: white;

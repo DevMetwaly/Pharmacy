@@ -7,7 +7,10 @@ window.onload=function(){
 		var address = $('#Address').val();
 		var phone = $('#Phone').val();
 		Send("./php/Customers_ctrl.php?action=add","POST",function(data){
-		   alert(data.msg);
+		   if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		},"Name="+name+"&Address="+address+"&Phone="+phone);
 	});
 
@@ -21,7 +24,10 @@ window.onload=function(){
 		var phone = $('#Ephone').val();
 		var Sphone = $('#Sphone').val();
 		Send("./php/Customers_ctrl.php?action=edit","POST",function(data){
-		   alert(data.msg);
+		   if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		},"Name="+name+"&Address="+address+"&Phone="+phone+"&SPhone="+Sphone);
 	});
 
@@ -30,7 +36,10 @@ window.onload=function(){
 	$( "#DeleteCustomer" ).on( "click", function( event ) {
 		var Sphone = $('#Sphone').val();
 		Send("./php/Customers_ctrl.php?action=delete","POST",function(data){
-		   alert(data.msg);
+		   if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		},"SPhone="+Sphone);
 	});
 

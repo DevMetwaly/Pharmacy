@@ -11,7 +11,10 @@ window.onload = function(){
 		var PhNum 	=	$('#PhNum').val();
 		var PhAdd 	=	$('#PhAdd').val();
 		Send("./php/Pharmacies_ctrl.php?action=add","POST",function(data){
-		 alert(data.msg);
+			if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		},"PhNum="+PhNum+"&PhAdd="+PhAdd+"&Phones="+Phones);
 		});
 		
@@ -26,7 +29,10 @@ window.onload = function(){
 		var PhAdd 	=	$('#Address').val();
 		var Admin   =   $('#Admin').val();
 		Send("./php/Pharmacies_ctrl.php?action=edit","POST",function(data){
-		 alert(data.msg);
+			if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		},"PhId="+PhId+"&PhAdd="+PhAdd+"&Phones="+Phones+"&Admin="+Admin);
 		});
 		
@@ -51,7 +57,10 @@ window.onload = function(){
 	$( "#DelPH" ).on( "click", function( event ) {
 		var Pharmacy_ID = $('#PHlist').val();
 		Send("./php/Pharmacies_ctrl.php?action=delete","POST",function(data){
-		   alert(data.msg);
+		   if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		   $("#EditPH").trigger('reset');
 		   $('#field').prop('disabled', true);
 		   $('#PHlist option[value='+Pharmacy_ID+']').remove();

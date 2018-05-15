@@ -41,6 +41,7 @@ die();
 		
 	<link href="vendor/jquery/jquery-ui.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="vendor\morrisjs\morris.css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 
 
@@ -280,6 +281,10 @@ die();
 
     </div>
     <!-- /#wrapper -->
+    <footer>
+              PHARMAX WEB APPLICATION - Created by "Database Ghosts Team" - Supervised by Dr. Amany Sarhan.
+    </footer>
+    
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>

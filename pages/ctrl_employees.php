@@ -20,7 +20,10 @@ window.onload=function(){
 		
 		
 		Send("./php/Employees_ctrl.php?action=add","POST",function(data){
-			alert(data.type);
+			if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 			$("#resAddEmp").click();
 			$("#resModiEmp").click();
 		},"Pharmacy_ID="+opPH+"&FName="+FName+"&LName="+LName+"&Phone="+Phone+"&Address="+Address+"&User_Name="+Username+"&Password="+Password+"&Salary="+Salary+"&Type="+opACC+"&Shift="+opSH);
@@ -93,7 +96,10 @@ window.onload=function(){
 		
 		//call php file to store data in DB with action=add
 		Send("./php/Employees_ctrl.php?action=edit","POST",function(data){
-			alert(data.msg);
+			if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		},"User_Name="+User_Name+"&Pharmacy_ID="+opPH+"&FName="+FName+"&LName="+LName+"&Phone="+Phone+"&Address="+Address+"&Password="+Password+"&Salary="+Salary+"&Type="+opACC+"&Shift="+opSH+"&Hire_Date="+Hire_Date);
 	
 	});

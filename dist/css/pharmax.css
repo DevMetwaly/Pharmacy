@@ -457,3 +457,15 @@ td i.fa:hover{
     height:220px;
   }
 }
+
+footer{
+  position: fixed;
+  height: 26px;
+  color: #999;
+  font-size: 14px;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  line-height: 26px;
+  z-index: 500;
+}

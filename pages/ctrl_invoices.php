@@ -53,8 +53,11 @@ $( "#Apply" ).on( "submit", function( event ) {
   var name=$("#Customer_Name").val();
   var address=$("#Customer_Address").val();
   Send("php/Invoices_ctrl.php?action=invoice","POST", function (data) {
-	  alert(data.msg);
-	  if(data.type="success")
+	if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
+	if(data.type="success")
 		  location.reload();
   },"Phone=" + phone+"&Name="+name+"&Address="+address+"&invoices="+JSON.stringify(invoice));
 });

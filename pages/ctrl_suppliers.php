@@ -13,7 +13,11 @@ window.onload=function(){
 		
 		//call php file to store data in DB with action=add
 		Send("./php/Suppliers_ctrl.php?action=add","POST",function(data){
-			alert(data.msg);
+			if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
+			
 			$("#resAddSup").click();
 			$("#resModiSup").click();
 			$("#selSupp").append("<option value="+data.ID+">"+data.ID+' '+Name+"</option>");
@@ -36,7 +40,10 @@ window.onload=function(){
 		
 		//call php file to store data in DB with action=add
 		Send("./php/Suppliers_ctrl.php?action=edit","POST",function(data){
-			alert(data.msg);
+			if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		},"Name="+Name+"&Phone="+Phone+"&Loc="+Location+"&Email="+Email+"&Supplier_ID="+selSupp);	
 	
 	});
@@ -45,7 +52,10 @@ window.onload=function(){
 	$( "#DelSupp" ).on( "click", function( event ) {
 		var Supplier_ID = $('#selSupp').val();
 		Send("./php/Suppliers_ctrl.php?action=delete","POST",function(data){
-		   alert(data.msg);
+		    if(data.type=='success')
+				popUp(1,data.msg);
+			else
+				popUp(0,data.msg);
 		   $("#resModiSup").click();
 		   $('#field').prop('disabled', true);
 		   $('#selSupp option[value='+Supplier_ID+']').remove();
