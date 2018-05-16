@@ -8,7 +8,7 @@ $ph=$db->Fetch("SELECT Pharmacy_Number FROM Pharmacies ORDER BY Pharmacy_ID",tru
 $ncust=$db->Fetch("SELECT COUNT(DISTINCT invoices.Customer_ID) as NewCustomer  FROM invoices JOIN customers ON  customers.Customer_ID=invoices.Customer_ID where Day(Date) >=Day(CURDATE())-7 ",false);
 $ninv=$db->Fetch("SELECT COUNT(*) as NewInvoice  FROM invoices where Day(Date) >=Day(CURDATE())-7 ",false);
 $rest=$db->Fetch("SELECT COUNT(*) as ReStock FROM proudcts WHERE Quantity <= 50",false);
-$expi=$db->Fetch("SELECT COUNT(*) as ExpireSoon FROM proudcts WHERE Expire_Date >= (NOW() - INTERVAL 1 MONTH)",false);
+$expi=$db->Fetch("SELECT COUNT(*) as ExpireSoon FROM proudcts WHERE (Expire_Date - INTERVAL 3 MONTH ) <= NOW() and  Expire_Date > NOW()",false);
 $solditems=$db->Fetch("SELECT SUM(soldproudcts.Quantity) Sold,Pharmacy_Number FROM soldproudcts JOIN proudcts ON  proudcts.Product_ID=soldproudcts.Product_ID JOIN Pharmacies ON proudcts.Pharmacy_ID=Pharmacies.Pharmacy_ID GROUP BY proudcts.Pharmacy_ID",true);
 $sold=array();
 for($i=0;$i<count($ph); $i++){
