@@ -19,7 +19,7 @@ $num2=$db->fetch("SELECT p.Pharmacy_ID as Pharmacy_ID,
                         m.Name as Name
                 FROM proudcts p 
                 JOIN medicines m on p.Medicine_ID=m.Medicin_ID
-                where Expire_Date >= (NOW() -    INTERVAL 3 MONTH ) ; 
+                where (Expire_Date - INTERVAL 3 MONTH ) <= NOW() and  Expire_Date > NOW() ; 
                 ",true);
 $out["Epire_Soon"] =  $num2;                 
 $num3=$db->fetch("SELECT p.Pharmacy_ID as Pharmacy_ID, 

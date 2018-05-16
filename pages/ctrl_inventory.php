@@ -82,10 +82,11 @@ window.onload=function(){
 	
 	$( "#DelMed" ).on( "click", function( event ) {
 		Send("./php/Product_ctrl.php?action=delete","POST",function(data){
-		  if(data.type=='success')
+		  if(data.type=='success'){
 				popUp(1,data.msg);
 				$("#resModiMed").click();
 		   		$('#field').prop('disabled', true);
+		   	}
 			else
 				popUp(0,data.msg);
 		   

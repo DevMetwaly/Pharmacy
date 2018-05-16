@@ -86,7 +86,7 @@ die();
                                                 $res=$db->fetch("SELECT COUNT(*) as ExpireSoon
                                                             FROM proudcts p 
                                                             JOIN medicines m on p.Medicine_ID=m.Medicin_ID
-                                                            where Expire_Date >= (NOW() -    INTERVAL 3 MONTH ) ; 
+                                                            where (Expire_Date - INTERVAL 3 MONTH ) <= NOW() and  Expire_Date > NOW() ; 
                                                 ",false);
                                                 echo ($res["ExpireSoon"]);
                                             ?>
