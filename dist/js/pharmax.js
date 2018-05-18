@@ -70,6 +70,7 @@ $(function() {
 		);
 	}
 	else{
+		$("#notif-count").css({"display":"inline"});
 		$("#notif-count").html(count_notif);
 	}
 });
