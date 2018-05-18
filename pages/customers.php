@@ -3,15 +3,17 @@
 window.onload = function(){
 	Send("./php/Customers_table.php","GET",function(data){
 		$.each(data,function(index,row){
+			if(row.Score==null) row.Score =0;
 			$("#Customers").append(
 			"<tr>"+
-			"<td>"+row.Customer_ID+"</td><td>"+row.Name+"</td><td>"+row.Address+"</td><td>"+row.Phone+"</td><td>"+ 
+			"<td>"+row.cid+"</td><td>"+row.Name+"</td><td>"+row.Address+"</td><td>"+row.Phone+"</td><td>"+row.Score+"</td>"+ 
 			"</tr>"
 			);
 		});
 
 		$('#dataTables-example').DataTable({
-            responsive: true
+            responsive: true,
+			"order": [[ 4, "desc" ]]
         });
 	});	
 }

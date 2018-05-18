@@ -60,7 +60,8 @@ switch($_GET['action']){
 					Shift,
 					Salary,
 					Pharmacy_Number,
-					Hire_Date
+					Hire_Date,
+					Image
 				FROM 
 					empolyees,
 					pharmacies 

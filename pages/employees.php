@@ -4,7 +4,17 @@ window.onload = function(){
 		$.each(data,function(index,row){
 			$("#Employees").append(
 			"<tr>"+
-			"<td>"+row.Empolyee_ID+"</td><td>"+row.Pharmacy_Number+"</td><td>"+row.FName+"</td><td>"+row.LName+"</td><td>"+row.Phone+"</td><td>"+row.Address+"</td><td>"+row.Type+"</td><td>"+row.Salary+"</td><td>"+row.Shift+"</td><td>"+row.Hire_Date+"</td>"+ 
+			"<td>"+row.Empolyee_ID+"</td><td>"
+			+row.Pharmacy_Number+"</td><td>"
+			+row.FName+"</td><td>"
+			+row.LName+"</td><td>"
+			+row.Phone+"</td><td>"
+			+row.Address+"</td><td>"
+			+row.Type+"</td><td>"
+			+row.Salary+"</td><td>"
+			+row.Shift+"</td><td>"
+			+row.Hire_Date+"</td><td class='table-emp-photo'>"
+			+"<img width='80px' src='"+row.Image+"'>"+"</td>"+
 			"</tr>"
 			);
 		});
@@ -45,6 +55,7 @@ window.onload = function(){
 								<th>Salary</th>
 								<th>Shift</th>
 								<th>Hire Date</th>
+								<th>Photo</th>
 							</tr>
 						</thead>
 						<tbody id="Employees">
