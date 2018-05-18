@@ -71,7 +71,7 @@ window.onload = function(){
 			<ul class="nav nav-tabs" id="PH_TABS">
 				<li class="active"><a data-toggle="tab" href="#notf_soon">Expire Soon</a></li>
 				<li><a data-toggle="tab" href="#notf_exp">Expired</a></li>
-				<li><a data-toggle="tab" href="#notf_stock">Out of Stock</a></li>
+				<li><a data-toggle="tab" href="#notf_stock">Need Restock</a></li>
 			</ul>
 		</div>
 

@@ -84,7 +84,7 @@
 						</div>
 						<div class="col-xs-9 text-right">
 							<div class="huge" id="ExpireSoon">0</div>
-							<div>Soon Expires!</div>
+							<div>Expire Soon!</div>
 						</div>
 					</div>
 				</div>

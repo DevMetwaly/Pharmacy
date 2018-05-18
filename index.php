@@ -124,7 +124,7 @@ die();
                                                 ",false);
                                                 echo ($res["Stock"]);
                                             ?>
-                                        </span> Medicines out of stock
+                                        </span> Medicines need restock
                                 </div>
                             </a>
                         </li>
