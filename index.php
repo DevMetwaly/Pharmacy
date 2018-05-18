@@ -74,6 +74,7 @@ die();
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<span id="notif-count"></span>
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
@@ -81,7 +82,7 @@ die();
                             <a href="./notifications#notf_soon">
                                 <div>
                                     <i class="fa fa-warning fa-fw"></i> 
-                                        <span>
+                                        <span class="notification-val">
                                             <?
                                                 $res=$db->fetch("SELECT COUNT(*) as ExpireSoon
                                                             FROM proudcts p 
@@ -99,7 +100,7 @@ die();
                             <a href="./notifications#notf_exp">
                                 <div>
                                     <i class="fa fa-warning fa-fw"></i>
-                                         <span>
+                                         <span class="notification-val">
                                             <?
                                                 $res=$db->fetch("SELECT COUNT(*) as Expired
                                                             FROM proudcts p 
@@ -117,12 +118,9 @@ die();
                             <a href="./notifications#notf_stock">
                                 <div>
                                     <i class="fa fa-warning fa-fw"></i> 
-                                         <span>
+                                         <span class="notification-val">
                                             <?
-                                                $res=$db->fetch("SELECT COUNT(*) as Stock
-                                                                FROM proudcts p
-                                                                JOIN medicines m on p.Medicine_ID=m.Medicin_ID 
-                                                                where Quantity < 10; 
+                                                $res=$db->fetch("SELECT COUNT(*) as Stock FROM proudcts WHERE Quantity <= 5; 
                                                 ",false);
                                                 echo ($res["Stock"]);
                                             ?>

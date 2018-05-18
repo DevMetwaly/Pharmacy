@@ -1,3 +1,4 @@
+/* Lime Theme */
 body {
   background-color: #217321;
 }
@@ -66,6 +67,14 @@ body {
 }
 footer{
 	background-color: #205020;
+}
+#notif-count{
+	font-size: 10px;
+	font-weight: bolder;
+	background: green;
+	color: yellow;
+	padding: 5px;
+	border-radius:10px;
 }
 /*
 .popUp.success{

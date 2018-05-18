@@ -1,4 +1,4 @@
- <script src="data/morris-data.js"></script>
+<script src="data/morris-data.js"></script>
  
 <div id="page-wrapper">
 	<div class="row">

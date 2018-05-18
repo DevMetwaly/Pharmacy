@@ -26,12 +26,10 @@ $(function() {
         }
     });
 
+	// ADD ACTIVE CLASS TO OPEN TAB (LI)
     var url = window.location;
     url = String(url).split('#')[0];
     
-    // var element = $('ul.nav a').filter(function() {
-    //     return this.href == url;
-    // }).addClass('active').parent().parent().addClass('in').parent();
     var element = $('ul.nav a').filter(function() {
         return this.href == url && $(this).attr('id') != "profile-li";
     }).addClass('active').parent();
@@ -48,6 +46,32 @@ $(function() {
             break;
         }
     }
+	// HIDE 0 NOTIFICATION
+	var notif_list = $(".notification-val");
+	var count_notif = notif_list.length;
+	notif_list.each(function(idx){
+		if($(this).text()==0){
+			$(this).closest("li").css({"display":"none"});
+			$(this).closest("li").prev("li").css({"display":"none"});
+			count_notif--;
+		}
+	});
+	if(count_notif == 0){
+		$(".dropdown-alerts").html(
+			'<li style="text-align: center;"> No notifications. </li> 	\
+			<li class="divider"></li>									\
+			<li>														\
+				<a class="text-center" href="notifications">			\
+					<strong>See All Alerts</strong>						\
+					<i class="fa fa-angle-right"></i>					\
+				</a>													\
+			</li>														\
+			'
+		);
+	}
+	else{
+		$("#notif-count").html(count_notif);
+	}
 });
 
 function Send(url, method, data, post = null) {
@@ -119,3 +143,4 @@ function closePopUp(){
 	$(".popUp").remove();
 	$(".disable").remove();
 }
+

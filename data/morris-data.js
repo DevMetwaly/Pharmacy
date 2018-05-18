@@ -2,12 +2,10 @@ window.onload =function(){$(function() {
 	
 Send("./php/Home.php","GET",function(data){
   $.each(data.information,function(key,value){
-	 
 	  $("#"+Object.keys(value)[0]+"").text(value[Object.keys(value)[0]]);
   });
   t=[];
   $.each(data.sold_statstics,function(key,value){ t.push(value)});
-console.log(t);
 
 	Morris.Donut({
         element: 'morris-donut-chart',

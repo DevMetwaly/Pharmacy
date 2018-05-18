@@ -1,3 +1,4 @@
+/* Dark Theme */
 body {
   background-color: #200;
 }
@@ -66,6 +67,14 @@ body {
 }
 footer{
 	background-color: #180000;
+}
+#notif-count{
+	font-size: 10px;
+	font-weight: bolder;
+	background: yellow;
+	color: black;
+	padding: 5px;
+	border-radius:10px;
 }
 /*
 .popUp.success{

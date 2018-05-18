@@ -1,3 +1,4 @@
+/* Main Theme */
 body {
   background-color: #111144;
 }
@@ -63,6 +64,14 @@ body {
 }
 footer{
 	background-color: #002;
+}
+#notif-count{
+	font-size: 10px;
+	font-weight: bolder;
+	background: #337ab7;
+	color: white;
+	padding: 5px;
+	border-radius:10px;
 }
 /*
 .popUp.success{

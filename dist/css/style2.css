@@ -1,5 +1,6 @@
+/* Silver Theme */
 body {
-  background-color: #787878;
+  background-color: #787878; 
 }
 .navbar {
   background: linear-gradient(#aaa,#a5a5a5,#787878);
@@ -63,6 +64,14 @@ body {
 }
 footer{
 	background-color: #484848;
+}
+#notif-count{
+	font-size: 10px;
+	font-weight: bolder;
+	background: grey;
+	color: white;
+	padding: 5px;
+	border-radius:10px;
 }
 /*
 .popUp.success{
