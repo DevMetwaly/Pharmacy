@@ -16,6 +16,19 @@ window.onload = function(){
 		},"");
 	}
 	
+	function fillUpdateInfo(){
+		Send("./php/AccSettings.php?action=info","POST",function(data){
+			$('#FName').val(data.FName);
+			$('#LName').val(data.LName);
+			$('#Address').val(data.Address);
+			$('#Phone').val(data.Phone);
+			$('#UserName').val(data.User_Name);
+			$('#CrrPass').val();
+			$('#ConfPass').val();
+			$('#NewPass').val();
+		},"");
+	}
+	
 	$( "#UpdateInfo" ).on( "submit", function( event ) {
 		event.preventDefault();	
 		    var formData = new FormData(this);
