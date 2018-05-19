@@ -1,3 +1,35 @@
+<script>
+window.onload = function(){	
+	function fillData(){
+		Send("./php/AccSettings.php?action=info","POST",function(data){
+
+			$('#IName').text(data.FName+' '+data.LName);
+			$('#IMobile').text(data.Phone);
+			$('#IAddress').text(data.Address);
+			$('#IImg').attr("src",data.Image);
+
+			$('#FName').val(data.FName);
+			$('#LName').val(data.LName);
+			$('#Address').val(data.Address);
+			$('#Phone').val(data.Phone);
+			$('#UserName').val(data.User_Name);
+		},"");
+	}
+
+	$( "#AddEmpForm" ).on( "submit", function( event ) {
+		event.preventDefault();	
+
+
+	});
+
+
+	fillData();
+}
+</script>
+
+
+
+
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -23,16 +55,16 @@
 								<div class="col-lg-12">
 									
 									<h5><b>Name</b></h5> 
-										<h4>Ahmed Bally</h4>
+										<h4 id="IName"></h4>
 										
 									<h5><b>Phone</b></h5> 
-										<h4>01147364369</h4>
+										<h4 id="IMobile"></h4>
 										
 									<h5><b>Address</b></h5> 
-										<h4>Mahala</h4>
+										<h4 id="IAddress"></h4>
 										
 									<h5><b>Image</b></h5>
-									<img id='settings-image-preview' src='image\bally.png' width="256px">
+									<img id='IImg' src='' width="256px">
 								</div>
 							</div>
 
@@ -57,34 +89,38 @@
 									<form>
 										<div class="form-group">
 											<label>First Name</label>
-											<input id="Name" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
+											<input id="FName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Last Name</label>
-											<input class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
+											<input id="LName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Address</label>
-											<input class="form-control" placeholder="Leave empty to not update">
+											<input id="Address" class="form-control" placeholder="Leave empty to not update">
 										</div>
 										<div class="form-group">
 											<label>Phone</label>
-											<input class="form-control" minLength=7 maxLength=15 pattern="[0-9]+" placeholder="Leave empty to not update">
+											<input id="Phone" class="form-control" minLength=7 maxLength=15 pattern="[0-9]+" placeholder="Leave empty to not update">
+										</div>
+										<div class="form-group">
+											<label>User Name</label>
+											<input id="UserName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Current Password</label>
-											<input class="form-control" minlength="5" placeholder="Must enter to update" required>
+											<input id="CrrPass" class="form-control" minlength="5" placeholder="Must enter to update" required>
 										</div>
 										<div class="form-group">
 											<label>New Password</label>
-											<input class="form-control" minlength="5" placeholder="Leave empty to not update">
+											<input id="NewPass" class="form-control" minlength="5" placeholder="Leave empty to not update">
 										</div>
 										<div class="form-group">
 											<label>Upload Image</label>
 											<input class="form-control" type="file" name="pic" accept="image/*">
 										</div>
 										<button type="submit" class="btn btn-default btn-success" onfocus="this.blur()">Save</button>
-										<button type="submit" class="btn btn-default btn-warning">Reset</button>
+										<button type="reset" class="btn btn-default btn-warning">Reset</button>
 									</form>
 								</div>
 							</div>
