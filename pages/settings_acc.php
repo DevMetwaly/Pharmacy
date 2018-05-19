@@ -40,6 +40,7 @@ window.onload = function(){
 				$('#Ppf').attr('src', $('#Ppf')
 				.attr('src') + '?' + Math.random() );
 				popUp(1,data.msg);
+				fillCrrInfo();
 			}else
 				popUp(0,data.msg);
 		},formData);
@@ -54,9 +55,7 @@ window.onload = function(){
 	});
 
 
-	$(document).on("click",".popUpButton",function(){
-		location.reload();
-	});
+	
 	
 	fillCrrInfo();
 	
@@ -64,7 +63,9 @@ window.onload = function(){
 	  , confirm_password = document.getElementById("ConfPass");
 
 	function validatePassword(){
+
 	  if(password.value != confirm_password.value) {
+
 		confirm_password.setCustomValidity("Passwords don't match!");
 	  } else {
 		confirm_password.setCustomValidity('');
