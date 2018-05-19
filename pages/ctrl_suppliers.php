@@ -41,9 +41,9 @@ window.onload=function(){
 		//call php file to store data in DB with action=add
 		Send("./php/Suppliers_ctrl.php?action=edit","POST",function(data){
 			if(data.type=='success')
-				popUp(1,data.msg);
-			else
 				popUp(0,data.msg);
+			else
+				popUp(1,data.msg);
 		},"Name="+Name+"&Phone="+Phone+"&Loc="+Location+"&Email="+Email+"&Supplier_ID="+selSupp);	
 	
 	});

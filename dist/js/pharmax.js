@@ -82,6 +82,8 @@ function Send(url, method, data, post = null) {
 		type: method,
 		data: post,
 		cache: false,
+		contentType: false,
+        processData: false,
 		datatype:'json',
 		success: function (result) {
 			data(result);

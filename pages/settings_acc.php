@@ -12,59 +12,24 @@ window.onload = function(){
 			$('#LName').val(data.LName);
 			$('#Address').val(data.Address);
 			$('#Phone').val(data.Phone);
-			$('#UserName').val(data.User_Name);
+			$('#User_Name').val(data.User_Name);
 		},"");
 	}
-	function fillUpdateInfo(){
-		Send("./php/AccSettings.php?action=info","POST",function(data){
-			$('#FName').val(data.FName);
-			$('#LName').val(data.LName);
-			$('#Address').val(data.Address);
-			$('#Phone').val(data.Phone);
-			$('#UserName').val(data.User_Name);
-			$('#CrrPass').val();
-			$('#ConfPass').val();
-			$('#NewPass').val();
-		},"");
-	}
+	
 	$( "#UpdateInfo" ).on( "submit", function( event ) {
 		event.preventDefault();	
-		var FName 	= $('#FName').val();
-		var LName	= $('#LName').val();
-		var Address	= $('#Address').val();
-		var Phone 	= $('#Phone').val();
-		var UserName= $('#UserName').val();
-		var CrrPass = $('#CrrPass').val();
-		var ConfPass= $('#ConfPass').val();
-		var NewPass = $('#NewPass').val();
-		Send("./php/AccSettings.php?action=check","POST",function(data){
-			if(data.type=='Fail'){
+		    var formData = new FormData(this);
+	
+		Send("./php/AccSettings.php?action=update","POST",function(data){
+			if(data.type=='Success'){
+				$('#IImg').attr('src', $('#IImg')
+				.attr('src') + '?' + Math.random() );
+				$('#Ppf').attr('src', $('#Ppf')
+				.attr('src') + '?' + Math.random() );
+				popUp(1,data.msg);
+			}else
 				popUp(0,data.msg);
-				
-			}
-			else{
-				if(ConfPass==NewPass){
-					Send("./php/AccSettings.php?action=update","POST",function(data){
-						
-						if(data.type=='Fail'){
-							popUp(0,data.msg);
-						}
-						else{
-							popUp(1,data.msg);
-						}
-					},"Fname="+FName+"&LName="+LName+"&Address="+Address+"&Phone="+Phone+"&UserName="+UserName+"&NewPass="+NewPass);
-
-				}
-				else{
-					popUp(0,"Confirmed password doesn't match New password");
-				}
-
-
-			}
-
-
-
-		},"CrrPass="+CrrPass);
+		},formData);
 
 
 	});
@@ -78,7 +43,6 @@ window.onload = function(){
 
 
 	fillCrrInfo();
-	fillUpdateInfo();
 }
 </script>
 
@@ -141,42 +105,42 @@ window.onload = function(){
 
 							<div class="row">
 								<div class="col-lg-12">
-									<form id="UpdateInfo">
+									<form id="UpdateInfo" method="post" enctype="multipart/form-data">
 										<div class="form-group">
 											<label>First Name</label>
-											<input type="text" id="FName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
+											<input type="text" id="FName" name="FName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Last Name</label>
-											<input type="text" id="LName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
+											<input type="text" id="LName" name="LName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Address</label>
-											<input type="text" id="Address" class="form-control" placeholder="Leave empty to not update">
+											<input type="text" id="Address" name="Address" class="form-control" placeholder="Leave empty to not update">
 										</div>
 										<div class="form-group">
 											<label>Phone</label>
-											<input type="text" id="Phone" class="form-control" minLength=7 maxLength=15 pattern="[0-9]+" placeholder="Leave empty to not update">
+											<input type="text" id="Phone" name="Phone" class="form-control" minLength=7 maxLength=15 pattern="[0-9]+" placeholder="Leave empty to not update">
 										</div>
 										<div class="form-group">
 											<label>User Name</label>
-											<input type="text" id="UserName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
+											<input type="text" id="User_Name" name="User_Name" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Current Password</label>
-											<input type="password" id="CrrPass" class="form-control" minlength="5" placeholder="Must enter to update" required>
+											<input type="password" id="CrrPass" name="CrrPass" class="form-control" minlength="5" placeholder="Must enter to update" required>
 										</div>
 										<div class="form-group">
 											<label>New Password</label>
-											<input type="password" id="NewPass" class="form-control" minlength="5" placeholder="Leave empty to not update" required>
+											<input type="password" id="NewPass" name="NewPass" class="form-control" minlength="5" placeholder="Leave empty to not update">
 										</div>
 										<div class="form-group">
 											<label>Confirm Password</label>
-											<input type="password" id="ConfPass" class="form-control" minlength="5" placeholder="Leave empty to not update" required>
+											<input type="password" id="ConfPass" name="ConfPass" class="form-control" minlength="5" placeholder="Leave empty to not update">
 										</div>
 										<div class="form-group">
 											<label>Upload Image</label>
-											<input class="form-control" type="file" name="pic" accept="image/*">
+											<input class="form-control" type="file" id="Pic" name="Pic" accept="image/*">
 										</div>
 										<button type="submit" class="btn btn-default btn-success" onfocus="this.blur()">Save</button>
 										<button type="reset" class="btn btn-default btn-warning">Reset</button>
