@@ -1,6 +1,6 @@
 <script>
 window.onload = function(){	
-	function fillData(){
+	function fillCrrInfo(){
 		Send("./php/AccSettings.php?action=info","POST",function(data){
 
 			$('#IName').text(data.FName+' '+data.LName);
@@ -15,15 +15,70 @@ window.onload = function(){
 			$('#UserName').val(data.User_Name);
 		},"");
 	}
-
-	$( "#AddEmpForm" ).on( "submit", function( event ) {
+	function fillUpdateInfo(){
+		Send("./php/AccSettings.php?action=info","POST",function(data){
+			$('#FName').val(data.FName);
+			$('#LName').val(data.LName);
+			$('#Address').val(data.Address);
+			$('#Phone').val(data.Phone);
+			$('#UserName').val(data.User_Name);
+			$('#CrrPass').val();
+			$('#ConfPass').val();
+			$('#NewPass').val();
+		},"");
+	}
+	$( "#UpdateInfo" ).on( "submit", function( event ) {
 		event.preventDefault();	
+		var FName 	= $('#FName').val();
+		var LName	= $('#LName').val();
+		var Address	= $('#Address').val();
+		var Phone 	= $('#Phone').val();
+		var UserName= $('#UserName').val();
+		var CrrPass = $('#CrrPass').val();
+		var ConfPass= $('#ConfPass').val();
+		var NewPass = $('#NewPass').val();
+		Send("./php/AccSettings.php?action=check","POST",function(data){
+			if(data.type=='Fail'){
+				popUp(0,data.msg);
+				
+			}
+			else{
+				if(ConfPass==NewPass){
+					Send("./php/AccSettings.php?action=update","POST",function(data){
+						
+						if(data.type=='Fail'){
+							popUp(0,data.msg);
+						}
+						else{
+							popUp(1,data.msg);
+						}
+					},"Fname="+Fname+"&LName="+LName+"&Address="+Address+"&Phone="+Phone+"&UserName="+UserName+"&NewPass="+NewPass);
+
+				}
+				else{
+					popUp(0,"Confirmed password doesn't match New password");
+				}
+
+
+			}
+
+
+
+		},"CrrPass="+CrrPass);
 
 
 	});
 
 
-	fillData();
+	$( "#UpdateInfo" ).on( "reset", function( event ) {
+		event.preventDefault();	
+		fillUpdateInfo();
+	});
+
+
+
+	fillCrrInfo();
+	fillUpdateInfo();
 }
 </script>
 
@@ -86,7 +141,7 @@ window.onload = function(){
 
 							<div class="row">
 								<div class="col-lg-12">
-									<form>
+									<form id="UpdateInfo">
 										<div class="form-group">
 											<label>First Name</label>
 											<input id="FName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
@@ -113,7 +168,11 @@ window.onload = function(){
 										</div>
 										<div class="form-group">
 											<label>New Password</label>
-											<input id="NewPass" class="form-control" minlength="5" placeholder="Leave empty to not update">
+											<input id="NewPass" class="form-control" minlength="5" placeholder="Leave empty to not update" required>
+										</div>
+										<div class="form-group">
+											<label>Confirm Password</label>
+											<input id="ConfPass" class="form-control" minlength="5" placeholder="Leave empty to not update" required>
 										</div>
 										<div class="form-group">
 											<label>Upload Image</label>
