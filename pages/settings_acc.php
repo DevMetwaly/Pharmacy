@@ -7,12 +7,7 @@ window.onload = function(){
 			$('#IMobile').text(data.Phone);
 			$('#IAddress').text(data.Address);
 			$('#IImg').attr("src",data.Image);
-
-			$('#FName').val(data.FName);
-			$('#LName').val(data.LName);
-			$('#Address').val(data.Address);
-			$('#Phone').val(data.Phone);
-			//$('#User_Name').val(data.User_Name);
+			new Date().getTime();//cachebreaker 
 		},"");
 	}
 	
@@ -40,7 +35,7 @@ window.onload = function(){
 				$('#Ppf').attr('src', $('#Ppf')
 				.attr('src') + '?' + Math.random() );
 				popUp(1,data.msg);
-				fillCrrInfo();
+				fillUpdateInfo();
 			}else
 				popUp(0,data.msg);
 		},formData);
@@ -58,6 +53,7 @@ window.onload = function(){
 	
 	
 	fillCrrInfo();
+	fillUpdateInfo();
 	
 	var password = document.getElementById("NewPass")
 	  , confirm_password = document.getElementById("ConfPass");
