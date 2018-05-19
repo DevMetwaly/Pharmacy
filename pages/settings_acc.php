@@ -20,7 +20,7 @@ window.onload = function(){
 		event.preventDefault();	
 		    var formData = new FormData(this);
 	
-		Send("./php/AccSettings.php?action=update","POST",function(data){
+		SendFile("./php/AccSettings.php?action=update","POST",function(data){
 			if(data.type=='Success'){
 				$('#IImg').attr('src', $('#IImg')
 				.attr('src') + '?' + Math.random() );

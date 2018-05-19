@@ -74,8 +74,7 @@ $(function() {
 		$("#notif-count").html(count_notif);
 	}
 });
-
-function Send(url, method, data, post = null) {
+function SendFile(url, method, data, post = null) {
 	$.ajax({
 		url: url,
 		
@@ -84,6 +83,21 @@ function Send(url, method, data, post = null) {
 		cache: false,
 		contentType: false,
         processData: false,
+		datatype:'json',
+		success: function (result) {
+			data(result);
+		},
+		error: function (e) {
+			console.log(e);
+		}
+	});
+}
+function Send(url, method, data, post = null) {
+	$.ajax({
+		url: url,
+		
+		type: method,
+		data: post,
 		datatype:'json',
 		success: function (result) {
 			data(result);
