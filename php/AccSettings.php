@@ -44,7 +44,15 @@ switch($_GET['action']){
 			die((json_encode($re,JSON_PRETTY_PRINT)));
 		  }
 		}
-		if($db->query("
+		if(
+			$db->fetch
+			("
+				SELECT * 
+				FROM empolyees
+				WHERE Empolyee_ID = '".$db->escape($_SESSION["user"]["Empolyee_ID"])."' and Password = '".md5($db->escape($_POST["CrrPass"]))."';
+			")
+			&&
+			$db->query("
 						UPDATE empolyees
 						SET FName 	= '".$db->escape((($_POST['FName']!="")?$_POST['FName']:$_SESSION["user"]["FName"]))."',
 							LName 	= '".$db->escape((($_POST['LName']!="")?$_POST['LName']:$_SESSION["user"]["LName"]))."',

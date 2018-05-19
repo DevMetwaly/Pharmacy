@@ -41,7 +41,10 @@ window.onload = function(){
 	});
 
 
-
+	$(document).on("click",".popUpButton",function(){
+		location.reload();
+	});
+	
 	fillCrrInfo();
 	
 	var password = document.getElementById("NewPass")
