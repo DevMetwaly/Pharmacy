@@ -12,7 +12,7 @@ window.onload = function(){
 			$('#LName').val(data.LName);
 			$('#Address').val(data.Address);
 			$('#Phone').val(data.Phone);
-			$('#User_Name').val(data.User_Name);
+			//$('#User_Name').val(data.User_Name);
 		},"");
 	}
 	
@@ -43,7 +43,23 @@ window.onload = function(){
 
 
 	fillCrrInfo();
+	
+	var password = document.getElementById("NewPass")
+	  , confirm_password = document.getElementById("ConfPass");
+
+	function validatePassword(){
+	  if(password.value != confirm_password.value) {
+		confirm_password.setCustomValidity("Passwords don't match!");
+	  } else {
+		confirm_password.setCustomValidity('');
+	  }
+	}
+
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
 }
+
+
 </script>
 
 
@@ -121,10 +137,6 @@ window.onload = function(){
 										<div class="form-group">
 											<label>Phone</label>
 											<input type="text" id="Phone" name="Phone" class="form-control" minLength=7 maxLength=15 pattern="[0-9]+" placeholder="Leave empty to not update">
-										</div>
-										<div class="form-group">
-											<label>User Name</label>
-											<input type="text" id="User_Name" name="User_Name" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Current Password</label>
