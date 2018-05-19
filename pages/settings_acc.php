@@ -52,7 +52,7 @@ window.onload = function(){
 						else{
 							popUp(1,data.msg);
 						}
-					},"Fname="+Fname+"&LName="+LName+"&Address="+Address+"&Phone="+Phone+"&UserName="+UserName+"&NewPass="+NewPass);
+					},"Fname="+FName+"&LName="+LName+"&Address="+Address+"&Phone="+Phone+"&UserName="+UserName+"&NewPass="+NewPass);
 
 				}
 				else{
@@ -144,35 +144,35 @@ window.onload = function(){
 									<form id="UpdateInfo">
 										<div class="form-group">
 											<label>First Name</label>
-											<input id="FName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
+											<input type="text" id="FName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Last Name</label>
-											<input id="LName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
+											<input type="text" id="LName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Address</label>
-											<input id="Address" class="form-control" placeholder="Leave empty to not update">
+											<input type="text" id="Address" class="form-control" placeholder="Leave empty to not update">
 										</div>
 										<div class="form-group">
 											<label>Phone</label>
-											<input id="Phone" class="form-control" minLength=7 maxLength=15 pattern="[0-9]+" placeholder="Leave empty to not update">
+											<input type="text" id="Phone" class="form-control" minLength=7 maxLength=15 pattern="[0-9]+" placeholder="Leave empty to not update">
 										</div>
 										<div class="form-group">
 											<label>User Name</label>
-											<input id="UserName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
+											<input type="text" id="UserName" class="form-control" placeholder="Leave empty to not update" pattern="^[a-zA-Z]{1,25}">
 										</div>
 										<div class="form-group">
 											<label>Current Password</label>
-											<input id="CrrPass" class="form-control" minlength="5" placeholder="Must enter to update" required>
+											<input type="password" id="CrrPass" class="form-control" minlength="5" placeholder="Must enter to update" required>
 										</div>
 										<div class="form-group">
 											<label>New Password</label>
-											<input id="NewPass" class="form-control" minlength="5" placeholder="Leave empty to not update" required>
+											<input type="password" id="NewPass" class="form-control" minlength="5" placeholder="Leave empty to not update" required>
 										</div>
 										<div class="form-group">
 											<label>Confirm Password</label>
-											<input id="ConfPass" class="form-control" minlength="5" placeholder="Leave empty to not update" required>
+											<input type="password" id="ConfPass" class="form-control" minlength="5" placeholder="Leave empty to not update" required>
 										</div>
 										<div class="form-group">
 											<label>Upload Image</label>

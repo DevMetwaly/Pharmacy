@@ -42,6 +42,13 @@ switch($_GET['action']){
 
 					")
 		){
+			$_SESSION["user"]=$db->Fetch
+				("
+					SELECT * 
+					FROM empolyees 
+					WHERE Empolyee_ID='".$db->escape($_SESSION["user"]["Empolyee_ID"])."'
+				");
+				
 			$re["type"]="Success";
 			$re["msg"]="Data Updated Successfully";
 
