@@ -5,7 +5,7 @@ include_once("MySQLi.php");
 header('Content-Type: application/json');
 switch($_GET["action"]){
 	case "login":
-		$user=$db->Fetch
+	   $user=$db->Fetch
 				("
 					SELECT * 
 					FROM empolyees 
