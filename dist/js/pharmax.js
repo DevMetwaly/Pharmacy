@@ -131,7 +131,7 @@ $( "#login" ).on( "submit", function( event ) {
 
 function formAddBox(page,type,value="",id="phoneBoxList",name="addPhone"){
 	if(page=="pharmacy" && type=="phone"){
-		$("#"+id).append('<span><input class="form-control phoneBox" value="'+value+'" name="'+name+'[]" placeholder="Ex: 1003004000, 555-111-999"><i class="fa fa-remove" onclick="$(this).closest(\'span\').remove()"></i></span>');
+		$("#"+id).append('<span><input class="form-control phoneBox" value="'+value+'" name="'+name+'[]" placeholder="Ex: 01003004000"><i class="fa fa-remove" onclick="$(this).closest(\'span\').remove()"></i></span>');
 		
 	}
 }
